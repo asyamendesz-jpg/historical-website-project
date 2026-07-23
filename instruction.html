@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Инструкция — Эмоциональное путешествие</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Syne:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1a1f1c;
+      --ink-soft: #2c342f;
+      --paper: #eef1ea;
+      --moss: #4f6b57;
+      --moss-deep: #314538;
+      --line: rgba(26, 31, 28, 0.14);
+      --code: #f4f6f1;
+      --font-display: "Syne", sans-serif;
+      --font-serif: "Cormorant Garamond", Georgia, serif;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(90% 50% at 0% 0%, #f5f7f2, transparent 55%),
+        linear-gradient(180deg, #eef1ea, #e2e8df);
+      font-family: var(--font-serif);
+      font-size: 1.125rem;
+      line-height: 1.65;
+    }
+
+    a { color: var(--moss-deep); }
+
+    .wrap {
+      width: min(860px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 2.5rem 0 4rem;
+    }
+
+    header {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      margin: 0 0 0.75rem;
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--moss);
+    }
+
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin: 0 0 0.75rem;
+    }
+
+    h1 { font-size: clamp(2rem, 1.4rem + 2vw, 3rem); max-width: 16ch; }
+    h2 { font-size: 1.55rem; margin-top: 2.25rem; }
+    h3 { font-size: 1.15rem; margin-top: 1.5rem; }
+
+    p, li { color: var(--ink-soft); }
+    p { margin: 0 0 1rem; }
+
+    .lede {
+      font-size: 1.35rem;
+      max-width: 40rem;
+      color: var(--ink);
+    }
+
+    nav.toc {
+      display: grid;
+      gap: 0.45rem;
+      margin: 1.5rem 0 0;
+      padding: 1rem 0 0;
+      border-top: 1px solid var(--line);
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+    }
+
+    nav.toc a {
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      width: fit-content;
+    }
+
+    nav.toc a:hover { border-bottom-color: var(--moss); }
+
+    section {
+      scroll-margin-top: 1.5rem;
+      padding: 0.5rem 0 0.25rem;
+    }
+
+    code, kbd {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.88em;
+      background: var(--code);
+      padding: 0.12em 0.35em;
+      border: 1px solid var(--line);
+    }
+
+    pre {
+      overflow: auto;
+      margin: 0 0 1.25rem;
+      padding: 1rem 1.1rem;
+      background: #1a1f1c;
+      color: #e8ebe4;
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.86rem;
+      line-height: 1.55;
+    }
+
+    pre code {
+      background: none;
+      border: 0;
+      padding: 0;
+      color: inherit;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 0 1.25rem;
+      font-size: 1rem;
+    }
+
+    th, td {
+      text-align: left;
+      vertical-align: top;
+      padding: 0.7rem 0.6rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    th {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--moss);
+    }
+
+    .card {
+      margin: 1rem 0 1.5rem;
+      padding: 1rem 1.1rem;
+      border-left: 2px solid var(--moss);
+      background: color-mix(in srgb, white 55%, transparent);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.6rem;
+      padding: 0.55rem 1.1rem;
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: var(--moss);
+      color: var(--paper);
+      border: 1px solid var(--moss);
+      transition: transform 0.25s var(--ease), background 0.25s var(--ease);
+    }
+
+    .btn:hover { background: var(--moss-deep); transform: translateY(-1px); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--line);
+    }
+
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--line);
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      color: var(--ink-soft);
+    }
+
+    ul, ol { padding-left: 1.2rem; }
+    li { margin-bottom: 0.4rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <p class="eyebrow">Документация проекта</p>
+      <h1>Инструкция по сайту «Эмоциональное путешествие»</h1>
+      <p class="lede">Как запустить, править и развивать портфолио-выставку: структура файлов, современные API и чек-лист публикации.</p>
+      <div class="actions">
+        <a class="btn" href="index.html">Открыть сайт</a>
+        <a class="btn btn-ghost" href="#run">К запуску</a>
+      </div>
+      <nav class="toc" aria-label="Содержание">
+        <a href="#structure">1. Структура</a>
+        <a href="#run">2. Запуск</a>
+        <a href="#edit">3. Как править контент</a>
+        <a href="#modern">4. Современные методы</a>
+        <a href="#a11y">5. Доступность и анимации</a>
+        <a href="#publish">6. Публикация</a>
+        <a href="#checklist">7. Чек-лист</a>
+      </nav>
+    </header>
+
+    <section id="structure">
+      <h2>1. Структура проекта</h2>
+      <pre><code>historical-website-project/
+├── index.html          # главная страница-выставка
+├── styles.css          # визуальная система и анимации
+├── script.js           # ES module: навигация, залы, форма
+├── instruction.html    # эта инструкция
+├── README.md           # краткое описание
+└── images/
+    └── asya-portrait.jpg</code></pre>
+      <p>Сайт статический: без сборщика и без бэкенда. Форма открывает почтовый клиент через <code>mailto:</code>.</p>
+      <div class="card">
+        <strong>Если HTML «не открывается».</strong> Все файлы должны лежать в одной папке <code>historical-website-project</code>. Откройте именно <code>index.html</code> из этой папки (или запустите <code>open-site.bat</code>). Скрипт подключается как обычный <code>defer</code>, без <code>type="module"</code>, чтобы страница работала и по <code>file://</code>.
+      </div>
+    </section>
+
+    <section id="run">
+      <h2>2. Запуск</h2>
+      <h3>Вариант A — просто открыть файл</h3>
+      <p>Дважды кликните <code>index.html</code>. Для локальной разработки лучше сервер: модули и некоторые API стабильнее работают по <code>http://</code>.</p>
+      <h3>Вариант B — локальный сервер</h3>
+      <pre><code>npx --yes serve .
+# или
+python -m http.server 5500</code></pre>
+      <p>Откройте адрес из терминала (обычно <code>http://localhost:3000</code> или <code>:5500</code>).</p>
+    </section>
+
+    <section id="edit">
+      <h2>3. Как править контент</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Что меняете</th>
+            <th>Где</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Тексты разделов, услуги, подход</td>
+            <td><code>index.html</code> — секции <code>#about</code> … <code>#collaborate</code></td>
+          </tr>
+          <tr>
+            <td>Проекты-экспедиции и ссылки</td>
+            <td>блок <code>#expeditions</code></td>
+          </tr>
+          <tr>
+            <td>Площадки (VK, Дзен, Sostav, блог)</td>
+            <td>блоки <code>.presence-rail</code> и футер</td>
+          </tr>
+          <tr>
+            <td>Фото</td>
+            <td>замените <code>images/asya-portrait.jpg</code> (лучше ≥ 800px)</td>
+          </tr>
+          <tr>
+            <td>Email формы</td>
+            <td>константа <code>CONTACT_EMAIL</code> в <code>script.js</code></td>
+          </tr>
+          <tr>
+            <td>Цвета и шрифты</td>
+            <td>переменные <code>:root</code> в <code>styles.css</code></td>
+          </tr>
+          <tr>
+            <td>Обложки экспедиций</td>
+            <td>классы <code>.expedition-media--silk</code> / <code>--atlantis</code></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="card">
+        <strong>Залы.</strong> У каждой секции есть <code>data-hall</code> и <code>data-hall-name</code> — по ним работает индикатор слева. При добавлении раздела скопируйте пару атрибутов и пункт в меню.
+      </div>
+    </section>
+
+    <section id="modern">
+      <h2>4. Современные методы (что уже внедрено)</h2>
+      <ol>
+        <li><strong>Обычный script + defer</strong> — работает при двойном клике по HTML и через локальный сервер; код разбит на функции с JSDoc.</li>
+        <li><strong>IntersectionObserver</strong> — появление блоков и смена «зала» без тяжёлого scroll-слушателя.</li>
+        <li><strong>requestAnimationFrame</strong> — шапка обновляется не чаще кадра.</li>
+        <li><strong>Constraint Validation API</strong> — <code>checkValidity()</code>, <code>setCustomValidity()</code>, <code>reportValidity()</code>.</li>
+        <li><strong>View Transitions API</strong> — плавный переход по якорям, если браузер умеет; иначе — шторка <code>.page-veil</code>.</li>
+        <li><strong>inert</strong> — закрытое мобильное меню не попадает в Tab-порядок.</li>
+        <li><strong>loading / fetchpriority / decoding</strong> — приоритет героя, lazy для второго портрета.</li>
+        <li><strong>content-visibility</strong> — секции-залы рендерятся экономнее при длинной странице.</li>
+        <li><strong>CSS custom properties</strong> — задержки reveal через <code>--reveal-delay</code>, фото экспедиций без inline-style.</li>
+        <li><strong>matchMedia change</strong> — реакция на смену reduced-motion и ширины экрана.</li>
+      </ol>
+      <h3>Что можно добавить позже</h3>
+      <ul>
+        <li><code>Service Worker</code> + offline-кэш для GitHub Pages</li>
+        <li>отправка формы на Formspree / Netlify Forms вместо mailto</li>
+        <li>сборка Vite только если появятся зависимости</li>
+        <li>WebP/AVIF портрет и <code>&lt;picture&gt;</code></li>
+        <li><code>Popover API</code> для подсказок в экспедициях</li>
+      </ul>
+    </section>
+
+    <section id="a11y">
+      <h2>5. Доступность и анимации</h2>
+      <ul>
+        <li>Есть skip-link «К содержанию».</li>
+        <li>Кнопки и ссылки используют <code>:focus-visible</code>.</li>
+        <li>При <code>prefers-reduced-motion: reduce</code> отключаются шторка, свет по портрету и тяжёлые transitions; reveal показывается сразу.</li>
+        <li>На touch-устройствах тексты экспедиций видны без hover.</li>
+      </ul>
+    </section>
+
+    <section id="publish">
+      <h2>6. Публикация на GitHub Pages</h2>
+      <ol>
+        <li>Закоммитьте файлы в репозиторий <code>historical-website-project</code>.</li>
+        <li>GitHub → Settings → Pages → Source: Deploy from branch <code>main</code> / root.</li>
+        <li>Сайт откроется как <code>https://asyamendesz-jpg.github.io/historical-website-project/</code>.</li>
+        <li>Если нужен корень домена — используйте репозиторий <code>username.github.io</code>.</li>
+      </ol>
+      <pre><code>git add .
+git commit -m "Publish emotional journey exhibition site"
+git push origin main</code></pre>
+    </section>
+
+    <section id="checklist">
+      <h2>7. Чек-лист перед показом</h2>
+      <ul>
+        <li>Проверить ссылки квизов: Silk Road и Atlantis China</li>
+        <li>Проверить площадки: aniuka, Sostav, Дзен, VK</li>
+        <li>Отправить тестовое письмо из формы</li>
+        <li>Просмотреть на телефоне и desktop</li>
+        <li>Включить в ОС «уменьшить движение» и убедиться, что сайт спокойный</li>
+        <li>Заменить email в <code>script.js</code>, если нужен другой адрес</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>Эмоциональное путешествие · инструкция для автора и заказчика · <a href="index.html">вернуться на сайт</a></p>
+    </footer>
+  </div>
+</body>
+</html>
