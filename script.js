@@ -287,6 +287,7 @@ function initCarousel(reduced) {
     const totalEl = $("[data-carousel-total]", root);
     if (!track || !slides.length) return;
 
+    const interval = Number(root.dataset.carouselInterval) || 4200;
     let index = 0;
     let timer = 0;
     const total = slides.length;
@@ -326,7 +327,7 @@ function initCarousel(reduced) {
     const startAutoplay = () => {
       if (reduced) return;
       stopAutoplay();
-      timer = window.setInterval(() => goTo(index + 1), 4200);
+      timer = window.setInterval(() => goTo(index + 1), interval);
     };
 
     const restartAutoplay = () => {
