@@ -273,6 +273,102 @@ function initYear() {
   if (year) year.textContent = String(new Date().getFullYear());
 }
 
+function initCarousel(reduced) {
+  const roots = $$("[data-carousel]");
+  if (!roots.length) return;
+
+  roots.forEach((root) => {
+    const track = $("[data-carousel-track]", root);
+    const slides = $$("[data-carousel-slide]", root);
+    const prev = $("[data-carousel-prev]", root);
+    const next = $("[data-carousel-next]", root);
+    const dotsWrap = $("[data-carousel-dots]", root);
+    const currentEl = $("[data-carousel-current]", root);
+    const totalEl = $("[data-carousel-total]", root);
+    if (!track || !slides.length) return;
+
+    let index = 0;
+    let timer = 0;
+    const total = slides.length;
+    if (totalEl) totalEl.textContent = String(total);
+
+    const dots = slides.map((_, i) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "carousel-dot";
+      btn.setAttribute("role", "tab");
+      btn.setAttribute("aria-label", `Кадр ${i + 1}`);
+      btn.addEventListener("click", () => goTo(i, true));
+      dotsWrap?.append(btn);
+      return btn;
+    });
+
+    const paint = () => {
+      track.style.transform = `translate3d(-${index * 100}%, 0, 0)`;
+      slides.forEach((slide, i) => slide.classList.toggle("is-active", i === index));
+      dots.forEach((dot, i) => dot.setAttribute("aria-selected", String(i === index)));
+      if (currentEl) currentEl.textContent = String(index + 1);
+    };
+
+    const goTo = (nextIndex, user = false) => {
+      index = (nextIndex + total) % total;
+      paint();
+      if (user) restartAutoplay();
+    };
+
+    const stopAutoplay = () => {
+      if (timer) {
+        window.clearInterval(timer);
+        timer = 0;
+      }
+    };
+
+    const startAutoplay = () => {
+      if (reduced) return;
+      stopAutoplay();
+      timer = window.setInterval(() => goTo(index + 1), 4200);
+    };
+
+    const restartAutoplay = () => {
+      stopAutoplay();
+      startAutoplay();
+    };
+
+    prev?.addEventListener("click", () => goTo(index - 1, true));
+    next?.addEventListener("click", () => goTo(index + 1, true));
+
+    root.addEventListener("pointerenter", stopAutoplay);
+    root.addEventListener("pointerleave", startAutoplay);
+    root.addEventListener("focusin", stopAutoplay);
+    root.addEventListener("focusout", (event) => {
+      if (!root.contains(/** @type {Node} */ (event.relatedTarget))) startAutoplay();
+    });
+
+    let touchX = 0;
+    track.addEventListener(
+      "touchstart",
+      (event) => {
+        touchX = event.changedTouches[0]?.clientX ?? 0;
+        stopAutoplay();
+      },
+      { passive: true }
+    );
+    track.addEventListener(
+      "touchend",
+      (event) => {
+        const x = event.changedTouches[0]?.clientX ?? touchX;
+        const delta = x - touchX;
+        if (Math.abs(delta) > 40) goTo(index + (delta < 0 ? 1 : -1), true);
+        else startAutoplay();
+      },
+      { passive: true }
+    );
+
+    paint();
+    startAutoplay();
+  });
+}
+
 function boot() {
   const reduced = prefersReducedMotion();
   initYear();
@@ -282,6 +378,7 @@ function boot() {
   initHallIndicator(reduced);
   initForm(reduced);
   initAnchorNav(reduced);
+  initCarousel(reduced);
 
   const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   motionQuery.addEventListener("change", () => {
