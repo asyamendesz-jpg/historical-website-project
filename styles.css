@@ -782,8 +782,7 @@ p {
   max-width: 1280px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.2fr 0.9fr;
-  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 1fr;
   gap: clamp(1rem, 2.5vw, 1.75rem);
 }
 
@@ -801,11 +800,6 @@ p {
 a.expedition:hover,
 a.expedition:focus-visible {
   transform: translateY(-3px);
-}
-
-.expedition:first-child {
-  grid-row: 1 / span 2;
-  min-height: 100%;
 }
 
 .expedition-media {
@@ -831,6 +825,10 @@ a.expedition:focus-visible {
 
 .expedition-media--atlantis {
   --photo: url("images/atlantis-china.png");
+}
+
+.expedition-media--alchemist {
+  --photo: url("images/carousel-alchemist/slide-01.jpg");
 }
 
 .expedition:hover .expedition-media,
@@ -1516,11 +1514,6 @@ a.expedition:focus-visible {
 
   .expedition-wall {
     grid-template-columns: 1fr;
-  }
-
-  .expedition:first-child {
-    grid-row: auto;
-    min-height: 24rem;
   }
 
   .service-item {

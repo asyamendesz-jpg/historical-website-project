@@ -11,6 +11,7 @@
 - [Портал «Внеклассное чтение»](https://asyamendesz-jpg.github.io/The-portal-of-book-expeditions/)
 - [Шёлковый путь](https://asyamendesz-jpg.github.io/The-Silk-Road/)
 - [Подводная Атлантида Китая](https://asyamendesz-jpg.github.io/Atlantis-China/)
+- [Какой вы алхимик?](https://asyamendesz-jpg.github.io/The-Alchemist-Quiz/)
 
 ## Площадки
 
