@@ -824,11 +824,11 @@ a.expedition:focus-visible {
 }
 
 .expedition-media--atlantis {
-  --photo: url("images/atlantis-china.png");
+  --photo: url("https://asyamendesz-jpg.github.io/carousel-Atlantis-/slides/slide-01.png");
 }
 
 .expedition-media--alchemist {
-  --photo: url("images/carousel-alchemist/slide-01.jpg");
+  --photo: url("images/carousel-alchemist-hq/slide-01.png");
 }
 
 .expedition:hover .expedition-media,
@@ -957,6 +957,21 @@ a.expedition:focus-visible {
   color: var(--ink-soft);
 }
 
+.carousel-frame {
+  width: 100%;
+  border: 1px solid rgba(26, 31, 28, 0.14);
+  background: #061820;
+  overflow: hidden;
+}
+
+.carousel-frame iframe {
+  display: block;
+  width: 100%;
+  height: min(78vh, 760px);
+  min-height: 560px;
+  border: 0;
+}
+
 .carousel {
   position: relative;
   display: grid;
@@ -970,11 +985,11 @@ a.expedition:focus-visible {
   overflow: hidden;
   border: 1px solid rgba(26, 31, 28, 0.14);
   background: #0f2a33;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
 .carousel-viewport--tall {
-  aspect-ratio: 194 / 329;
+  width: min(100%, 320px);
+  aspect-ratio: 9 / 16;
   background: #f3efe6;
 }
 
@@ -1000,19 +1015,11 @@ a.expedition:focus-visible {
   height: 100%;
   object-fit: cover;
   display: block;
-  transform: scale(1.03);
-  transition: transform 0.7s var(--ease), opacity 0.45s var(--ease);
-  opacity: 0.88;
-}
-
-.carousel-slide.is-active img {
-  transform: scale(1);
-  opacity: 1;
 }
 
 .carousel-btn {
   position: absolute;
-  top: calc(50% - 2.8rem);
+  top: calc(50% - 3.5rem);
   z-index: 2;
   width: 2.6rem;
   height: 2.6rem;
@@ -1030,27 +1037,16 @@ a.expedition:focus-visible {
   background: var(--moss);
   border-color: var(--moss);
   color: var(--paper);
-  transform: scale(1.04);
   outline: none;
 }
 
-.carousel-btn:active {
-  transform: scale(0.96);
-}
-
-.carousel-btn--prev {
-  left: max(0px, calc(50% - 200px));
-}
-
-.carousel-btn--next {
-  right: max(0px, calc(50% - 200px));
-}
+.carousel-btn--prev { left: max(0px, calc(50% - 210px)); }
+.carousel-btn--next { right: max(0px, calc(50% - 210px)); }
 
 .carousel-meta {
   display: grid;
   gap: 0.75rem;
   justify-items: center;
-  width: min(100%, 320px);
 }
 
 .carousel-counter {
@@ -1076,13 +1072,19 @@ a.expedition:focus-visible {
   border: 1px solid rgba(26, 31, 28, 0.28);
   background: transparent;
   cursor: pointer;
-  transition: background 0.25s var(--ease), border-color 0.25s var(--ease), transform 0.25s var(--ease);
 }
 
 .carousel-dot[aria-selected="true"] {
   background: var(--moss);
   border-color: var(--moss);
-  transform: scale(1.15);
+}
+
+.carousel-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem 1.35rem;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
 .carousel-cta {
@@ -1094,7 +1096,6 @@ a.expedition:focus-visible {
   text-decoration: none;
   border-bottom: 1px solid rgba(26, 31, 28, 0.28);
   padding-bottom: 0.15rem;
-  transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
 }
 
 .carousel-cta:hover,
@@ -1103,29 +1104,28 @@ a.expedition:focus-visible {
   border-bottom-color: var(--moss);
 }
 
-@media (max-width: 560px) {
-  .carousel-btn--prev {
-    left: 0;
-  }
-
-  .carousel-btn--next {
-    right: 0;
-  }
-
-  .carousel-viewport {
-    width: min(100%, 240px);
-  }
-}
-
 @media (max-width: 900px) {
   .carousel-gallery {
     grid-template-columns: 1fr;
   }
+
+  .carousel-frame iframe {
+    height: min(70vh, 640px);
+    min-height: 480px;
+  }
+}
+
+@media (max-width: 560px) {
+  .carousel-btn--prev { left: 0; }
+  .carousel-btn--next { right: 0; }
+  .carousel-viewport,
+  .carousel-viewport--tall {
+    width: min(100%, 240px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .carousel-track,
-  .carousel-slide img {
+  .carousel-track {
     transition: none;
   }
 }

@@ -2,9 +2,10 @@
 
 Портфолио-выставка вайб-кодера Аси Мельниковой: атмосфера галереи вместо корпоративного сайта.
 
-## Документация
+## Карусели
 
-Полная HTML-инструкция: [instruction.html](instruction.html)
+- [Ши Чэн](https://asyamendesz-jpg.github.io/carousel-Atlantis-/)
+- [Алхимик](https://asyamendesz-jpg.github.io/The-Alchemist-Carousel/)
 
 ## Проекты
 
