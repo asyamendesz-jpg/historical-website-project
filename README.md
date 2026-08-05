@@ -1,4 +1,4 @@
-ы# Эмоциональное путешествие
+# Эмоциональное путешествие
 
 Портфолио-выставка вайб-кодера Аси Мельниковой: атмосфера галереи вместо корпоративного сайта.
 
@@ -13,6 +13,7 @@
 - [Шёлковый путь](https://asyamendesz-jpg.github.io/The-Silk-Road/)
 - [Подводная Атлантида Китая](https://asyamendesz-jpg.github.io/Atlantis-China/)
 - [Какой вы алхимик?](https://asyamendesz-jpg.github.io/The-Alchemist-Quiz/)
+- [Высотки-Юг](https://friendly-encounter-sun.lovable.app)
 
 ## Площадки
 

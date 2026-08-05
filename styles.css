@@ -831,6 +831,10 @@ a.expedition:focus-visible {
   --photo: url("images/carousel-alchemist-hq/slide-01.png");
 }
 
+.expedition-media--realty {
+  --photo: url("https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1400&q=80");
+}
+
 .expedition:hover .expedition-media,
 .expedition:focus-within .expedition-media {
   transform: scale(1);
