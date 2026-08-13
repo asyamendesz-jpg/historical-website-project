@@ -1,0 +1,233 @@
+/* Люся рядом: встречи в залах, не чат-окно */
+
+.lyusya-pocket {
+  max-width: var(--max);
+  margin: clamp(1.5rem, 4vw, 2.5rem) auto 0;
+}
+
+#collab-form {
+  scroll-margin-top: 5.5rem;
+}
+
+.lyusya-whisper {
+  position: relative;
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: 0.85rem 1rem;
+  align-items: start;
+  padding: 1rem 2.4rem 1.1rem 1rem;
+  border: 1px solid rgba(255, 196, 214, 0.5);
+  background:
+    radial-gradient(80% 90% at 100% 0%, rgba(255, 196, 214, 0.22), transparent 55%),
+    rgba(255, 252, 247, 0.9);
+  animation: lyusyaWhisperIn 0.45s ease both;
+}
+
+.lyusya-whisper__close {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.55rem;
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  background: transparent;
+  color: var(--ink-soft);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.lyusya-whisper__close:hover,
+.lyusya-whisper__close:focus-visible {
+  color: var(--ink);
+  outline: none;
+}
+
+.lyusya-whisper__avatar {
+  margin: 0;
+}
+
+.lyusya-whisper__avatar img {
+  display: block;
+  width: 4.5rem;
+  height: 4.5rem;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: saturate(1.08) contrast(1.04) brightness(1.04);
+}
+
+.lyusya-whisper__name {
+  margin: 0 0 0.3rem;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--moss);
+}
+
+.lyusya-whisper__speech {
+  margin: 0;
+  white-space: pre-line;
+  font-size: 1.05rem;
+  line-height: 1.45;
+}
+
+.lyusya-whisper__actions,
+.lyusya-idle-hint__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+}
+
+.lyusya-whisper__btn {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid rgba(26, 31, 28, 0.18);
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--ink);
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.lyusya-whisper__btn:hover,
+.lyusya-whisper__btn:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--moss);
+  background: #fff;
+  outline: none;
+}
+
+.lyusya-whisper__btn--ghost {
+  background: rgba(255, 244, 248, 0.8);
+}
+
+.lyusya-whisper__btn--quiet,
+.lyusya-whisper__btn--tiny {
+  background: transparent;
+  font-weight: 500;
+}
+
+.lyusya-whisper__btn--tiny {
+  padding: 0.4rem 0.7rem;
+  font-size: 0.8rem;
+}
+
+.lyusya-whisper__stories {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px dashed rgba(255, 176, 198, 0.7);
+}
+
+.lyusya-whisper__story p {
+  margin: 0 0 0.45rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+.lyusya-idle-hint {
+  position: fixed;
+  z-index: 32;
+  right: clamp(0.7rem, 3vw, 1.5rem);
+  bottom: clamp(0.7rem, 3vw, 1.25rem);
+  left: auto;
+  display: grid;
+  grid-template-columns: 3.4rem minmax(0, 1fr);
+  gap: 0.55rem 0.75rem;
+  width: min(22rem, calc(100vw - 1.4rem));
+  max-height: 42vh;
+  overflow: auto;
+  padding: 0.7rem 2.1rem 0.75rem 0.7rem;
+  border: 1px solid rgba(255, 196, 214, 0.55);
+  background: rgba(255, 252, 247, 0.96);
+  box-shadow: 0 12px 30px rgba(49, 69, 56, 0.12);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.lyusya-idle-hint.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.lyusya-idle-hint__close {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.35rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  border: 0;
+  background: transparent;
+  font-size: 1.25rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.lyusya-idle-hint img {
+  width: 3.4rem;
+  height: 3.4rem;
+  object-fit: contain;
+}
+
+.lyusya-idle-hint__speech {
+  margin: 0;
+  white-space: pre-line;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 720px) {
+  .lyusya-whisper {
+    grid-template-columns: 3.4rem minmax(0, 1fr);
+    padding: 0.85rem 2.1rem 0.95rem 0.8rem;
+  }
+
+  .lyusya-whisper__avatar img {
+    width: 3.4rem;
+    height: 3.4rem;
+  }
+
+  .lyusya-whisper__speech {
+    font-size: 0.98rem;
+  }
+
+  .lyusya-idle-hint {
+    left: 0.65rem;
+    right: 0.65rem;
+    bottom: 0.65rem;
+    width: auto;
+    max-height: 34vh;
+  }
+}
+
+@keyframes lyusyaWhisperIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lyusya-whisper,
+  .lyusya-idle-hint,
+  .lyusya-whisper__btn {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .lyusya-idle-hint {
+    opacity: 1;
+  }
+}

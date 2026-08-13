@@ -13,8 +13,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="preload" href="images/asya-portrait.jpg" as="image" type="image/jpeg" />
-  <link rel="stylesheet" href="styles.css?v=20260813f" />
+  <link rel="stylesheet" href="styles.css?v=20260813g" />
   <link rel="stylesheet" href="lyusya/lyusya.css?v=20260813f" />
+  <link rel="stylesheet" href="lyusya/lyusya-companion.css?v=20260813g" />
 </head>
 <body>
   <a class="skip-link" href="#main">К содержанию</a>
@@ -114,6 +115,7 @@
           <figcaption>Ася Мельникова · вайб-кодер</figcaption>
         </figure>
       </div>
+      <div class="lyusya-pocket" data-lyusya-encounter="after-about"></div>
     </section>
 
     <section id="services" class="room room-services" data-hall="02" data-hall-name="Услуги">
@@ -123,27 +125,28 @@
         <p class="room-lead">Не пакеты «под ключ», а форматы совместной работы — от идеи до живого интерфейса.</p>
       </div>
       <ol class="service-rail">
-        <li class="service-item reveal">
+        <li class="service-item reveal" id="service-landing">
           <span class="service-num">01</span>
           <h3>Лендинги с характером</h3>
           <p>Одна сильная композиция, выразительная типографика и история, которую хочется дочитать до конца.</p>
         </li>
-        <li class="service-item reveal">
+        <li class="service-item reveal" id="service-product">
           <span class="service-num">02</span>
           <h3>Интерфейсы продуктов</h3>
           <p>Экраны, в которых логика не спорит с настроением: понятные сценарии и спокойный визуальный ритм.</p>
         </li>
-        <li class="service-item reveal">
+        <li class="service-item reveal" id="service-redesign">
           <span class="service-num">03</span>
           <h3>Редизайн и «оживление»</h3>
           <p>Убираю корпоративную сухость, усиливаю бренд и делаю опыт более человечным без потери ясности.</p>
         </li>
-        <li class="service-item reveal">
+        <li class="service-item reveal" id="service-iterate">
           <span class="service-num">04</span>
           <h3>Сопровождение и итерации</h3>
           <p>После запуска — тонкая настройка: тексты, анимации, детали, которые держат ощущение цельности.</p>
         </li>
       </ol>
+      <div class="lyusya-pocket" data-lyusya-encounter="after-services"></div>
     </section>
 
     <section id="expeditions" class="room room-expeditions" data-hall="03" data-hall-name="Экспедиции">
@@ -269,6 +272,7 @@
           </div>
         </div>
       </div>
+      <div class="lyusya-pocket" data-lyusya-encounter="after-expeditions"></div>
     </section>
 
     <section id="approach" class="room room-approach" data-hall="04" data-hall-name="Подход">
@@ -323,6 +327,7 @@
           <p>Публикация, проверка скорости, тонкая полировка после первых реакций.</p>
         </div>
       </div>
+      <div class="lyusya-pocket" data-lyusya-encounter="after-process"></div>
     </section>
 
     <section id="lyusya" class="room room-lyusya" data-hall="06" data-hall-name="Люся">
@@ -362,6 +367,7 @@
 
     <section id="collaborate" class="room room-collaborate" data-hall="07" data-hall-name="Сотрудничество">
       <div class="room-label">Зал 07</div>
+      <div class="lyusya-pocket" data-lyusya-encounter="before-collab"></div>
       <div class="collaborate-layout">
         <div class="collaborate-intro reveal">
           <h2>Сотрудничество</h2>
@@ -411,7 +417,8 @@
   </footer>
 
   <script defer src="script.js?v=20260813f"></script>
-  <script defer src="lyusya/lyusya-data.js?v=20260813"></script>
+  <script defer src="lyusya/lyusya-data.js?v=20260813g"></script>
   <script defer src="lyusya/lyusya-game.js?v=20260813"></script>
+  <script defer src="lyusya/lyusya-companion.js?v=20260813g"></script>
 </body>
 </html>

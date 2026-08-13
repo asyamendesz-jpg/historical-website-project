@@ -746,6 +746,7 @@ p {
   row-gap: 0.35rem;
   padding: 1.6rem 0;
   border-bottom: 1px solid var(--line);
+  scroll-margin-top: 5.5rem;
   transition: padding-left 0.35s var(--ease);
 }
 

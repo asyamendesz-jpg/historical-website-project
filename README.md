@@ -18,14 +18,15 @@
 
 ## Персонаж
 
-ВайбНавигатор Люся — интерактивная игра в зале `#lyusya` (сразу игра, без витрины образов).
+ВайбНавигатор Люся — игра в зале `#lyusya` и редкие встречи по маршруту выставки.
 
-- Тексты и этапы: `lyusya/lyusya-data.js`
-- Логика: `lyusya/lyusya-game.js`
-- Стили: `lyusya/lyusya.css`
-- Образы в игре: `images/lyusya/`
+- Тексты игры и сопровождения: `lyusya/lyusya-data.js`
+- Логика игры: `lyusya/lyusya-game.js` (не чат-бот)
+- Сопровождение: `lyusya/lyusya-companion.js`
+- Стили: `lyusya/lyusya.css`, `lyusya/lyusya-companion.css`
+- Образы: `images/lyusya/`
 
-События аналитики (пока без сторонних сервисов): `window.__lyusyaEvents` и `lyusya:event`.
+События: `window.__lyusyaEvents` и `lyusya:event`. Память сессии: `localStorage.lyusyaCompanion`.
 
 ## Площадки
 
