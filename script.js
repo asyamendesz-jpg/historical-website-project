@@ -215,7 +215,11 @@ function initForm(reduced) {
 function scrollToHash(hash, reduced) {
   const target = $(hash);
   if (!target) return;
-  const top = target.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
+  const headerH = $(".site-header")?.offsetHeight || 72;
+  const top = Math.max(
+    0,
+    target.getBoundingClientRect().top + window.scrollY - headerH - SCROLL_OFFSET
+  );
   window.scrollTo({ top, behavior: reduced ? "auto" : "smooth" });
 }
 
