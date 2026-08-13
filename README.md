@@ -16,6 +16,17 @@
 - [Высотки-Юг](https://friendly-encounter-sun.lovable.app)
 - [FORMA — визитка магазина обуви](https://asyamendesz-jpg.github.io/shoe-store-s-business-card-website/)
 
+## Персонаж
+
+ВайбНавигатор Люся — интерактивная игра в зале `#lyusya`.
+
+- Тексты и этапы: `lyusya/lyusya-data.js`
+- Логика: `lyusya/lyusya-game.js`
+- Стили: `lyusya/lyusya.css`
+- Образы: `images/lyusya/`
+
+События аналитики (пока без сторонних сервисов): `window.__lyusyaEvents` и `lyusya:event`.
+
 ## Площадки
 
 - [aniuka.ru](https://aniuka.ru/)

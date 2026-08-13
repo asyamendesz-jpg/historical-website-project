@@ -1235,6 +1235,77 @@ a.expedition:focus-visible {
   color: var(--ink-soft);
 }
 
+/* Lyusya */
+
+.room-lyusya {
+  background:
+    radial-gradient(70% 55% at 90% 10%, rgba(196, 165, 116, 0.16), transparent 55%),
+    radial-gradient(55% 40% at 8% 80%, rgba(126, 168, 201, 0.18), transparent 50%);
+}
+
+.lyusya-gallery {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: var(--max);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+}
+
+.lyusya-card figure {
+  margin: 0;
+  display: grid;
+  height: 100%;
+  background: rgba(244, 246, 241, 0.55);
+  border: 1px solid var(--line);
+}
+
+.lyusya-card img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center top;
+  background:
+    radial-gradient(circle at 50% 20%, #fff8fb, #e8eef6 55%, #dfe8df);
+}
+
+.lyusya-card figcaption {
+  display: grid;
+  gap: 0.3rem;
+  padding: 1rem 1rem 1.15rem;
+}
+
+.lyusya-meta {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--moss);
+}
+
+.lyusya-card strong {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.lyusya-card em {
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 900px) {
+  .lyusya-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .lyusya-card img {
+    aspect-ratio: 1;
+  }
+}
+
 /* Collaborate */
 
 .collaborate-layout {

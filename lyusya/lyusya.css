@@ -1,0 +1,275 @@
+/* ВайбНавигатор Люся — изолированные стили игры */
+
+.lyusya-quest {
+  max-width: var(--max);
+  margin: 2rem auto 0;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(80% 70% at 100% 0%, rgba(196, 165, 116, 0.16), transparent 55%),
+    radial-gradient(60% 50% at 0% 100%, rgba(186, 168, 214, 0.16), transparent 50%),
+    rgba(244, 246, 241, 0.72);
+}
+
+.lyusya-quest__play[hidden],
+.lyusya-quest__idle[hidden] {
+  display: none !important;
+}
+
+.lyusya-quest__idle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.lyusya-quest__idle p {
+  margin: 0;
+  max-width: 36rem;
+}
+
+.lyusya-quest__stage {
+  display: grid;
+  grid-template-columns: minmax(140px, 220px) minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: end;
+  margin-bottom: 1.5rem;
+}
+
+.lyusya-quest__avatar {
+  margin: 0;
+  position: relative;
+}
+
+.lyusya-quest__avatar img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 12px 24px rgba(49, 69, 56, 0.18));
+  transform-origin: 50% 90%;
+  animation: lyusyaFloat 4.8s ease-in-out infinite;
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.lyusya-quest__avatar img.is-swapping {
+  opacity: 0;
+  transform: translateY(8px) scale(0.98);
+}
+
+.lyusya-quest__dialog {
+  min-height: 8rem;
+}
+
+.lyusya-quest__name {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--moss);
+}
+
+.lyusya-quest__progress {
+  margin: 0 0 0.65rem;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+}
+
+.lyusya-quest__speech {
+  margin: 0;
+  white-space: pre-line;
+  font-size: clamp(1.15rem, 1rem + 0.7vw, 1.45rem);
+  line-height: 1.45;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+}
+
+.lyusya-quest__speech.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.lyusya-quest__speech:focus {
+  outline: 2px solid var(--moss);
+  outline-offset: 6px;
+}
+
+.lyusya-choices,
+.lyusya-cards {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.lyusya-choices {
+  grid-template-columns: 1fr;
+}
+
+.lyusya-cards {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.lyusya-choice,
+.lyusya-card-choice,
+.lyusya-reset,
+.lyusya-quest__idle button {
+  font-family: var(--font-display);
+  text-align: left;
+  cursor: pointer;
+  border: 1px solid rgba(26, 31, 28, 0.18);
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--ink);
+  transition: transform 0.25s var(--ease), border-color 0.25s var(--ease), background 0.25s var(--ease);
+}
+
+.lyusya-choice,
+.lyusya-quest__idle button {
+  padding: 0.9rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.lyusya-choice:hover,
+.lyusya-choice:focus-visible,
+.lyusya-card-choice:hover,
+.lyusya-card-choice:focus-visible,
+.lyusya-reset:hover,
+.lyusya-reset:focus-visible,
+.lyusya-quest__idle button:hover,
+.lyusya-quest__idle button:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--moss);
+  background: #fff;
+  outline: none;
+}
+
+.lyusya-card-choice {
+  min-height: 8.5rem;
+  padding: 1rem 0.9rem;
+  display: grid;
+  align-content: start;
+  gap: 0.55rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.lyusya-card-choice__icon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.lyusya-card-choice[data-tone="peach"] { background: rgba(255, 232, 214, 0.7); }
+.lyusya-card-choice[data-tone="mist"] { background: rgba(214, 228, 232, 0.7); }
+.lyusya-card-choice[data-tone="clay"] { background: rgba(236, 220, 204, 0.75); }
+.lyusya-card-choice[data-tone="ink"] { background: rgba(49, 69, 56, 0.9); color: var(--paper); }
+.lyusya-card-choice[data-tone="moss"] { background: rgba(196, 214, 196, 0.75); }
+.lyusya-card-choice[data-tone="star"] { background: rgba(226, 214, 242, 0.75); }
+
+.lyusya-map {
+  padding: 1.15rem 1.2rem 1.3rem;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.lyusya-map__title {
+  margin: 0 0 1rem;
+  font-size: 1.35rem;
+}
+
+.lyusya-map__list {
+  margin: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.lyusya-map__row {
+  display: grid;
+  gap: 0.2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.lyusya-map__row dt {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--moss-deep);
+}
+
+.lyusya-map__row dd {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.lyusya-map__summary {
+  margin: 1.1rem 0 0;
+  white-space: pre-line;
+  font-size: 1.12rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.lyusya-reset {
+  margin-top: 0.85rem;
+  padding: 0.55rem 0.2rem;
+  border: 0;
+  border-bottom: 1px solid rgba(26, 31, 28, 0.28);
+  background: transparent;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lyusya-quest__actions {
+  margin-top: 0.35rem;
+}
+
+@keyframes lyusyaFloat {
+  0%,
+  100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@media (max-width: 900px) {
+  .lyusya-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .lyusya-quest__stage {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: left;
+  }
+
+  .lyusya-quest__avatar {
+    width: min(220px, 70vw);
+  }
+
+  .lyusya-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .lyusya-card-choice {
+    min-height: 0;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lyusya-quest__avatar img,
+  .lyusya-quest__speech,
+  .lyusya-choice,
+  .lyusya-card-choice {
+    animation: none !important;
+    transition: none !important;
+  }
+}
