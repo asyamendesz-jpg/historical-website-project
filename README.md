@@ -1,13 +1,15 @@
-# Эмоциональное путешествие
+# Portfo
 
-Портфолио-выставка вайб-кодера Аси Мельниковой: атмосфера галереи вместо корпоративного сайта.
+Авторский digital-бренд Аси Мельниковой: навигатор в создании сайтов.
+
+**Идея → задача → структура → образ → разработка → запуск → результат.**
 
 ## Карусели
 
 - [Ши Чэн](https://asyamendesz-jpg.github.io/carousel-Atlantis-/)
 - [Алхимик](https://asyamendesz-jpg.github.io/The-Alchemist-Carousel/)
 
-## Проекты
+## Маршруты проектов
 
 - [Портал «Внеклассное чтение»](https://asyamendesz-jpg.github.io/The-portal-of-book-expeditions/)
 - [Шёлковый путь](https://asyamendesz-jpg.github.io/The-Silk-Road/)
@@ -17,17 +19,17 @@
 - [FORMA — визитка магазина обуви](https://asyamendesz-jpg.github.io/shoe-store-s-business-card-website/)
 - [Что изменилось на острове?](https://ostrov.ai.studio)
 
-## Персонаж
+## Навигатор Люся
 
-ВайбНавигатор Люся — игра в зале `#lyusya` и редкие встречи по маршруту выставки.
+Люся — digital-навигатор бренда: редкие встречи по сайту и карта проекта в `#lyusya`.
 
-- Тексты игры и сопровождения: `lyusya/lyusya-data.js`
-- Логика игры: `lyusya/lyusya-game.js` (не чат-бот)
+- Тексты: `lyusya/lyusya-data.js`
+- Игра: `lyusya/lyusya-game.js`
 - Сопровождение: `lyusya/lyusya-companion.js`
 - Стили: `lyusya/lyusya.css`, `lyusya/lyusya-companion.css`
 - Образы: `images/lyusya/`
 
-События: `window.__lyusyaEvents` и `lyusya:event`. Память сессии: `localStorage.lyusyaCompanion`.
+События: `window.__lyusyaEvents` и `lyusya:event`. Память: `localStorage` / `sessionStorage`.
 
 ## Площадки
 
@@ -39,8 +41,6 @@
 ## Запуск
 
 Дважды кликните `index.html` или `open-site.bat`.
-
-Либо локальный сервер:
 
 ```bash
 npx --yes serve .

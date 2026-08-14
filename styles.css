@@ -1,16 +1,17 @@
 :root {
-  --ink: #1a1f1c;
-  --ink-soft: #2c342f;
-  --paper: #e8ebe4;
-  --paper-dim: #d5dbd2;
-  --mist: #a8b5a8;
-  --moss: #4f6b57;
-  --moss-deep: #314538;
-  --amber: #c4a574;
-  --sky: #7ea8c9;
-  --sky-soft: #c5d9e8;
-  --line: rgba(26, 31, 28, 0.14);
-  --veil: rgba(26, 31, 28, 0.42);
+  --ink: #161b18;
+  --ink-soft: #2a322c;
+  --paper: #e4e8e2;
+  --paper-dim: #d2d8cf;
+  --mist: #9eada0;
+  --moss: #456350;
+  --moss-deep: #2c3d32;
+  --amber: #b89868;
+  --sky: #6f9cb8;
+  --sky-soft: #c0d4e2;
+  --line: rgba(22, 27, 24, 0.14);
+  --veil: rgba(22, 27, 24, 0.42);
+  --route: rgba(69, 99, 80, 0.35);
   --font-display: "Syne", sans-serif;
   --font-serif: "Cormorant Garamond", Georgia, serif;
   --space: clamp(1.25rem, 3vw, 2.5rem);
@@ -102,8 +103,8 @@ h3 {
 }
 
 h1 {
-  font-size: clamp(2.2rem, 1.4rem + 3.8vw, 4.4rem);
-  max-width: 14ch;
+  font-size: clamp(2.1rem, 1.3rem + 3.4vw, 4rem);
+  max-width: 16ch;
 }
 
 h2 {
@@ -218,11 +219,22 @@ p {
 }
 
 .logo {
-  font-weight: 600;
-  font-size: 0.95rem;
-  letter-spacing: 0.04em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
   text-decoration: none;
   text-transform: uppercase;
+}
+
+.logo-mark {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--moss);
+  box-shadow: 0 0 0 3px rgba(69, 99, 80, 0.18);
 }
 
 .site-nav {
@@ -565,12 +577,34 @@ p {
 }
 
 .room-label {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
   margin-bottom: 1.5rem;
   font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--moss);
+}
+
+.room-label .coord {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.85rem;
+  height: 1.85rem;
+  padding: 0 0.35rem;
+  border: 1px solid var(--route);
+  color: var(--moss-deep);
+  letter-spacing: 0.06em;
+}
+
+.room-label::after {
+  content: "";
+  flex: 1;
+  max-width: 7rem;
+  height: 1px;
+  background: linear-gradient(90deg, var(--route), transparent);
 }
 
 .room-lead {
@@ -1210,8 +1244,12 @@ a.expedition:focus-visible {
   left: 0.4rem;
   right: 0.4rem;
   height: 1px;
-  background: linear-gradient(90deg, var(--moss), var(--mist));
-  opacity: 0.55;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--moss) 0 0.35rem,
+    transparent 0.35rem 0.7rem
+  );
+  opacity: 0.4;
 }
 
 .process-step {
@@ -1227,10 +1265,12 @@ a.expedition:focus-visible {
   height: 2.3rem;
   margin-bottom: 1.25rem;
   border: 1px solid var(--moss);
+  border-radius: 50%;
   background: var(--paper);
   color: var(--moss-deep);
-  font-size: 0.85rem;
+  font-size: 0.72rem;
   font-weight: 600;
+  letter-spacing: 0.04em;
   position: relative;
   z-index: 1;
 }
@@ -1248,9 +1288,9 @@ a.expedition:focus-visible {
 
 .room-lyusya {
   background:
-    radial-gradient(70% 55% at 92% 8%, rgba(255, 196, 214, 0.28), transparent 55%),
-    radial-gradient(55% 40% at 6% 82%, rgba(168, 214, 255, 0.26), transparent 50%),
-    radial-gradient(40% 35% at 50% 40%, rgba(255, 236, 150, 0.18), transparent 60%);
+    radial-gradient(70% 55% at 92% 8%, rgba(111, 156, 184, 0.16), transparent 55%),
+    radial-gradient(55% 40% at 6% 82%, rgba(69, 99, 80, 0.12), transparent 50%),
+    radial-gradient(40% 35% at 50% 40%, rgba(184, 152, 104, 0.1), transparent 60%);
 }
 
 /* Collaborate */

@@ -246,7 +246,7 @@
       const reset = document.createElement("button");
       reset.type = "button";
       reset.className = "lyusya-reset";
-      reset.textContent = "Сбросить игру";
+      reset.textContent = "Сбросить карту";
       reset.addEventListener("click", replay);
       actionsEl.append(reset);
       focusSpeech();

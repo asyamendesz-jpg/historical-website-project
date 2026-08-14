@@ -199,7 +199,7 @@
 
     const name = document.createElement("p");
     name.className = "lyusya-whisper__name";
-    name.textContent = "Люся";
+    name.textContent = "Люся · навигатор";
 
     const text = document.createElement("p");
     text.className = "lyusya-whisper__speech";

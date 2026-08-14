@@ -1,16 +1,15 @@
-/* ВайбНавигатор Люся — изолированные стили игры */
+/* Люся — digital-навигатор Portfo */
 
 .lyusya-quest {
   max-width: var(--max);
   margin: 0.35rem auto 0;
   scroll-margin-top: 5.5rem;
   padding: clamp(1.25rem, 3vw, 2rem);
-  border: 1px solid rgba(255, 196, 214, 0.45);
+  border: 1px solid var(--line);
   background:
-    radial-gradient(80% 70% at 100% 0%, rgba(255, 196, 214, 0.28), transparent 55%),
-    radial-gradient(60% 50% at 0% 100%, rgba(186, 168, 214, 0.22), transparent 50%),
-    radial-gradient(50% 40% at 50% 100%, rgba(255, 236, 150, 0.16), transparent 55%),
-    rgba(255, 252, 247, 0.82);
+    radial-gradient(80% 70% at 100% 0%, rgba(111, 156, 184, 0.14), transparent 55%),
+    radial-gradient(60% 50% at 0% 100%, rgba(69, 99, 80, 0.1), transparent 50%),
+    rgba(244, 246, 241, 0.78);
 }
 
 .lyusya-quest__play[hidden],
@@ -49,8 +48,8 @@
   height: auto;
   display: block;
   filter:
-    saturate(1.1) contrast(1.06) brightness(1.05)
-    drop-shadow(0 10px 22px rgba(255, 150, 190, 0.28));
+    saturate(0.95) contrast(1.04) brightness(1.02)
+    drop-shadow(0 10px 22px rgba(44, 61, 50, 0.16));
   transform-origin: 50% 90%;
   animation: lyusyaFloat 4.8s ease-in-out infinite;
   transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
