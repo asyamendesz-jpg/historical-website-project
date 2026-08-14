@@ -838,6 +838,10 @@ a.expedition:focus-visible {
   --photo: url("https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=1400&q=80");
 }
 
+.expedition-media--ostrov {
+  --photo: url("https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a4?auto=format&fit=crop&w=1400&q=80");
+}
+
 .expedition:hover .expedition-media,
 .expedition:focus-within .expedition-media {
   transform: scale(1);
