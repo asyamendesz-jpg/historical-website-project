@@ -839,7 +839,13 @@ a.expedition:focus-visible {
 }
 
 .expedition-media--ostrov {
-  --photo: url("images/ostrov-cover.jpg");
+  background-color: #6eb8c4;
+  background-image:
+    linear-gradient(180deg, rgba(18, 24, 20, 0.08) 0%, rgba(18, 24, 20, 0.4) 58%, rgba(18, 24, 20, 0.78) 100%),
+    url("images/ostrov-cover.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .expedition:hover .expedition-media,
