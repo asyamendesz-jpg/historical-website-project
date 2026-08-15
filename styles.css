@@ -865,7 +865,13 @@ a.expedition:focus-visible {
 }
 
 .expedition-media--realty {
-  --photo: url("https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1400&q=80");
+  background-color: #3d4a42;
+  background-image:
+    linear-gradient(180deg, rgba(18, 24, 20, 0.12) 0%, rgba(18, 24, 20, 0.55) 70%, rgba(18, 24, 20, 0.78) 100%),
+    url("images/vysotki-yug-cover.webp");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .expedition-media--forma {
