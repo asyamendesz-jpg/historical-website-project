@@ -867,8 +867,8 @@ a.expedition:focus-visible {
 .expedition-media--realty {
   background-color: #1b2430;
   background-image:
-    linear-gradient(180deg, rgba(18, 24, 20, 0.12) 0%, rgba(18, 24, 20, 0.55) 70%, rgba(18, 24, 20, 0.78) 100%),
-    url("images/vysotki-yug-cover.webp");
+    linear-gradient(180deg, rgba(18, 24, 20, 0.08) 0%, rgba(18, 24, 20, 0.38) 62%, rgba(18, 24, 20, 0.72) 100%),
+    url("images/vysotki-yug-cover.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
