@@ -865,13 +865,46 @@ a.expedition:focus-visible {
 }
 
 .expedition-media--realty {
-  background-color: #3d4a42;
+  background-color: #1b2430;
   background-image:
-    linear-gradient(180deg, rgba(18, 24, 20, 0.12) 0%, rgba(18, 24, 20, 0.55) 70%, rgba(18, 24, 20, 0.78) 100%),
+    linear-gradient(180deg, rgba(18, 24, 20, 0.08) 0%, rgba(18, 24, 20, 0.2) 40%, rgba(18, 24, 20, 0.55) 100%),
     url("images/vysotki-yug-cover.webp");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.expedition-media iframe {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #f7f4ee;
+}
+
+.expedition--live {
+  min-height: 28rem;
+  color: var(--paper);
+}
+
+.expedition--live .expedition-body {
+  transform: none;
+  background: linear-gradient(180deg, transparent, rgba(18, 24, 20, 0.88) 38%);
+}
+
+.expedition--live .expedition-body > p:not(.expedition-meta),
+.expedition--live .expedition-link {
+  opacity: 1;
+  transform: none;
+  text-decoration: none;
+}
+
+.expedition--live .expedition-media,
+.expedition--live:hover .expedition-media,
+.expedition--live:focus-within .expedition-media {
+  transform: none;
 }
 
 .expedition-media--forma {
