@@ -889,11 +889,11 @@ a.expedition:focus-visible {
 }
 
 .expedition-media--mojo {
-  background-color: #1a2740;
+  background-color: #0d1a32;
   background-image:
-    linear-gradient(180deg, rgba(18, 24, 20, 0.08) 0%, rgba(18, 24, 20, 0.42) 58%, rgba(18, 24, 20, 0.78) 100%),
+    linear-gradient(180deg, rgba(8, 14, 28, 0.12) 0%, rgba(8, 14, 28, 0.28) 48%, rgba(8, 14, 28, 0.78) 100%),
     url("images/mojo-career-cover.jpg");
-  background-position: center top;
+  background-position: center 18%;
   background-size: cover;
   background-repeat: no-repeat;
 }
