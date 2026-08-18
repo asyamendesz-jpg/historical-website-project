@@ -857,7 +857,13 @@ a.expedition:focus-visible {
 }
 
 .expedition-media--atlantis {
-  --photo: url("https://asyamendesz-jpg.github.io/carousel-Atlantis-/slides/slide-01.png");
+  background-color: #061820;
+  background-image:
+    linear-gradient(180deg, rgba(6, 24, 32, 0.12) 0%, rgba(6, 24, 32, 0.42) 58%, rgba(6, 24, 32, 0.78) 100%),
+    url("images/atlantis-china.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .expedition-media--alchemist {
