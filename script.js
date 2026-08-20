@@ -169,7 +169,18 @@ function initForm(reduced) {
     }
   };
 
-  form.addEventListener("input", clearValidity);
+  let formStarted = false;
+  const markFormStart = () => {
+    if (formStarted) return;
+    formStarted = true;
+    trackEvent("form_start", { form: "contact" });
+  };
+
+  form.addEventListener("focusin", markFormStart);
+  form.addEventListener("input", () => {
+    clearValidity();
+    markFormStart();
+  });
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -179,11 +190,15 @@ function initForm(reduced) {
     const nameInput = /** @type {HTMLInputElement} */ (form.elements.namedItem("name"));
     const emailInput = /** @type {HTMLInputElement} */ (form.elements.namedItem("email"));
     const projectInput = /** @type {HTMLTextAreaElement} */ (form.elements.namedItem("project"));
+    const timelineInput = /** @type {HTMLInputElement | null} */ (form.elements.namedItem("timeline"));
+    const budgetInput = /** @type {HTMLInputElement | null} */ (form.elements.namedItem("budget"));
 
     if (!form.checkValidity()) {
       if (!nameInput.value.trim()) nameInput.setCustomValidity("Укажите имя");
-      if (!emailInput.validity.valid) emailInput.setCustomValidity("Проверьте email");
-      if (!projectInput.value.trim()) projectInput.setCustomValidity("Расскажите о проекте");
+      if (!emailInput.validity.valid) emailInput.setCustomValidity("Укажите контакт · email");
+      if (!projectInput.value.trim() || projectInput.value.trim().length < 8) {
+        projectInput.setCustomValidity("Напишите своими словами, что хотите сделать");
+      }
       form.reportValidity();
       showStatus("Заполните поля корректно — это поможет начать разговор.", "error");
       return;
@@ -192,9 +207,20 @@ function initForm(reduced) {
     const name = nameInput.value.trim();
     const email = emailInput.value.trim();
     const project = projectInput.value.trim();
+    const timeline = timelineInput?.value.trim() || "";
+    const budget = budgetInput?.value.trim() || "";
     const subject = encodeURIComponent(`Сотрудничество: ${name}`);
-    const body = encodeURIComponent(`Имя: ${name}\nEmail: ${email}\n\nО проекте:\n${project}`);
+    const extra = [
+      timeline ? `Срок: ${timeline}` : "",
+      budget ? `Бюджет: ${budget}` : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
+    const body = encodeURIComponent(
+      `Имя: ${name}\nКонтакт: ${email}${extra ? `\n${extra}` : ""}\n\nЧто хотите сделать:\n${project}`
+    );
 
+    trackEvent("form_submit", { form: "contact" });
     showStatus("Спасибо. Открываю почтовый клиент…", "ok");
     form.classList.add("is-success");
 
@@ -205,6 +231,48 @@ function initForm(reduced) {
     showStatus(`Если письмо не открылось — напишите на ${CONTACT_EMAIL}`, "ok");
     form.reset();
     form.classList.remove("is-success");
+  });
+}
+
+/**
+ * Лёгкая внутренняя аналитика: data-track + события Люси.
+ * Не подключает внешние сервисы.
+ */
+function trackEvent(name, extra = {}) {
+  const payload = { name, t: Date.now(), ...extra };
+  window.__portfoEvents = window.__portfoEvents || [];
+  window.__portfoEvents.push(payload);
+  window.dispatchEvent(new CustomEvent("portfo:event", { detail: payload }));
+}
+
+function initTrack() {
+  document.addEventListener(
+    "click",
+    (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      const el = target.closest("[data-track]");
+      if (!el) return;
+      const name = el.getAttribute("data-track");
+      if (!name) return;
+      trackEvent(name, {
+        href: el.getAttribute("href") || undefined,
+        label: (el.textContent || "").trim().slice(0, 80) || undefined,
+      });
+    },
+    true
+  );
+
+  window.addEventListener("lyusya:event", (event) => {
+    const detail = /** @type {{ name?: string } & Record<string, unknown>} */ (
+      event.detail || {}
+    );
+    if (detail.name === "start" || detail.name === "open") {
+      trackEvent("navigator_start", { via: detail.name });
+    }
+    if (detail.name === "complete") {
+      trackEvent("navigator_complete", { via: "lyusya" });
+    }
   });
 }
 
@@ -374,6 +442,20 @@ function initCarousel(reduced) {
   });
 }
 
+function initMobileCta() {
+  const cta = $(".mobile-cta");
+  const collab = $("#collaborate");
+  if (!cta || !collab || !("IntersectionObserver" in window)) return;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      cta.classList.toggle("is-hidden", Boolean(entry?.isIntersecting));
+    },
+    { rootMargin: "0px 0px -20% 0px", threshold: 0.12 }
+  );
+  observer.observe(collab);
+}
+
 function boot() {
   const reduced = prefersReducedMotion();
   initYear();
@@ -382,6 +464,8 @@ function boot() {
   initReveals(reduced);
   initHallIndicator(reduced);
   initForm(reduced);
+  initTrack();
+  initMobileCta();
   initAnchorNav(reduced);
   initCarousel(reduced);
 

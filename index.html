@@ -4,16 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#e4e8e2" />
-  <meta name="description" content="Portfo — навигатор в создании сайтов. Ася Мельникова: от идеи и задачи до структуры, дизайна и запуска." />
+  <meta name="description" content="Ася Мельникова · Portfo. Превращаю идеи в работающие цифровые продукты: сайты, MVP, интерфейсы и интерактивные решения." />
   <meta property="og:title" content="Portfo · Ася Мельникова" />
-  <meta property="og:description" content="Авторский digital-бренд: понятный маршрут от идеи до запуска сайта." />
+  <meta property="og:description" content="Из идеи — в работающий цифровой продукт. Сайты, MVP, интерфейсы и интерактивные решения." />
   <meta property="og:type" content="website" />
-  <title>Portfo · Ася Мельникова — навигатор в создании сайтов</title>
+  <title>Portfo · Ася Мельникова — из идеи в цифровой продукт</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="preload" href="images/asya-portrait.jpg" as="image" type="image/jpeg" />
-  <link rel="stylesheet" href="styles.css?v=20260818c" />
+  <link rel="stylesheet" href="styles.css?v=20260820b" />
   <link rel="stylesheet" href="lyusya/lyusya.css?v=20260814c" />
   <link rel="stylesheet" href="lyusya/lyusya-companion.css?v=20260814c" />
 </head>
@@ -34,13 +34,12 @@
       <span></span><span></span>
     </button>
     <nav class="site-nav" id="site-nav" aria-label="Основная навигация">
-      <a href="#about">Об авторе</a>
-      <a href="#services">Услуги</a>
-      <a href="#expeditions">Маршруты</a>
+      <a href="#expeditions">Проекты</a>
+      <a href="#needs">Что могу сделать</a>
       <a href="#approach">Подход</a>
-      <a href="#process">Процесс</a>
+      <a href="#about">Обо мне</a>
       <a href="#lyusya-quest">Навигатор</a>
-      <a href="#collaborate">Связь</a>
+      <a class="nav-cta" href="#collaborate" data-track="click_main_cta">Обсудить проект</a>
     </nav>
   </header>
 
@@ -52,12 +51,12 @@
       </div>
       <div class="hero-stage">
         <div class="hero-copy">
-          <p class="brand">Portfo · навигатор сайтов</p>
-          <h1>От идеи до запуска — понятный маршрут</h1>
-          <p class="lede">Создаю сайты, которые помогают бизнесу найти направление: задача, структура, образ, разработка, результат.</p>
+          <p class="brand">Portfo · Ася Мельникова</p>
+          <h1>Из идеи — в работающий цифровой продукт</h1>
+          <p class="lede">Сайты, MVP, интерфейсы и интерактивные решения — от первой задачи до запуска. Понятный маршрут вместо хаоса.</p>
           <div class="hero-cta">
-            <a class="btn btn-primary" href="#lyusya-quest">Собрать маршрут</a>
-            <a class="btn btn-ghost" href="#expeditions">Смотреть проекты</a>
+            <a class="btn btn-primary" href="#collaborate" data-track="click_main_cta">Обсудить проект</a>
+            <a class="btn btn-ghost" href="#expeditions" data-track="click_projects">Посмотреть проекты</a>
           </div>
         </div>
         <figure class="hero-portrait">
@@ -75,22 +74,63 @@
           <figcaption>Ася Мельникова</figcaption>
         </figure>
       </div>
-      <a class="scroll-hint" href="#about" aria-label="Дальше по маршруту">
+      <a class="scroll-hint" href="#needs" aria-label="Дальше по маршруту">
         <span>Дальше</span>
       </a>
     </section>
 
-    <section id="about" class="room room-about" data-hall="01" data-hall-name="Автор">
-      <div class="room-label"><span class="coord">01</span> Автор</div>
+    <section id="needs" class="room room-needs" data-hall="01" data-hall-name="Задачи">
+      <div class="room-label"><span class="coord">01</span> Задачи</div>
+      <div class="section-head reveal">
+        <h2>С чем ко мне приходят</h2>
+        <p class="room-lead">Не меню услуг. Узнайте свою ситуацию — и станет ясно, с чего начать.</p>
+      </div>
+      <ol class="need-rail">
+        <li class="need-item reveal" id="need-idea">
+          <span class="need-num">01</span>
+          <h3>Есть идея продукта</h3>
+          <p>Помогу превратить её в первый рабочий MVP и проверить, как она ощущается на практике.</p>
+        </li>
+        <li class="need-item reveal" id="need-site">
+          <span class="need-num">02</span>
+          <h3>Нужен сайт</h3>
+          <p>Спроектирую структуру и интерфейс и соберу сайт, который объясняет ценность и ведёт к действию.</p>
+          <span id="service-landing" class="anchor-pin" aria-hidden="true"></span>
+        </li>
+        <li class="need-item reveal" id="need-product">
+          <span class="need-num">03</span>
+          <h3>Есть существующий продукт</h3>
+          <p>Разберусь, где теряется пользователь, и помогу улучшить структуру, интерфейс и путь.</p>
+          <span id="service-redesign" class="anchor-pin" aria-hidden="true"></span>
+          <span id="service-product" class="anchor-pin" aria-hidden="true"></span>
+          <span id="service-iterate" class="anchor-pin" aria-hidden="true"></span>
+        </li>
+        <li class="need-item reveal" id="need-special">
+          <span class="need-num">04</span>
+          <h3>Нужен нестандартный digital</h3>
+          <p>Квиз, игра, спецпроект или необычный сценарий — придумаем механику и реализуем её.</p>
+        </li>
+        <li class="need-item reveal" id="need-process">
+          <span class="need-num">05</span>
+          <h3>Есть ручной процесс</h3>
+          <p>Помогу превратить повторяющуюся задачу в удобный цифровой инструмент.</p>
+        </li>
+      </ol>
+      <p class="room-aside reveal">Я не ограничиваюсь страницами. Если задаче нужен интерактив, MVP или нестандартный пользовательский путь — проектирую и собираю его целиком.</p>
+      <div class="lyusya-pocket" data-lyusya-encounter="after-services"></div>
+    </section>
+
+    <section id="about" class="room room-about" data-hall="02" data-hall-name="Автор">
+      <div class="room-label"><span class="coord">02</span> Автор</div>
       <div class="room-grid">
         <div class="room-text reveal">
-          <h2>Об авторе</h2>
-          <p class="room-lead">Я Ася Мельникова — независимый digital-специалист. Веду проекты от первой задачи до запуска: думаю о бизнесе, структуре и опыте человека на экране.</p>
-          <p>Portfo — не шаблонное портфолио, а система работы: сначала направление, потом дизайн и код. В маршрутах — квизы, порталы, клиентские сайты и продукты, которые можно открыть и пройти.</p>
+          <h2>Обо мне</h2>
+          <p class="room-lead">Я Ася Мельникова. Помогаю предпринимателям и небольшим командам превращать идеи, задачи и сырые концепции в работающие сайты, MVP, интерфейсы и цифровые инструменты.</p>
+          <p>Люблю проекты, в которых сначала непонятно, как должно быть. Когда есть идея или черновая задумка, но ещё нет готового решения — это мой любимый этап. Разбираемся, собираем первую версию и доводим до запуска.</p>
           <ul class="soft-list">
-            <li>Ясная структура без визуального шума</li>
+            <li>От задачи и структуры — к работающему результату</li>
             <li>Маршрут пользователя важнее декора</li>
-            <li>Самостоятельное ведение проекта до результата</li>
+            <li>Самостоятельное ведение проекта без агентской прослойки</li>
           </ul>
           <nav class="presence-rail" aria-label="Площадки">
             <p class="presence-label">Где ещё есть след</p>
@@ -118,45 +158,14 @@
       <div class="lyusya-pocket" data-lyusya-encounter="after-about"></div>
     </section>
 
-    <section id="services" class="room room-services" data-hall="02" data-hall-name="Услуги">
-      <div class="room-label"><span class="coord">02</span> Услуги</div>
+    <section id="expeditions" class="room room-expeditions" data-hall="03" data-hall-name="Проекты">
+      <div class="room-label"><span class="coord">03</span> Проекты</div>
       <div class="section-head reveal">
-        <h2>Услуги</h2>
-        <p class="room-lead">Не пакеты «под ключ», а форматы работы: от идеи и стратегии до живого интерфейса.</p>
-      </div>
-      <ol class="service-rail">
-        <li class="service-item reveal" id="service-landing">
-          <span class="service-num">01</span>
-          <h3>Лендинги с характером</h3>
-          <p>Одна сильная композиция, ясный маршрут к действию и типографика, которую хочется дочитать.</p>
-        </li>
-        <li class="service-item reveal" id="service-product">
-          <span class="service-num">02</span>
-          <h3>Интерфейсы продуктов</h3>
-          <p>Экраны, где логика не спорит с настроением: понятные сценарии и спокойный ритм.</p>
-        </li>
-        <li class="service-item reveal" id="service-redesign">
-          <span class="service-num">03</span>
-          <h3>Редизайн и оживление</h3>
-          <p>Убираю корпоративную сухость, усиливаю бренд и делаю опыт человечнее — без потери ясности.</p>
-        </li>
-        <li class="service-item reveal" id="service-iterate">
-          <span class="service-num">04</span>
-          <h3>Сопровождение после запуска</h3>
-          <p>Тонкая настройка: тексты, анимации, детали, которые держат цельность маршрута.</p>
-        </li>
-      </ol>
-      <div class="lyusya-pocket" data-lyusya-encounter="after-services"></div>
-    </section>
-
-    <section id="expeditions" class="room room-expeditions" data-hall="03" data-hall-name="Маршруты">
-      <div class="room-label"><span class="coord">03</span> Маршруты</div>
-      <div class="section-head reveal">
-        <h2>Маршруты проектов</h2>
-        <p class="room-lead">Не «вот сайт». А путь: точка старта → задача → решение → результат. Откройте и пройдите.</p>
+        <h2>Доказательства на практике</h2>
+        <p class="room-lead">Не витрина «что умею». Маршруты разных задач: задача → решение → результат. Откройте и пройдите.</p>
       </div>
       <div class="expedition-wall">
-        <a class="expedition reveal" data-tone="portal" href="https://asyamendesz-jpg.github.io/The-portal-of-book-expeditions/" target="_blank" rel="noopener noreferrer">
+        <a class="expedition reveal" data-tone="portal" href="https://asyamendesz-jpg.github.io/The-portal-of-book-expeditions/" target="_blank" rel="noopener noreferrer" data-track="case_open">
           <div class="expedition-media expedition-media--portal"></div>
           <div class="expedition-body">
             <p class="expedition-meta">Маршрут · 01</p>
@@ -165,7 +174,7 @@
             <span class="expedition-link">Открыть портал</span>
           </div>
         </a>
-        <a class="expedition reveal" data-tone="silk" href="https://asyamendesz-jpg.github.io/The-Silk-Road/" target="_blank" rel="noopener noreferrer">
+        <a class="expedition reveal" data-tone="silk" href="https://asyamendesz-jpg.github.io/The-Silk-Road/" target="_blank" rel="noopener noreferrer" data-track="case_open">
           <div class="expedition-media expedition-media--silk"></div>
           <div class="expedition-body">
             <p class="expedition-meta">Маршрут · 02</p>
@@ -174,7 +183,7 @@
             <span class="expedition-link">Открыть квиз</span>
           </div>
         </a>
-        <a class="expedition reveal" data-tone="atlantis" href="https://asyamendesz-jpg.github.io/Atlantis-China/" target="_blank" rel="noopener noreferrer">
+        <a class="expedition reveal" data-tone="atlantis" href="https://asyamendesz-jpg.github.io/Atlantis-China/" target="_blank" rel="noopener noreferrer" data-track="case_open">
           <div class="expedition-media expedition-media--atlantis"></div>
           <div class="expedition-body">
             <p class="expedition-meta">Маршрут · 03</p>
@@ -183,7 +192,7 @@
             <span class="expedition-link">Начать погружение</span>
           </div>
         </a>
-        <a class="expedition reveal" data-tone="alchemist" href="https://asyamendesz-jpg.github.io/The-Alchemist-Quiz/" target="_blank" rel="noopener noreferrer">
+        <a class="expedition reveal" data-tone="alchemist" href="https://asyamendesz-jpg.github.io/The-Alchemist-Quiz/" target="_blank" rel="noopener noreferrer" data-track="case_open">
           <div class="expedition-media expedition-media--alchemist"></div>
           <div class="expedition-body">
             <p class="expedition-meta">Маршрут · 04</p>
@@ -192,7 +201,7 @@
             <span class="expedition-link">Открыть квиз</span>
           </div>
         </a>
-        <a class="expedition reveal" data-tone="realty" href="https://friendly-encounter-sun.lovable.app" target="_blank" rel="noopener noreferrer">
+        <a class="expedition reveal" data-tone="realty" href="https://friendly-encounter-sun.lovable.app" target="_blank" rel="noopener noreferrer" data-track="case_open">
           <div class="expedition-media expedition-media--realty"></div>
           <div class="expedition-body">
             <p class="expedition-meta">Маршрут · 05</p>
@@ -201,7 +210,7 @@
             <span class="expedition-link">Открыть сайт</span>
           </div>
         </a>
-        <a class="expedition reveal" data-tone="forma" href="https://asyamendesz-jpg.github.io/shoe-store-s-business-card-website/" target="_blank" rel="noopener noreferrer">
+        <a class="expedition reveal" data-tone="forma" href="https://asyamendesz-jpg.github.io/shoe-store-s-business-card-website/" target="_blank" rel="noopener noreferrer" data-track="case_open">
           <div class="expedition-media expedition-media--forma"></div>
           <div class="expedition-body">
             <p class="expedition-meta">Маршрут · 06</p>
@@ -210,7 +219,7 @@
             <span class="expedition-link">Открыть визитку</span>
           </div>
         </a>
-        <a class="expedition reveal" data-tone="ostrov" href="https://ostrov.ai.studio" target="_blank" rel="noopener noreferrer">
+        <a class="expedition reveal" data-tone="ostrov" href="https://ostrov.ai.studio" target="_blank" rel="noopener noreferrer" data-track="case_open">
           <div class="expedition-media expedition-media--ostrov"></div>
           <div class="expedition-body">
             <p class="expedition-meta">Маршрут · 07</p>
@@ -219,7 +228,7 @@
             <span class="expedition-link">Исследовать остров</span>
           </div>
         </a>
-        <a class="expedition reveal" data-tone="mojo" href="https://mojo-career.lovable.app" target="_blank" rel="noopener noreferrer">
+        <a class="expedition reveal" data-tone="mojo" href="https://mojo-career.lovable.app" target="_blank" rel="noopener noreferrer" data-track="case_open">
           <div class="expedition-media expedition-media--mojo"></div>
           <div class="expedition-body">
             <p class="expedition-meta">Маршрут · 08</p>
@@ -298,7 +307,7 @@
       <div class="approach-stage reveal">
         <h2>О подходе</h2>
         <blockquote>
-          <p>Сначала — направление. Потом — структура. Дизайн и код появляются там, где задача уже ясна.</p>
+          <p>Не начинаю с кода. Начинаю с задачи. Сначала — направление. Потом — структура. Дизайн и код появляются там, где задача уже ясна.</p>
         </blockquote>
         <div class="approach-columns">
           <div>
@@ -327,23 +336,28 @@
         <div class="process-step reveal">
           <span class="step-mark">01</span>
           <h3>Точка старта</h3>
-          <p>Цели, аудитория, ограничения. Фиксируем задачу и ощущение, которое должен оставлять сайт.</p>
+          <p>Разбираемся в задаче и формулируем, что должен получить пользователь.</p>
         </div>
         <div class="process-step reveal">
           <span class="step-mark">02</span>
           <h3>Каркас</h3>
-          <p>Структура разделов, иерархия текстов, черновик визуального направления.</p>
+          <p>Определяем структуру, сценарий и ключевые экраны.</p>
         </div>
         <div class="process-step reveal">
           <span class="step-mark">03</span>
           <h3>Сборка</h3>
-          <p>Вёрстка, анимации, адаптив. Детали, которые держат цельность маршрута.</p>
+          <p>Получаем работающую первую версию — сайт, MVP или интерактив.</p>
         </div>
         <div class="process-step reveal">
           <span class="step-mark">04</span>
           <h3>Запуск</h3>
-          <p>Публикация, проверка скорости, тонкая полировка после первых реакций.</p>
+          <p>Публикуем продукт и собираем обратную связь для следующих шагов.</p>
         </div>
+      </div>
+
+      <div class="speed-note reveal">
+        <h3>Быстрый путь от идеи к рабочей версии</h3>
+        <p>AI помогает быстрее исследовать варианты, собирать прототипы и проверять решения на практике. Поэтому можно не месяцами обсуждать идеальный продукт, а быстро получить первую работающую версию и улучшать её по реальному опыту.</p>
       </div>
       <div class="lyusya-pocket" data-lyusya-encounter="after-process"></div>
     </section>
@@ -351,8 +365,8 @@
     <section id="lyusya" class="room room-lyusya" data-hall="06" data-hall-name="Навигатор">
       <div class="room-label"><span class="coord">06</span> Навигатор</div>
       <div class="section-head reveal">
-        <h2>Люся · digital-навигатор</h2>
-        <p class="room-lead">Не анкета и не чат-бот. Короткая карта проекта: задача, характер, аудитория — затем разговор с Асей.</p>
+        <h2>Не знаете, с чего начать?</h2>
+        <p class="room-lead">Люся поможет сформулировать задачу перед разговором: карта проекта → затем обсуждение с Асей.</p>
       </div>
       <div class="lyusya-quest reveal is-visible" id="lyusya-quest" aria-label="Навигатор Люся">
         <div class="lyusya-quest__play">
@@ -377,7 +391,7 @@
           <div class="lyusya-quest__actions" id="lyusya-actions"></div>
         </div>
         <div class="lyusya-quest__idle" id="lyusya-idle" hidden>
-          <p>Люся рядом. Смотрите маршруты — и возвращайтесь, если нужна карта проекта.</p>
+          <p>Люся рядом. Смотрите проекты — и возвращайтесь, если нужно сформулировать задачу.</p>
           <button type="button" class="btn btn-primary">Вернуться к навигатору</button>
         </div>
       </div>
@@ -386,11 +400,32 @@
     <section id="collaborate" class="room room-collaborate" data-hall="07" data-hall-name="Связь">
       <div class="room-label"><span class="coord">07</span> Связь</div>
       <div class="lyusya-pocket" data-lyusya-encounter="before-collab"></div>
+
+      <div class="trust-block reveal">
+        <h3>Мне уже доверяли</h3>
+        <p class="trust-lead">Здесь появятся отзывы и упоминания клиентов. Пока — живые проекты выше: их можно открыть и пройти.</p>
+        <ul class="trust-grid" aria-label="Места для отзывов">
+          <li class="trust-card trust-card--placeholder">
+            <p class="trust-meta">Отзыв · скоро</p>
+            <p>Что было сложно · почему выбрали · что получили.</p>
+          </li>
+          <li class="trust-card trust-card--placeholder">
+            <p class="trust-meta">Клиент · скоро</p>
+            <p>Компания или проект, с которым работали вместе.</p>
+          </li>
+          <li class="trust-card">
+            <p class="trust-meta">Уже опубликовано</p>
+            <p>Квизы, порталы, клиентские сайты и игры — в блоке проектов.</p>
+            <a href="#expeditions" data-track="click_projects">К проектам</a>
+          </li>
+        </ul>
+      </div>
+
       <div class="collaborate-layout">
         <div class="collaborate-intro reveal">
-          <h2>Связь</h2>
-          <p class="room-lead">Если есть идея, бренд или черновик — напишите. Отвечаю лично, без автоответчиков.</p>
-          <p class="collaborate-note">Обычно в течение 1–2 дней. Достаточно коротко: кто вы, какая задача и к какому сроку.</p>
+          <h2>Обсудить проект</h2>
+          <p class="room-lead">Есть идея, задача или просто черновая задумка? Расскажите, что хотите сделать. Вместе разберёмся, с чего начать.</p>
+          <p class="collaborate-note">Ответ лично. Обычно в течение 1–2 дней. Готовое ТЗ не обязательно.</p>
           <nav class="presence-rail presence-rail--compact" aria-label="Связаться в сети">
             <a href="https://aniuka.ru/" target="_blank" rel="noopener noreferrer">Блог</a>
             <a href="https://www.sostav.ru/blogs/287973" target="_blank" rel="noopener noreferrer">Sostav</a>
@@ -398,20 +433,31 @@
             <a href="https://vk.ru/melnikovaasiy" target="_blank" rel="noopener noreferrer">VK</a>
           </nav>
         </div>
-        <form class="collab-form reveal" id="collab-form" novalidate>
+        <form class="collab-form reveal" id="collab-form" novalidate data-track-form="contact">
           <div class="field field-float">
             <input id="name" name="name" type="text" autocomplete="name" required minlength="2" placeholder=" " />
             <label for="name">Имя</label>
           </div>
           <div class="field field-float">
             <input id="email" name="email" type="email" autocomplete="email" required placeholder=" " />
-            <label for="email">Email</label>
+            <label for="email">Контакт · email</label>
           </div>
           <div class="field field-float field-textarea">
-            <textarea id="project" name="project" rows="5" required minlength="10" placeholder=" "></textarea>
-            <label for="project">О проекте</label>
+            <textarea id="project" name="project" rows="5" required minlength="8" placeholder=" "></textarea>
+            <label for="project">Что хотите сделать?</label>
           </div>
-          <button class="btn btn-primary" type="submit">Отправить письмо</button>
+          <p class="field-hint">Можно писать своими словами. Необязательно иметь готовое ТЗ.</p>
+          <div class="field-row">
+            <div class="field field-float">
+              <input id="timeline" name="timeline" type="text" autocomplete="off" placeholder=" " />
+              <label for="timeline">Срок · по желанию</label>
+            </div>
+            <div class="field field-float">
+              <input id="budget" name="budget" type="text" autocomplete="off" placeholder=" " />
+              <label for="budget">Бюджет · по желанию</label>
+            </div>
+          </div>
+          <button class="btn btn-primary" type="submit" data-track="click_contact">Обсудить проект</button>
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </form>
       </div>
@@ -434,8 +480,10 @@
     </div>
   </footer>
 
-  <script defer src="script.js?v=20260813f"></script>
-  <script defer src="lyusya/lyusya-data.js?v=20260815b"></script>
+  <a class="mobile-cta" href="#collaborate" data-track="click_main_cta">Обсудить проект</a>
+
+  <script defer src="script.js?v=20260820b"></script>
+  <script defer src="lyusya/lyusya-data.js?v=20260820b"></script>
   <script defer src="lyusya/lyusya-game.js?v=20260814c"></script>
   <script defer src="lyusya/lyusya-companion.js?v=20260814c"></script>
 </body>
