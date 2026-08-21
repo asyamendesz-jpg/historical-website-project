@@ -221,7 +221,8 @@ function initForm(reduced) {
     );
 
     trackEvent("form_submit", { form: "contact" });
-    showStatus("Спасибо. Открываю почтовый клиент…", "ok");
+    trackEvent("route_submit", { form: "contact" });
+    showStatus("Маршрут готов к отправке. Открываю почтовый клиент…", "ok");
     form.classList.add("is-success");
 
     await sleep(reduced ? 0 : 420);
@@ -268,11 +269,46 @@ function initTrack() {
       event.detail || {}
     );
     if (detail.name === "start" || detail.name === "open") {
+      trackEvent("lucy_start", { via: detail.name });
       trackEvent("navigator_start", { via: detail.name });
     }
+    if (detail.name === "step_complete") {
+      trackEvent("lucy_step_complete", {
+        step: detail.step,
+        answer: detail.answer,
+      });
+    }
     if (detail.name === "complete") {
+      trackEvent("lucy_complete", { via: "lyusya" });
       trackEvent("navigator_complete", { via: "lyusya" });
     }
+    if (detail.name === "route_generated") {
+      trackEvent("route_generated", detail);
+    }
+    if (detail.name === "route_submit" || detail.name === "handoff") {
+      trackEvent("route_submit", { via: detail.name });
+    }
+  });
+}
+
+function initLyusyaTriggers(reduced) {
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    const trigger = target.closest("[data-lyusya-start]");
+    if (!trigger) return;
+
+    window.setTimeout(() => {
+      const api = window.LyusyaNavigator;
+      if (!api) {
+        scrollToHash("#lyusya-quest", reduced);
+        return;
+      }
+      const fromCase = Boolean(trigger.closest(".expedition, .case-bridge--after"));
+      if (fromCase && typeof api.openFromCase === "function") api.openFromCase();
+      else if (typeof api.showIntro === "function") api.showIntro(false);
+      scrollToHash("#lyusya-quest", reduced);
+    }, reduced ? 0 : 80);
   });
 }
 
@@ -444,16 +480,21 @@ function initCarousel(reduced) {
 
 function initMobileCta() {
   const cta = $(".mobile-cta");
-  const collab = $("#collaborate");
-  if (!cta || !collab || !("IntersectionObserver" in window)) return;
+  const hideWhen = ["#collaborate", "#lyusya"].map((sel) => $(sel)).filter(Boolean);
+  if (!cta || !hideWhen.length || !("IntersectionObserver" in window)) return;
 
+  const visible = new Set();
   const observer = new IntersectionObserver(
-    ([entry]) => {
-      cta.classList.toggle("is-hidden", Boolean(entry?.isIntersecting));
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) visible.add(entry.target);
+        else visible.delete(entry.target);
+      });
+      cta.classList.toggle("is-hidden", visible.size > 0);
     },
-    { rootMargin: "0px 0px -20% 0px", threshold: 0.12 }
+    { rootMargin: "0px 0px -18% 0px", threshold: 0.12 }
   );
-  observer.observe(collab);
+  hideWhen.forEach((el) => observer.observe(el));
 }
 
 function boot() {
@@ -465,6 +506,7 @@ function boot() {
   initHallIndicator(reduced);
   initForm(reduced);
   initTrack();
+  initLyusyaTriggers(reduced);
   initMobileCta();
   initAnchorNav(reduced);
   initCarousel(reduced);

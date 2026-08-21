@@ -1,5 +1,5 @@
 /**
- * ВайбНавигатор Люся — логика игры.
+ * Люся — логика навигатора.
  * Состояние: intro → steps[] → result → finale.
  * События: window.dispatchEvent("lyusya:event") + window.__lyusyaEvents[]
  */
@@ -19,11 +19,11 @@
   const idleEl = root.querySelector("#lyusya-idle");
   const stageEl = root.querySelector(".lyusya-quest__play");
 
-  /** @type {{ phase: string, stepIndex: number, answers: Record<string, object> }} */
+  /** @type {{ phase: string, stepIndex: number, answers: Record<string, object>, route: { summary: string, hypothesis: string, firstStep: string } | null }} */
   let state = createState();
 
   function createState() {
-    return { phase: "intro", stepIndex: 0, answers: {} };
+    return { phase: "intro", stepIndex: 0, answers: {}, route: null };
   }
 
   function track(name, extra = {}) {
@@ -33,27 +33,65 @@
     window.dispatchEvent(new CustomEvent("lyusya:event", { detail: payload }));
   }
 
-  function optionById(step, id) {
-    return step.options.find((item) => item.id === id);
-  }
-
-  function buildSummary(answers) {
+  function answerValues() {
     const values = {};
     for (const step of DATA.steps) {
-      values[step.key] = answers[step.key]?.id;
+      values[step.key] = state.answers[step.key]?.id;
+    }
+    return values;
+  }
+
+  function matchSummaryRule() {
+    const values = answerValues();
+    return (
+      DATA.summaries.find((rule) =>
+        Object.entries(rule.when).every(([key, id]) => values[key] === id)
+      ) || null
+    );
+  }
+
+  function shortOf(key) {
+    return state.answers[key]?.short || "пока неясно";
+  }
+
+  function mapOf(key) {
+    return state.answers[key]?.map || "—";
+  }
+
+  function buildRoute() {
+    const rule = matchSummaryRule();
+    let summary = rule?.text;
+    if (!summary) {
+      summary = DATA.fallbackSummary
+        .replace("{need}", shortOf("need"))
+        .replace("{gap}", shortOf("gap"))
+        .replace("{audience}", shortOf("audience"))
+        .replace("{outcome}", shortOf("outcome"))
+        .replace("{tried}", shortOf("tried"))
+        .replace("{success}", shortOf("success"))
+        .replace("{urgency}", shortOf("urgency"));
     }
 
-    const special = DATA.summaries.find((rule) =>
-      Object.entries(rule.when).every(([key, id]) => values[key] === id)
-    );
-    if (special) return special.text;
+    return {
+      summary,
+      hypothesis: rule?.hypothesis || DATA.fallbackHypothesis,
+      firstStep: rule?.firstStep || DATA.fallbackFirstStep,
+    };
+  }
 
-    const shortOf = (key) => answers[key]?.short || "пока неясно";
-    return DATA.fallbackSummary
-      .replace("{mood}", shortOf("mood"))
-      .replace("{need}", shortOf("need"))
-      .replace("{audience}", shortOf("audience"))
-      .replace("{goal}", shortOf("goal"));
+  function fillTemplate(template) {
+    const route = state.route || buildRoute();
+    return template
+      .replace(/\{need\}/g, mapOf("need"))
+      .replace(/\{gap\}/g, mapOf("gap"))
+      .replace(/\{audience\}/g, mapOf("audience"))
+      .replace(/\{outcome\}/g, mapOf("outcome"))
+      .replace(/\{tried\}/g, mapOf("tried"))
+      .replace(/\{success\}/g, mapOf("success"))
+      .replace(/\{urgency\}/g, mapOf("urgency"))
+      .replace(/\{hypothesis\}/g, route.hypothesis)
+      .replace(/\{firstStep\}/g, route.firstStep)
+      .replace(/\{summary\}/g, route.summary);
   }
 
   function setAvatar(key) {
@@ -95,7 +133,7 @@
     const list = document.createElement("div");
     list.className = cards ? "lyusya-cards" : "lyusya-choices";
     list.setAttribute("role", "group");
-    list.setAttribute("aria-label", cards ? "Настроение сайта" : "Варианты ответа");
+    list.setAttribute("aria-label", cards ? "Варианты" : "Варианты ответа");
 
     items.forEach((item) => {
       const btn = document.createElement("button");
@@ -120,14 +158,20 @@
     boardEl.append(list);
   }
 
-  function renderIntro() {
+  function renderIntro(fromCase = false) {
     state.phase = "intro";
     root.classList.remove("is-idle");
     stageEl?.removeAttribute("hidden");
     idleEl?.setAttribute("hidden", "");
     clearBoard();
     setAvatar(DATA.intro.avatar);
-    setSpeech(DATA.intro.speech);
+    if (fromCase) {
+      setSpeech(
+        "Ты только что посмотрел, как Ася разбирает чужую задачу.\nТеперь давай разберём твою."
+      );
+    } else {
+      setSpeech(DATA.intro.speech);
+    }
     renderChoices(
       DATA.intro.choices.map((choice) => ({
         ...choice,
@@ -144,6 +188,7 @@
     track("start");
     state.stepIndex = 0;
     state.answers = {};
+    state.route = null;
     renderStep(0);
   }
 
@@ -183,6 +228,7 @@
 
   function choose(step, option) {
     state.answers[step.key] = option;
+    track("step_complete", { step: step.id, answer: option.id });
     const reaction = step.reactions?.[option.id];
     if (reaction) setSpeech(reaction);
 
@@ -193,17 +239,16 @@
 
   function renderResult() {
     state.phase = "result";
-    track("complete", {
-      need: state.answers.need?.id,
-      goal: state.answers.goal?.id,
-      mood: state.answers.mood?.id,
-      audience: state.answers.audience?.id,
+    state.route = buildRoute();
+    track("complete", answerValues());
+    track("route_generated", {
+      hypothesis: state.route.hypothesis.slice(0, 120),
     });
 
     clearBoard();
     setAvatar(DATA.result.avatar);
     setSpeech(DATA.result.speech);
-    if (progressEl) progressEl.textContent = "Карта проекта";
+    if (progressEl) progressEl.textContent = "Твой маршрут";
 
     const map = document.createElement("article");
     map.className = "lyusya-map";
@@ -222,19 +267,38 @@
       const dt = document.createElement("dt");
       dt.textContent = `${field.icon} ${field.label}`;
       const dd = document.createElement("dd");
-      dd.textContent = state.answers[field.key]?.map || "—";
+      dd.textContent = mapOf(field.key);
       row.append(dt, dd);
       list.append(row);
     });
     map.append(list);
 
+    const direction = document.createElement("div");
+    direction.className = "lyusya-map__extra";
+    direction.innerHTML = "";
+    const hypTitle = document.createElement("p");
+    hypTitle.className = "lyusya-map__extra-label";
+    hypTitle.textContent = "Возможное направление";
+    const hypText = document.createElement("p");
+    hypText.className = "lyusya-map__extra-text";
+    hypText.textContent = state.route.hypothesis;
+    const stepTitle = document.createElement("p");
+    stepTitle.className = "lyusya-map__extra-label";
+    stepTitle.textContent = "Первый шаг";
+    const stepText = document.createElement("p");
+    stepText.className = "lyusya-map__extra-text";
+    stepText.textContent = state.route.firstStep;
+    direction.append(hypTitle, hypText, stepTitle, stepText);
+    map.append(direction);
+
     const summary = document.createElement("p");
     summary.className = "lyusya-map__summary";
-    summary.textContent = buildSummary(state.answers);
+    summary.textContent = state.route.summary;
     map.append(summary);
     boardEl.append(map);
 
     const showFinale = () => {
+      state.phase = "finale";
       setAvatar(DATA.finale.avatar);
       setSpeech(DATA.finale.speech);
       renderChoices(
@@ -246,7 +310,7 @@
       const reset = document.createElement("button");
       reset.type = "button";
       reset.className = "lyusya-reset";
-      reset.textContent = "Сбросить карту";
+      reset.textContent = "Сбросить маршрут";
       reset.addEventListener("click", replay);
       actionsEl.append(reset);
       focusSpeech();
@@ -264,12 +328,8 @@
 
   function handoff() {
     track("handoff");
-    const template = DATA.handoff.message;
-    const text = template
-      .replace("{need}", state.answers.need?.map || "—")
-      .replace("{goal}", state.answers.goal?.map || "—")
-      .replace("{mood}", state.answers.mood?.map || "—")
-      .replace("{audience}", state.answers.audience?.map || "—");
+    track("route_submit");
+    const text = fillTemplate(DATA.handoff.message);
 
     const form = document.querySelector(DATA.handoff.formSelector);
     const field = form?.elements?.namedItem(DATA.handoff.fieldName);
@@ -278,15 +338,50 @@
       field.dispatchEvent(new Event("input", { bubbles: true }));
     }
 
+    const timeline = form?.elements?.namedItem("timeline");
+    if (timeline instanceof HTMLInputElement && state.answers.urgency?.map) {
+      timeline.value = state.answers.urgency.map;
+      timeline.dispatchEvent(new Event("input", { bubbles: true }));
+    }
+
+    const done = document.createElement("div");
+    done.className = "lyusya-map lyusya-map--done";
+    done.innerHTML = "";
+    const doneTitle = document.createElement("h3");
+    doneTitle.className = "lyusya-map__title";
+    doneTitle.textContent = "Маршрут построен";
+    const doneLead = document.createElement("p");
+    doneLead.className = "lyusya-map__summary";
+    doneLead.textContent = "Я передала маршрут Асе. Осталось указать имя и контакт в форме ниже.";
+    const doneList = document.createElement("ul");
+    doneList.className = "lyusya-map__checklist";
+    [
+      `Проблема: ${mapOf("gap")}`,
+      `Направление: ${state.route?.hypothesis || DATA.fallbackHypothesis}`,
+      `Следующий шаг: ${state.route?.firstStep || DATA.fallbackFirstStep}`,
+    ].forEach((line) => {
+      const li = document.createElement("li");
+      li.textContent = line;
+      doneList.append(li);
+    });
+    done.append(doneTitle, doneLead, doneList);
+    clearBoard();
+    boardEl?.append(done);
+    setSpeech("Маршрут готов. Добавьте имя и контакт — и Ася его получит.");
+
     const target = document.querySelector(DATA.handoff.scrollTo);
     target?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
-    window.setTimeout(() => field?.focus(), reduced ? 0 : 450);
+    window.setTimeout(() => {
+      const nameField = form?.elements?.namedItem("name");
+      if (nameField instanceof HTMLInputElement) nameField.focus();
+      else field?.focus();
+    }, reduced ? 0 : 450);
   }
 
   function replay() {
     track("reset");
     state = createState();
-    renderIntro();
+    renderIntro(false);
   }
 
   function portfolio() {
@@ -297,9 +392,16 @@
     });
   }
 
+  function openFromCase() {
+    root.classList.remove("is-idle");
+    stageEl?.removeAttribute("hidden");
+    idleEl?.setAttribute("hidden", "");
+    renderIntro(true);
+  }
+
   idleEl?.querySelector("button")?.addEventListener("click", () => {
     track("resume");
-    renderIntro();
+    renderIntro(false);
   });
 
   let opened = false;
@@ -320,5 +422,13 @@
     track("open");
   }
 
-  renderIntro();
+  window.LyusyaNavigator = {
+    start,
+    openFromCase,
+    showIntro: renderIntro,
+    replay,
+    handoff,
+  };
+
+  renderIntro(false);
 })();

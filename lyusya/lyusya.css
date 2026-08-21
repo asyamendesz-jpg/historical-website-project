@@ -217,6 +217,43 @@
   color: var(--ink-soft);
 }
 
+.lyusya-map__extra {
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px dashed rgba(26, 31, 28, 0.22);
+}
+
+.lyusya-map__extra-label {
+  margin: 0.65rem 0 0.2rem;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--moss-deep);
+}
+
+.lyusya-map__extra-label:first-child {
+  margin-top: 0;
+}
+
+.lyusya-map__extra-text {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+.lyusya-map--done .lyusya-map__checklist {
+  margin: 0.85rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--ink-soft);
+}
+
+.lyusya-map--done .lyusya-map__checklist li {
+  margin-bottom: 0.35rem;
+}
+
 .lyusya-reset {
   margin-top: 0.85rem;
   padding: 0.55rem 0.2rem;

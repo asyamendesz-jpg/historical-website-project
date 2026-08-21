@@ -155,7 +155,14 @@
       runMicro(card, encounter.id);
       return;
     }
-    if (action.href) scrollToSelector(action.href);
+    if (action.href) {
+      scrollToSelector(action.href);
+      if (action.href.includes("lyusya") && window.LyusyaNavigator?.showIntro) {
+        const fromCases = encounter.id === "after-expeditions";
+        if (fromCases) window.LyusyaNavigator.openFromCase?.();
+        else window.LyusyaNavigator.showIntro(false);
+      }
+    }
   };
 
   const renderEncounter = (host, encounter) => {
