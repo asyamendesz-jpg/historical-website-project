@@ -348,7 +348,7 @@ p {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(240px, 0.85fr);
   gap: clamp(1.5rem, 5vw, 4rem);
-  align-items: end;
+  align-items: start;
 }
 
 .hero-copy {
@@ -397,6 +397,8 @@ p {
   margin: 0;
   justify-self: end;
   width: min(100%, 420px);
+  /* Align portrait top with bold headline (skip brand line) */
+  padding-top: calc(clamp(0.95rem, 0.85rem + 0.5vw, 1.15rem) * 1.35 + 1rem);
   animation: riseIn 1.25s var(--ease) 0.12s both;
 }
 
@@ -1066,26 +1068,67 @@ p {
 }
 
 a.expedition:hover,
-a.expedition:focus-visible,
-.expedition--proof:hover,
-.expedition--proof:focus-within {
+a.expedition:focus-visible {
   transform: translateY(-3px);
 }
 
 .expedition--proof {
-  min-height: 28rem;
+  min-height: 0;
   scroll-margin-top: 5.5rem;
+  overflow: hidden;
+  color: var(--ink);
+  background: rgba(244, 246, 241, 0.92);
+  border: 1px solid var(--line);
+  grid-template-rows: auto 1fr;
+  transition: transform 0.4s var(--ease), border-color 0.3s var(--ease);
+}
+
+.expedition--proof:hover,
+.expedition--proof:focus-within {
+  transform: translateY(-3px);
+  border-color: rgba(79, 107, 87, 0.35);
+}
+
+.expedition-cover {
+  display: block;
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+}
+
+.expedition--proof .expedition-media {
+  position: absolute;
+  inset: 0;
+  transform: scale(1.02);
+}
+
+.expedition--proof:hover .expedition-media,
+.expedition--proof:focus-within .expedition-media {
+  transform: scale(1);
 }
 
 .expedition--proof .expedition-body {
+  position: relative;
+  z-index: 1;
+  align-self: stretch;
   transform: none;
-  padding: 1.25rem 1.35rem 1.4rem;
-  background: linear-gradient(180deg, transparent 0%, rgba(18, 24, 20, 0.55) 18%, rgba(18, 24, 20, 0.92) 100%);
+  padding: 1.15rem 1.2rem 1.35rem;
+  background: transparent;
 }
 
 .expedition--proof:hover .expedition-body,
 .expedition--proof:focus-within .expedition-body {
   transform: none;
+}
+
+.expedition--proof .expedition-meta {
+  color: var(--moss);
+}
+
+.expedition--proof h3 {
+  color: var(--ink);
 }
 
 .case-layers {
@@ -1106,14 +1149,14 @@ a.expedition:focus-visible,
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--amber);
+  color: var(--moss);
 }
 
 .case-layers dd {
   margin: 0;
   font-size: 0.92rem;
   line-height: 1.35;
-  color: rgba(244, 246, 241, 0.86);
+  color: var(--ink-soft);
 }
 
 .expedition-actions {
@@ -1129,6 +1172,16 @@ a.expedition:focus-visible,
   transform: none;
 }
 
+.expedition--proof .expedition-link {
+  color: var(--moss-deep);
+  border-bottom-color: rgba(79, 107, 87, 0.35);
+}
+
+.expedition--proof .expedition-link:hover,
+.expedition--proof .expedition-link:focus-visible {
+  border-bottom-color: var(--moss-deep);
+}
+
 .expedition-link--lucy {
   border-bottom-style: dashed;
   opacity: 0.9;
@@ -1138,7 +1191,7 @@ a.expedition:focus-visible,
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(18, 24, 20, 0.15), rgba(18, 24, 20, 0.72)),
+    linear-gradient(180deg, rgba(18, 24, 20, 0.08), rgba(18, 24, 20, 0.35)),
     var(--photo) center / cover no-repeat;
   transform: scale(1.05);
   transition: transform 1.4s var(--ease);
@@ -1147,7 +1200,7 @@ a.expedition:focus-visible,
 .expedition-media--portal {
   --photo: url("images/vneklassnoe-chtenie.png");
   background:
-    linear-gradient(180deg, rgba(18, 24, 20, 0.12) 0%, rgba(18, 24, 20, 0.55) 70%, rgba(18, 24, 20, 0.78) 100%),
+    linear-gradient(180deg, rgba(18, 24, 20, 0.05) 0%, rgba(18, 24, 20, 0.28) 100%),
     var(--photo) center / cover no-repeat;
 }
 
@@ -1158,7 +1211,7 @@ a.expedition:focus-visible,
 .expedition-media--atlantis {
   background-color: #061820;
   background-image:
-    linear-gradient(180deg, rgba(6, 24, 32, 0.12) 0%, rgba(6, 24, 32, 0.42) 58%, rgba(6, 24, 32, 0.78) 100%),
+    linear-gradient(180deg, rgba(6, 24, 32, 0.05) 0%, rgba(6, 24, 32, 0.28) 100%),
     url("images/atlantis-china.png");
   background-position: center;
   background-size: cover;
@@ -1172,7 +1225,7 @@ a.expedition:focus-visible,
 .expedition-media--realty {
   background-color: #1b2430;
   background-image:
-    linear-gradient(180deg, rgba(18, 24, 20, 0.08) 0%, rgba(18, 24, 20, 0.38) 62%, rgba(18, 24, 20, 0.72) 100%),
+    linear-gradient(180deg, rgba(18, 24, 20, 0.04) 0%, rgba(18, 24, 20, 0.25) 100%),
     url("images/vysotki-yug-cover.jpg");
   background-position: center;
   background-size: cover;
@@ -1186,7 +1239,7 @@ a.expedition:focus-visible,
 .expedition-media--ostrov {
   background-color: #6eb8c4;
   background-image:
-    linear-gradient(180deg, rgba(18, 24, 20, 0.08) 0%, rgba(18, 24, 20, 0.4) 58%, rgba(18, 24, 20, 0.78) 100%),
+    linear-gradient(180deg, rgba(18, 24, 20, 0.04) 0%, rgba(18, 24, 20, 0.22) 100%),
     url("images/ostrov-cover.jpg");
   background-position: center;
   background-size: cover;
@@ -1196,7 +1249,7 @@ a.expedition:focus-visible,
 .expedition-media--mojo {
   background-color: #0d1a32;
   background-image:
-    linear-gradient(180deg, rgba(8, 14, 28, 0.12) 0%, rgba(8, 14, 28, 0.28) 48%, rgba(8, 14, 28, 0.78) 100%),
+    linear-gradient(180deg, rgba(8, 14, 28, 0.05) 0%, rgba(8, 14, 28, 0.28) 100%),
     url("images/mojo-career-cover.jpg");
   background-position: center 18%;
   background-size: cover;
@@ -1901,20 +1954,16 @@ a.expedition:focus-visible,
   .case-layers {
     max-width: none;
   }
-}
 
   .hero-portrait {
     justify-self: start;
     width: min(100%, 360px);
     order: -1;
+    padding-top: 0;
   }
 
   .process-track::before {
     display: none;
-  }
-
-  .expedition-wall {
-    grid-template-columns: 1fr;
   }
 
   .service-item {
