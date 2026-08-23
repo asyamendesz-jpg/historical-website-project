@@ -1131,6 +1131,16 @@ a.expedition:focus-visible {
   color: var(--ink);
 }
 
+.case-tagline {
+  margin: -0.15rem 0 0.75rem;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--moss);
+}
+
 .case-layers {
   margin: 0 0 0.85rem;
   max-width: 42ch;
@@ -1198,7 +1208,7 @@ a.expedition:focus-visible {
 }
 
 .expedition-media--portal {
-  --photo: url("images/vneklassnoe-chtenie.png");
+  --photo: url("images/vneklassnoe-chtenie.jpg");
   background:
     linear-gradient(180deg, rgba(18, 24, 20, 0.05) 0%, rgba(18, 24, 20, 0.28) 100%),
     var(--photo) center / cover no-repeat;
