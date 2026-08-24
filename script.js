@@ -304,7 +304,7 @@ function initLyusyaTriggers(reduced) {
         scrollToHash("#lyusya-quest", reduced);
         return;
       }
-      const fromCase = Boolean(trigger.closest(".expedition, .case-bridge--after"));
+      const fromCase = Boolean(trigger.closest(".expedition, .case-bridge--after, .case-proof"));
       if (fromCase && typeof api.openFromCase === "function") api.openFromCase();
       else if (typeof api.showIntro === "function") api.showIntro(false);
       scrollToHash("#lyusya-quest", reduced);
@@ -497,6 +497,19 @@ function initMobileCta() {
   hideWhen.forEach((el) => observer.observe(el));
 }
 
+function initHashLanding(reduced) {
+  const hash = window.location.hash;
+  if (!hash || hash.length < 2) return;
+
+  window.requestAnimationFrame(() => {
+    scrollToHash(hash, reduced);
+    if (hash === "#lyusya-quest") {
+      const api = window.LyusyaNavigator;
+      if (api && typeof api.showIntro === "function") api.showIntro(false);
+    }
+  });
+}
+
 function boot() {
   const reduced = prefersReducedMotion();
   initYear();
@@ -510,6 +523,7 @@ function boot() {
   initMobileCta();
   initAnchorNav(reduced);
   initCarousel(reduced);
+  initHashLanding(reduced);
 
   const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   motionQuery.addEventListener("change", () => {
