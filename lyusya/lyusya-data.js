@@ -5,9 +5,9 @@
  */
 window.LyusyaData = {
   avatars: {
-    chibi: "images/lyusya/lyusya-chibi.png",
-    magical: "images/lyusya/lyusya-magical.png",
-    navigator: "images/lyusya/lyusya-navigator.png?v=20260815b",
+    chibi: "images/lyusya/lyusya-chibi.jpg",
+    magical: "images/lyusya/lyusya-magical.jpg",
+    navigator: "images/lyusya/lyusya-navigator.jpg?v=20260824c",
   },
 
   intro: {

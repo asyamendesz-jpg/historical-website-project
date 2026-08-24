@@ -1372,21 +1372,21 @@ a.expedition:focus-visible {
 }
 
 .expedition-media--silk {
-  --photo: url("https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1400&q=80");
+  --photo: url("https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=900&q=70");
 }
 
 .expedition-media--atlantis {
   background-color: #061820;
   background-image:
     linear-gradient(180deg, rgba(6, 24, 32, 0.05) 0%, rgba(6, 24, 32, 0.28) 100%),
-    url("images/atlantis-china.png");
+    url("images/atlantis-china.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 .expedition-media--alchemist {
-  --photo: url("images/carousel-alchemist-hq/slide-01.png");
+  --photo: url("images/carousel-alchemist-hq/slide-01.jpg");
 }
 
 .expedition-media--realty {
@@ -1400,7 +1400,7 @@ a.expedition:focus-visible {
 }
 
 .expedition-media--forma {
-  --photo: url("https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=1400&q=80");
+  --photo: url("https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=900&q=70");
 }
 
 .expedition-media--ostrov {
@@ -2003,15 +2003,22 @@ a.expedition:focus-visible {
 
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(12px);
   transition:
-    opacity 0.9s var(--ease) var(--reveal-delay, 0ms),
-    transform 0.9s var(--ease) var(--reveal-delay, 0ms);
+    opacity 0.35s var(--ease) var(--reveal-delay, 0ms),
+    transform 0.35s var(--ease) var(--reveal-delay, 0ms);
 }
 
 .reveal.is-visible {
   opacity: 1;
   transform: none;
+}
+
+/* Interactive controls inside pending reveals stay clickable */
+.reveal .btn,
+.reveal a,
+.reveal button {
+  pointer-events: auto;
 }
 
 @keyframes heroDrift {
@@ -2518,3 +2525,5 @@ a.expedition:focus-visible {
     padding-top: 3.75rem;
   }
 }
+
+.btn, .nav-toggle, .site-nav a, .expedition-link, .mobile-cta { touch-action: manipulation; }

@@ -90,7 +90,7 @@ function initReveals(reduced) {
         observer.unobserve(entry.target);
       }
     },
-    { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
+    { threshold: 0.05, rootMargin: "80px 0px 10% 0px" }
   );
 
   items.forEach((el, index) => {
