@@ -1173,6 +1173,14 @@ a.expedition:focus-visible {
   width: auto;
 }
 
+.case-route {
+  margin: 0 0 0.85rem;
+  padding: 0 0 0 1.15rem;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
 .case-proof {
   max-width: var(--max);
   margin: 2.5rem auto 0;
