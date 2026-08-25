@@ -2007,6 +2007,43 @@ a.expedition:focus-visible {
   gap: 0.75rem 1.25rem;
 }
 
+.footer-legal {
+  flex: 1 0 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.25rem;
+  padding-top: 0.85rem;
+  margin-top: 0.15rem;
+  border-top: 1px solid var(--line);
+}
+
+.footer-legal a {
+  opacity: 0.9;
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+  text-decoration-color: color-mix(in srgb, var(--ink) 28%, transparent);
+}
+
+.footer-legal a:hover,
+.footer-legal a:focus-visible {
+  opacity: 1;
+  text-decoration-color: currentColor;
+}
+
+.form-legal {
+  margin: 0.85rem 0 0;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  line-height: 1.45;
+  opacity: 0.78;
+}
+
+.form-legal a {
+  color: var(--moss-deep);
+  text-underline-offset: 0.18em;
+}
+
 /* Motion */
 
 .reveal {
@@ -2535,3 +2572,89 @@ a.expedition:focus-visible {
 }
 
 .btn, .nav-toggle, .site-nav a, .expedition-link, .mobile-cta { touch-action: manipulation; }
+
+/* Legal pages */
+
+.page-legal {
+  padding-top: 4.5rem;
+}
+
+.page-legal .site-header {
+  position: fixed;
+}
+
+.legal-main {
+  width: min(720px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2rem 0 4rem;
+}
+
+.legal-eyebrow {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--moss);
+}
+
+.legal-main h1 {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 1.5rem + 1.6vw, 2.75rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.legal-meta {
+  margin: 0 0 2rem;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  opacity: 0.7;
+}
+
+.legal-body h2 {
+  margin: 2rem 0 0.75rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.legal-body p,
+.legal-body li {
+  color: var(--ink-soft);
+}
+
+.legal-body p {
+  margin: 0 0 1rem;
+}
+
+.legal-body ul,
+.legal-body ol {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+}
+
+.legal-body li + li {
+  margin-top: 0.4rem;
+}
+
+.legal-body a {
+  color: var(--moss-deep);
+}
+
+.footer-links a[aria-current="page"] {
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+@media (max-width: 780px) {
+  .page-legal {
+    padding-top: 3.75rem;
+  }
+}
