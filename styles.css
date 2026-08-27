@@ -1431,6 +1431,16 @@ a.expedition:focus-visible {
   background-repeat: no-repeat;
 }
 
+.expedition-media--puzzle {
+  background-color: #7ec8e8;
+  background-image:
+    linear-gradient(180deg, rgba(18, 24, 20, 0.04) 0%, rgba(18, 24, 20, 0.22) 100%),
+    url("images/soberi-kartinku-cover.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .expedition:hover .expedition-media,
 .expedition:focus-within .expedition-media {
   transform: scale(1);

@@ -18,6 +18,7 @@
 - [Высотки-Юг](https://friendly-encounter-sun.lovable.app)
 - [FORMA — визитка магазина обуви](https://asyamendesz-jpg.github.io/shoe-store-s-business-card-website/)
 - [Что изменилось на острове?](https://ostrov.ai.studio)
+- [Собери картинку](https://asyamendesz-jpg.github.io/---/docs/) — детская картинка-игра / пазл
 - [Кем быть для достижения успеха?](https://mojo-career.lovable.app)
 
 ## Навигатор Люся
