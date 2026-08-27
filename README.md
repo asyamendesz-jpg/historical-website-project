@@ -11,7 +11,7 @@
 
 ## Маршруты проектов
 
-- [Портал «Внеклассное чтение»](https://asyamendesz-jpg.github.io/The-portal-of-book-expeditions/) — книжные экспедиции, маршрут читателя, аудио и PDF-испытания
+- [Портал «Внеклассное чтение»](https://asyamendes.ru/) — книжные экспедиции, маршрут читателя, аудио и PDF-испытания
 - [Шёлковый путь](https://asyamendesz-jpg.github.io/The-Silk-Road/)
 - [Подводная Атлантида Китая](https://asyamendesz-jpg.github.io/Atlantis-China/)
 - [Какой вы алхимик?](https://asyamendesz-jpg.github.io/The-Alchemist-Quiz/)
