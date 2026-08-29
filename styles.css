@@ -1414,15 +1414,21 @@ a.expedition:focus-visible {
   background-repeat: no-repeat;
 }
 
+.expedition-cover img.expedition-media--alchemist,
 .expedition-media--alchemist {
-  background-color: #e8d9b8;
-  background-image:
-    linear-gradient(180deg, rgba(18, 24, 20, 0.04) 0%, rgba(18, 24, 20, 0.22) 100%),
-    url("images/carousel-alchemist-hq/slide-01.jpg");
-  background-position: center 18%;
-  background-size: cover;
+  background-color: #f7f4ee;
+  background-image: url("images/alchemist-cover.jpg?v=20260829e");
+  background-position: center;
+  background-size: contain;
   background-repeat: no-repeat;
-  object-position: center 18%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.expedition--proof .expedition-media--alchemist,
+.expedition--proof:hover .expedition-media--alchemist,
+.expedition--proof:focus-within .expedition-media--alchemist {
+  transform: none;
 }
 
 .expedition-media--realty {
