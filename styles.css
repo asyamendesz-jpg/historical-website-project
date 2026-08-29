@@ -1125,7 +1125,7 @@ a.expedition:focus-visible {
   z-index: 1;
   align-self: stretch;
   transform: none;
-  padding: 1.15rem 1.2rem 1.35rem;
+  padding: 0.85rem 1rem 1rem;
   background: transparent;
 }
 
@@ -1135,15 +1135,24 @@ a.expedition:focus-visible {
 }
 
 .expedition--proof .expedition-meta {
+  margin: 0 0 0.2rem;
   color: var(--moss);
 }
 
 .expedition--proof h3 {
+  margin: 0 0 0.3rem;
   color: var(--ink);
 }
 
+.expedition--proof .expedition-body > p:not(.expedition-meta) {
+  max-width: none;
+  margin-bottom: 0.35rem;
+  opacity: 1;
+  transform: none;
+}
+
 .case-tagline {
-  margin: -0.15rem 0 0.75rem;
+  margin: 0 0 0.25rem;
   font-family: var(--font-display);
   font-size: 0.72rem;
   font-weight: 600;
@@ -1153,7 +1162,7 @@ a.expedition:focus-visible {
 }
 
 .case-status {
-  margin: -0.35rem 0 0.85rem;
+  margin: 0 0 0.55rem;
   font-family: var(--font-display);
   font-size: 0.68rem;
   font-weight: 500;
@@ -1162,21 +1171,21 @@ a.expedition:focus-visible {
 }
 
 .case-try {
-  margin: 0 0 1rem;
-  padding: 1rem 1.1rem;
+  margin: 0 0 0.7rem;
+  padding: 0.7rem 0.85rem 0.75rem;
   border: 1px solid var(--line);
   background: rgba(244, 246, 241, 0.7);
 }
 
 .case-try h4 {
-  margin: 0 0 0.4rem;
+  margin: 0 0 0.2rem;
   font-size: 0.95rem;
 }
 
 .case-try p {
-  margin: 0 0 0.85rem;
+  margin: 0 0 0.4rem;
   font-size: 0.92rem;
-  line-height: 1.4;
+  line-height: 1.3;
   color: var(--ink-soft);
 }
 
@@ -1185,11 +1194,16 @@ a.expedition:focus-visible {
 }
 
 .case-route {
-  margin: 0 0 0.85rem;
-  padding: 0 0 0 1.15rem;
+  margin: 0 0 0.5rem;
+  padding: 0 0 0 1.1rem;
   color: var(--ink-soft);
   font-size: 0.88rem;
-  line-height: 1.45;
+  line-height: 1.28;
+}
+
+.case-route li {
+  margin: 0;
+  padding: 0.06rem 0;
 }
 
 .case-proof {
@@ -1318,37 +1332,39 @@ a.expedition:focus-visible {
 }
 
 .case-layers {
-  margin: 0 0 0.85rem;
-  max-width: 52ch;
+  margin: 0 0 0.65rem;
+  max-width: none;
   display: grid;
-  gap: 0.45rem;
+  gap: 0.38rem;
 }
 
 .case-layers > div {
   display: grid;
-  gap: 0.1rem;
+  gap: 0.05rem;
 }
 
 .case-layers dt {
+  margin: 0;
   font-family: var(--font-display);
   font-size: 0.62rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  line-height: 1.2;
   color: var(--moss);
 }
 
 .case-layers dd {
   margin: 0;
   font-size: 0.92rem;
-  line-height: 1.35;
+  line-height: 1.28;
   color: var(--ink-soft);
 }
 
 .expedition-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem 1.1rem;
+  gap: 0.45rem 0.9rem;
   align-items: center;
 }
 
