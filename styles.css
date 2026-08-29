@@ -1474,13 +1474,17 @@ a.expedition:focus-visible {
 }
 
 .expedition-media--puzzle {
-  background-color: #7ec8e8;
-  background-image:
-    linear-gradient(180deg, rgba(18, 24, 20, 0.04) 0%, rgba(18, 24, 20, 0.22) 100%),
-    url("images/soberi-kartinku-cover.jpg");
+  background-color: #01b8fb;
+  background-image: url("images/soberi-kartinku-cover.jpg?v=20260829i");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.expedition--proof .expedition-media--puzzle,
+.expedition--proof:hover .expedition-media--puzzle,
+.expedition--proof:focus-within .expedition-media--puzzle {
+  transform: none;
 }
 
 .expedition:hover .expedition-media,
