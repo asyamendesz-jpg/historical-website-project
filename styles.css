@@ -1416,12 +1416,12 @@ a.expedition:focus-visible {
 
 .expedition-cover img.expedition-media--alchemist,
 .expedition-media--alchemist {
-  background-color: #f7f4ee;
-  background-image: url("images/alchemist-cover.jpg?v=20260829e");
+  background-color: #e8dcc4;
+  background-image: url("images/alchemist-cover.jpg?v=20260829f");
   background-position: center;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
 }
 
