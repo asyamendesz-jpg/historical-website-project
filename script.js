@@ -4,7 +4,10 @@
  * IntersectionObserver, Constraint Validation API, View Transitions (где доступно).
  */
 (() => {
-const CONTACT_EMAIL = "hello@asyamelnikova.ru";
+const contactHint = () => {
+  const email = window.PortfoFormMail?.getContactEmail?.() || "";
+  return email ? `Напишите на ${email}` : "Попробуйте позже или свяжитесь через контакты на странице.";
+};
 const SCROLL_OFFSET = 12;
 const VEIL_IN_MS = 280;
 const VEIL_OUT_MS = 720;
@@ -187,6 +190,7 @@ function initForm(reduced) {
     form.classList.remove("is-success");
     clearValidity();
 
+    const submitBtn = /** @type {HTMLButtonElement | null} */ (form.querySelector('[type="submit"]'));
     const nameInput = /** @type {HTMLInputElement} */ (form.elements.namedItem("name"));
     const emailInput = /** @type {HTMLInputElement} */ (form.elements.namedItem("email"));
     const projectInput = /** @type {HTMLTextAreaElement} */ (form.elements.namedItem("project"));
@@ -209,29 +213,66 @@ function initForm(reduced) {
     const project = projectInput.value.trim();
     const timeline = timelineInput?.value.trim() || "";
     const budget = budgetInput?.value.trim() || "";
-    const subject = encodeURIComponent(`Сотрудничество: ${name}`);
+    const subject = `Сотрудничество: ${name}`;
     const extra = [
       timeline ? `Срок: ${timeline}` : "",
       budget ? `Бюджет: ${budget}` : "",
     ]
       .filter(Boolean)
       .join("\n");
-    const body = encodeURIComponent(
-      `Имя: ${name}\nКонтакт: ${email}${extra ? `\n${extra}` : ""}\n\nЧто хотите сделать:\n${project}`
-    );
+    const bodyText = `Имя: ${name}\nКонтакт: ${email}${extra ? `\n${extra}` : ""}\n\nЧто хотите сделать:\n${project}`;
 
     trackEvent("form_submit", { form: "contact" });
     trackEvent("route_submit", { form: "contact" });
-    showStatus("Маршрут готов к отправке. Открываю почтовый клиент…", "ok");
-    form.classList.add("is-success");
 
-    await sleep(reduced ? 0 : 420);
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    if (!window.PortfoFormMail) {
+      showStatus(`Не удалось отправить. ${contactHint()}`, "error");
+      return;
+    }
 
-    await sleep(1000);
-    showStatus(`Если письмо не открылось — напишите на ${CONTACT_EMAIL}`, "ok");
-    form.reset();
-    form.classList.remove("is-success");
+    if (submitBtn) submitBtn.disabled = true;
+    showStatus("Отправляем маршрут…", "ok");
+
+    const result = await window.PortfoFormMail.submit({
+      form: "contact",
+      name,
+      email,
+      project,
+      timeline,
+      budget,
+      subject,
+      bodyText,
+    });
+
+    if (submitBtn) submitBtn.disabled = false;
+
+    if (result.ok) {
+      form.classList.add("is-success");
+      showStatus("Спасибо! Заявку отправили — отвечу на указанный email.", "ok");
+      form.reset();
+      await sleep(reduced ? 0 : 420);
+      form.classList.remove("is-success");
+      return;
+    }
+
+    if (result.mode === "mailto" && result.mailto) {
+      showStatus("Маршрут готов к отправке. Открываю почтовый клиент…", "ok");
+      form.classList.add("is-success");
+      await sleep(reduced ? 0 : 420);
+      window.location.href = result.mailto;
+      await sleep(1000);
+      showStatus(`Если письмо не открылось — ${contactHint()}`, "ok");
+      form.reset();
+      form.classList.remove("is-success");
+      return;
+    }
+
+    if (result.error === "contact_not_configured") {
+      showStatus(`Форма временно недоступна. ${contactHint()}`, "error");
+      return;
+    }
+
+    showStatus(`Не удалось отправить. ${contactHint()}`, "error");
   });
 }
 

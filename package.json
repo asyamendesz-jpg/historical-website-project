@@ -1,0 +1,7 @@
+{
+  "name": "portfo-contact-api",
+  "private": true,
+  "dependencies": {
+    "nodemailer": "^6.10.1"
+  }
+}

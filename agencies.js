@@ -2,7 +2,10 @@
  * Страница «Для агентств» — навигация, форма, аналитика.
  */
 (() => {
-const CONTACT_EMAIL = "hello@asyamelnikova.ru";
+const contactHint = () => {
+  const email = window.PortfoFormMail?.getContactEmail?.() || "";
+  return email ? `Напишите на ${email}` : "Попробуйте позже или свяжитесь через контакты на странице.";
+};
 
 const prefersReducedMotion = () =>
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -105,6 +108,7 @@ function initForm(reduced) {
     form.classList.remove("is-success");
     clearValidity();
 
+    const submitBtn = /** @type {HTMLButtonElement | null} */ (form.querySelector('[type="submit"]'));
     const agencyInput = /** @type {HTMLInputElement} */ (form.elements.namedItem("agency"));
     const nameInput = /** @type {HTMLInputElement} */ (form.elements.namedItem("name"));
     const emailInput = /** @type {HTMLInputElement} */ (form.elements.namedItem("email"));
@@ -128,24 +132,61 @@ function initForm(reduced) {
     const email = emailInput.value.trim();
     const project = projectInput.value.trim();
     const timeline = timelineInput?.value.trim() || "";
-    const subject = encodeURIComponent(`Агентство: ${agency}`);
+    const subject = `Агентство: ${agency}`;
     const extra = timeline ? `\nСрок: ${timeline}` : "";
-    const body = encodeURIComponent(
-      `Агентство: ${agency}\nКонтакт: ${name}\nEmail: ${email}${extra}\n\nЗадача:\n${project}`
-    );
+    const bodyText = `Агентство: ${agency}\nКонтакт: ${name}\nEmail: ${email}${extra}\n\nЗадача:\n${project}`;
 
     trackEvent("form_submit", { form: "agency" });
     trackEvent("agency_form_submit", { form: "agency" });
-    showStatus("Открываю почтовый клиент…", "ok");
-    form.classList.add("is-success");
 
-    await sleep(reduced ? 0 : 420);
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    if (!window.PortfoFormMail) {
+      showStatus(`Не удалось отправить. ${contactHint()}`, "error");
+      return;
+    }
 
-    await sleep(1000);
-    showStatus(`Если письмо не открылось — напишите на ${CONTACT_EMAIL}`, "ok");
-    form.reset();
-    form.classList.remove("is-success");
+    if (submitBtn) submitBtn.disabled = true;
+    showStatus("Отправляем бриф…", "ok");
+
+    const result = await window.PortfoFormMail.submit({
+      form: "agency",
+      agency,
+      name,
+      email,
+      project,
+      timeline,
+      subject,
+      bodyText,
+    });
+
+    if (submitBtn) submitBtn.disabled = false;
+
+    if (result.ok) {
+      form.classList.add("is-success");
+      showStatus("Спасибо! Бриф отправили — отвечу на указанный email.", "ok");
+      form.reset();
+      await sleep(reduced ? 0 : 420);
+      form.classList.remove("is-success");
+      return;
+    }
+
+    if (result.mode === "mailto" && result.mailto) {
+      showStatus("Открываю почтовый клиент…", "ok");
+      form.classList.add("is-success");
+      await sleep(reduced ? 0 : 420);
+      window.location.href = result.mailto;
+      await sleep(1000);
+      showStatus(`Если письмо не открылось — ${contactHint()}`, "ok");
+      form.reset();
+      form.classList.remove("is-success");
+      return;
+    }
+
+    if (result.error === "contact_not_configured") {
+      showStatus(`Форма временно недоступна. ${contactHint()}`, "error");
+      return;
+    }
+
+    showStatus(`Не удалось отправить. ${contactHint()}`, "error");
   });
 }
 
