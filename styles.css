@@ -1454,6 +1454,20 @@ a.expedition:focus-visible {
   transform: none;
 }
 
+.expedition-media--salon {
+  background-color: #f3efe8;
+  background-image: url("images/berezhnoe-preobrazhenie-cover.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.expedition--proof .expedition-media--salon,
+.expedition--proof:hover .expedition-media--salon,
+.expedition--proof:focus-within .expedition-media--salon {
+  transform: none;
+}
+
 .expedition:hover .expedition-media,
 .expedition:focus-within .expedition-media {
   transform: scale(1);
