@@ -227,17 +227,22 @@
 
     <section id="structure">
       <h2>1. Структура проекта</h2>
-      <pre><code>historical-website-project/
-├── index.html          # главная страница-выставка
-├── styles.css          # визуальная система и анимации
-├── script.js           # ES module: навигация, залы, форма
-├── instruction.html    # эта инструкция
-├── README.md           # краткое описание
-└── images/
-    └── asya-portrait.jpg</code></pre>
-      <p>Сайт статический: без сборщика и без бэкенда. Форма открывает почтовый клиент через <code>mailto:</code>.</p>
+      <pre><code>portfo.ru/
+├── index.html          # главная
+├── agencies.html       # страница для агентств
+├── styles.css
+├── script.js           # навигация, фильтры, форма главной
+├── form-config.js      # contactEmail и apiUrl (без секретов)
+├── form-mail.js        # API или mailto
+├── agencies.js         # форма страницы агентств
+├── lyusya/             # навигатор Люся
+├── api/contact.js      # serverless-обработчик, если apiUrl задан
+├── instruction.html
+├── README.md
+└── images/</code></pre>
+      <p>Сайт статический: без сборщика. Пока <code>apiUrl</code> в <code>form-config.js</code> пустой, основная кнопка открывает черновик Gmail. Письмо нужно отправить кнопкой «Отправить» в Gmail; поля формы не очищаются.</p>
       <div class="card">
-        <strong>Если HTML «не открывается».</strong> Все файлы должны лежать в одной папке <code>historical-website-project</code>. Откройте именно <code>index.html</code> из этой папки (или запустите <code>open-site.bat</code>). Скрипт подключается как обычный <code>defer</code>, без <code>type="module"</code>, чтобы страница работала и по <code>file://</code>.
+        <strong>Если HTML «не открывается».</strong> Все файлы должны лежать в одной папке сайта. Откройте именно <code>index.html</code> (или <code>open-site.bat</code>). Скрипты подключаются как обычный <code>defer</code>, без <code>type="module"</code>, чтобы страница работала и по <code>file://</code>.
       </div>
     </section>
 
@@ -268,7 +273,7 @@ python -m http.server 5500</code></pre>
           </tr>
           <tr>
             <td>Проекты-экспедиции и ссылки</td>
-            <td>блок <code>#expeditions</code></td>
+            <td>блок <code>#expeditions</code>; категории — атрибут <code>data-categories</code></td>
           </tr>
           <tr>
             <td>Площадки (VK, Дзен, Sostav, блог)</td>
@@ -279,8 +284,8 @@ python -m http.server 5500</code></pre>
             <td>замените <code>images/asya-portrait.jpg</code> (лучше ≥ 800px)</td>
           </tr>
           <tr>
-            <td>Email формы</td>
-            <td><code>contactEmail</code> в <code>form-config.js</code> (mailto) и <code>CONTACT_EMAIL</code> в Vercel (API)</td>
+            <td>Получатель формы</td>
+            <td><code>contactEmail</code> в <code>form-config.js</code>. Серверная отправка: PHP на Beget, каталог <code>forms-beget/</code>, инструкция <code>forms-beget/INSTALL.txt</code>. Получатель только в серверном <code>config.php</code>. <code>apiUrl</code> заполнять только после HTTPS и проверки endpoint</td>
           </tr>
           <tr>
             <td>Цвета и шрифты</td>
@@ -303,9 +308,9 @@ python -m http.server 5500</code></pre>
         <li><strong>Обычный script + defer</strong> — работает при двойном клике по HTML и через локальный сервер; код разбит на функции с JSDoc.</li>
         <li><strong>IntersectionObserver</strong> — появление блоков и смена «зала» без тяжёлого scroll-слушателя.</li>
         <li><strong>requestAnimationFrame</strong> — шапка обновляется не чаще кадра.</li>
-        <li><strong>Constraint Validation API</strong> — <code>checkValidity()</code>, <code>setCustomValidity()</code>, <code>reportValidity()</code>.</li>
+        <li><strong>Проверка полей формы</strong> — видимые ошибки у обязательных полей и <code>aria-invalid</code>; срок и бюджет необязательны.</li>
         <li><strong>View Transitions API</strong> — плавный переход по якорям, если браузер умеет; иначе — шторка <code>.page-veil</code>.</li>
-        <li><strong>inert</strong> — закрытое мобильное меню не попадает в Tab-порядок.</li>
+        <li><strong>inert</strong> — закрытое мобильное меню и скрытые фильтром карточки не попадают в Tab-порядок.</li>
         <li><strong>loading / fetchpriority / decoding</strong> — приоритет героя, lazy для второго портрета.</li>
         <li><strong>content-visibility</strong> — секции-залы рендерятся экономнее при длинной странице.</li>
         <li><strong>CSS custom properties</strong> — задержки reveal через <code>--reveal-delay</code>, фото экспедиций без inline-style.</li>
@@ -314,7 +319,7 @@ python -m http.server 5500</code></pre>
       <h3>Что можно добавить позже</h3>
       <ul>
         <li><code>Service Worker</code> + offline-кэш для GitHub Pages</li>
-        <li>отправка формы на Formspree / Netlify Forms вместо mailto</li>
+        <li>серверная отправка через существующий <code>api/contact.js</code>, если задан <code>apiUrl</code></li>
         <li>сборка Vite только если появятся зависимости</li>
         <li>WebP/AVIF портрет и <code>&lt;picture&gt;</code></li>
         <li><code>Popover API</code> для подсказок в экспедициях</li>
@@ -349,10 +354,11 @@ git push origin main</code></pre>
       <ul>
         <li>Проверить ссылки квизов: Silk Road и Atlantis China</li>
         <li>Проверить площадки: aniuka, Sostav, Дзен, VK</li>
-        <li>Отправить тестовое письмо из формы</li>
+        <li>Форма: обязательные поля, сохранение текста, услуга/проект/Люся рядом с полем. Mailto не считать успехом. Письмо из проверки не отправлять</li>
+        <li>Фильтры: все работы, категория в URL, прямая ссылка на скрытую карточку, назад/вперёд</li>
         <li>Просмотреть на телефоне и desktop</li>
         <li>Включить в ОС «уменьшить движение» и убедиться, что сайт спокойный</li>
-        <li>Заменить email в <code>script.js</code>, если нужен другой адрес</li>
+        <li>Адрес получателя менять в <code>form-config.js</code>, не в <code>script.js</code></li>
       </ul>
     </section>
 

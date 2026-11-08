@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260830c" />
+  <link rel="stylesheet" href="styles.css?v=20261108c" />
 </head>
 <body class="page-agencies">
   <a class="skip-link" href="#main">К содержанию</a>
@@ -219,7 +219,7 @@
           <p class="agency-note">Расскажите про задачу и агентство — отвечу лично, обычно в течение 1–2 дней. Готовое ТЗ не обязательно.</p>
           <p class="agency-direct">
             Или сразу на почту:
-            <a href="mailto:work@asyamendes.ru?subject=%D0%90%D0%B3%D0%B5%D0%BD%D1%82%D1%81%D1%82%D0%B2%D0%BE" data-track="agency_email_click">work@asyamendes.ru</a>
+            <a id="agency-direct-mail" href="#" hidden data-track="agency_email_click"></a>
           </p>
         </div>
         <form class="collab-form agency-form" id="agency-form" novalidate data-track-form="agency">
@@ -243,7 +243,18 @@
             <input id="timeline" name="timeline" type="text" autocomplete="off" placeholder=" " />
             <label for="timeline">Срок · по желанию</label>
           </div>
-          <button class="btn btn-primary" type="submit" data-track="agency_form_submit">Отправить бриф</button>
+          <div class="field-honeypot" aria-hidden="true">
+            <label for="website">Сайт</label>
+            <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+          <p class="form-mail-note" id="form-mail-note" hidden>В Gmail откроется черновик. Нажмите “Отправить”, чтобы отправить заявку.</p>
+          <p class="form-mail-address" id="form-mail-address" hidden></p>
+          <button class="btn btn-primary" type="submit" id="agency-submit">Отправить заявку</button>
+          <div class="form-mail-actions" id="form-mail-actions" hidden>
+            <a class="btn btn-primary" id="form-gmail-open" target="_blank" rel="noopener noreferrer">Открыть письмо в Gmail</a>
+            <button class="btn btn-ghost" type="button" id="form-copy-letter">Скопировать бриф</button>
+            <a class="btn btn-ghost" id="form-mailto-open">Открыть в почтовой программе</a>
+          </div>
           <p class="form-legal">Отправляя форму, вы соглашаетесь с <a href="privacy.html">политикой конфиденциальности</a>.</p>
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </form>
@@ -271,8 +282,8 @@
     </nav>
   </footer>
 
-  <script defer src="form-config.js?v=20260828a"></script>
-  <script defer src="form-mail.js?v=20260828a"></script>
-  <script defer src="agencies.js?v=20260828a"></script>
+  <script defer src="form-config.js?v=20261108c"></script>
+  <script defer src="form-mail.js?v=20261108c"></script>
+  <script defer src="agencies.js?v=20261108c"></script>
 </body>
 </html>

@@ -158,18 +158,157 @@ function initForm(reduced) {
   const status = $("#form-status");
   if (!form || !status) return;
 
+  const submitBtn = /** @type {HTMLButtonElement | null} */ ($("#collab-submit") || form.querySelector('[type="submit"]'));
+  const mailNote = $("#form-mail-note");
+  const mailAddress = $("#form-mail-address");
+  const mailActions = $("#form-mail-actions");
+  const copyBtn = /** @type {HTMLButtonElement | null} */ ($("#form-copy-letter"));
+  const gmailOpen = /** @type {HTMLAnchorElement | null} */ ($("#form-gmail-open"));
+  const mailtoOpen = /** @type {HTMLAnchorElement | null} */ ($("#form-mailto-open"));
+  const nameInput = /** @type {HTMLInputElement} */ (form.elements.namedItem("name"));
+  const emailInput = /** @type {HTMLInputElement} */ (form.elements.namedItem("email"));
+  const projectInput = /** @type {HTMLTextAreaElement} */ (form.elements.namedItem("project"));
+  const timelineInput = /** @type {HTMLInputElement | null} */ (form.elements.namedItem("timeline"));
+  const budgetInput = /** @type {HTMLInputElement | null} */ (form.elements.namedItem("budget"));
+  const websiteInput = /** @type {HTMLInputElement | null} */ (form.elements.namedItem("website"));
+  const usesGmailFallback = Boolean(window.PortfoFormMail && !window.PortfoFormMail.getApiUrl());
+  let lastLetterText = "";
+  let lastSubject = "";
+  let submitting = false;
+  const defaultSubmitLabel = "Отправить заявку";
+  const gmailHint = "В Gmail откроется черновик. Нажмите “Отправить”, чтобы отправить заявку.";
+
+  if (usesGmailFallback) {
+    if (submitBtn) submitBtn.hidden = true;
+    if (mailNote) {
+      mailNote.hidden = false;
+      mailNote.textContent = gmailHint;
+    }
+    if (mailActions) mailActions.hidden = false;
+    const contactEmail = window.PortfoFormMail.getContactEmail();
+    if (mailAddress && contactEmail) {
+      mailAddress.replaceChildren();
+      mailAddress.append("Адрес Gmail: ");
+      const addressLink = document.createElement("a");
+      addressLink.href = `mailto:${contactEmail}`;
+      addressLink.textContent = contactEmail;
+      mailAddress.append(addressLink);
+      mailAddress.hidden = false;
+    }
+  }
+
   const showStatus = (message, type = "ok") => {
     status.textContent = message;
     status.classList.remove("is-ok", "is-error");
     status.classList.add("is-visible", type === "error" ? "is-error" : "is-ok");
+    status.setAttribute("role", type === "error" ? "alert" : "status");
+  };
+
+  const setFieldError = (field, message) => {
+    if (!(field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement)) return;
+    field.setCustomValidity(message);
+    field.setAttribute("aria-invalid", message ? "true" : "false");
+    const errorEl = field.id ? $(`#${field.id}-error`) : null;
+    if (errorEl) {
+      errorEl.textContent = message;
+      errorEl.hidden = !message;
+    }
   };
 
   const clearValidity = () => {
     for (const field of form.elements) {
       if (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement) {
-        field.setCustomValidity("");
+        setFieldError(field, "");
       }
     }
+  };
+
+  const validate = () => {
+    clearValidity();
+    let firstInvalid = null;
+
+    if (!nameInput.value.trim() || nameInput.value.trim().length < 2) {
+      setFieldError(nameInput, "Укажите имя — не короче двух символов.");
+      firstInvalid = firstInvalid || nameInput;
+    }
+
+    if (!emailInput.validity.valid || !emailInput.value.trim()) {
+      setFieldError(emailInput, "Укажите контактный email.");
+      firstInvalid = firstInvalid || emailInput;
+    }
+
+    const composed = window.PortfoFormContext.compose(projectInput.value);
+    if (composed.trim().length < 8) {
+      setFieldError(
+        projectInput,
+        "Напишите, что хотите сделать — своими словами. Услуга или проект не обязательны."
+      );
+      firstInvalid = firstInvalid || projectInput;
+    } else {
+      setFieldError(projectInput, "");
+    }
+
+    if (firstInvalid) {
+      showStatus("Проверьте отмеченные поля — без них письмо не собрать.", "error");
+      firstInvalid.focus();
+      return null;
+    }
+
+    return {
+      name: nameInput.value.trim(),
+      email: emailInput.value.trim(),
+      userText: projectInput.value.trim(),
+      composed,
+      timeline: timelineInput?.value.trim() || "",
+      budget: budgetInput?.value.trim() || "",
+    };
+  };
+
+  const letterFromValues = (values) => {
+    const extra = [
+      values.timeline ? `Срок: ${values.timeline}` : "",
+      values.budget ? `Бюджет: ${values.budget}` : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
+    const subject = `Сотрудничество: ${values.name}`;
+    const bodyText = `Имя: ${values.name}\nКонтакт: ${values.email}${extra ? `\n${extra}` : ""}\n\nЧто хотите сделать:\n${values.composed}`;
+    return { subject, bodyText };
+  };
+
+  const syncFallbackLinks = () => {
+    if (!usesGmailFallback || !window.PortfoFormMail) return null;
+    const values = {
+      name: nameInput.value.trim(),
+      email: emailInput.value.trim(),
+      composed: window.PortfoFormContext.compose(projectInput.value),
+      timeline: timelineInput?.value.trim() || "",
+      budget: budgetInput?.value.trim() || "",
+    };
+    const ready =
+      values.name.length >= 2 &&
+      emailInput.validity.valid &&
+      values.email &&
+      values.composed.trim().length >= 8;
+    if (!ready) {
+      gmailOpen?.removeAttribute("href");
+      mailtoOpen?.removeAttribute("href");
+      return null;
+    }
+    const letter = letterFromValues(values);
+    lastSubject = letter.subject;
+    lastLetterText = letter.bodyText;
+    const gmail = window.PortfoFormMail.buildGmailCompose({
+      subject: letter.subject,
+      body: letter.bodyText,
+    });
+    const mailto = window.PortfoFormMail.buildMailto({
+      subject: letter.subject,
+      body: letter.bodyText,
+    });
+    if (gmailOpen && gmail) gmailOpen.href = gmail;
+    if (mailtoOpen && mailto) mailtoOpen.href = mailto;
+    return { ...letter, gmail, mailto };
   };
 
   let formStarted = false;
@@ -183,96 +322,136 @@ function initForm(reduced) {
   form.addEventListener("input", () => {
     clearValidity();
     markFormStart();
+    syncFallbackLinks();
+  });
+  form.addEventListener("change", syncFallbackLinks);
+
+  const copyLetter = async () => {
+    const letter = syncFallbackLinks();
+    const text = letter?.bodyText || lastLetterText;
+    if (!text) {
+      validate();
+      return;
+    }
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error("clipboard_unavailable");
+      await navigator.clipboard.writeText(text);
+      showStatus("Бриф скопирован. Вставьте его в письмо, если нужно.", "ok");
+    } catch {
+      showStatus(
+        `Скопировать автоматически не удалось. Выделите текст в поле задачи или ${contactHint().toLowerCase()}`,
+        "error"
+      );
+    }
+  };
+
+  copyBtn?.addEventListener("click", () => {
+    copyLetter();
+  });
+
+  gmailOpen?.addEventListener("click", (event) => {
+    const letter = syncFallbackLinks();
+    if (!letter?.gmail) {
+      event.preventDefault();
+      validate();
+      return;
+    }
+    trackEvent("form_gmail_open", { form: "contact" });
+    showStatus(gmailHint, "ok");
+  });
+
+  mailtoOpen?.addEventListener("click", (event) => {
+    const letter = syncFallbackLinks();
+    if (!letter?.mailto) {
+      event.preventDefault();
+      validate();
+      return;
+    }
+    trackEvent("form_mailto_open", { form: "contact" });
+    showStatus("Откроется почтовая программа. Письмо нужно отправить в ней самостоятельно.", "ok");
   });
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
+    if (usesGmailFallback) return;
+    if (submitting) return;
     form.classList.remove("is-success");
-    clearValidity();
 
-    const submitBtn = /** @type {HTMLButtonElement | null} */ (form.querySelector('[type="submit"]'));
-    const nameInput = /** @type {HTMLInputElement} */ (form.elements.namedItem("name"));
-    const emailInput = /** @type {HTMLInputElement} */ (form.elements.namedItem("email"));
-    const projectInput = /** @type {HTMLTextAreaElement} */ (form.elements.namedItem("project"));
-    const timelineInput = /** @type {HTMLInputElement | null} */ (form.elements.namedItem("timeline"));
-    const budgetInput = /** @type {HTMLInputElement | null} */ (form.elements.namedItem("budget"));
+    const values = validate();
+    if (!values) return;
 
-    if (!form.checkValidity()) {
-      if (!nameInput.value.trim()) nameInput.setCustomValidity("Укажите имя");
-      if (!emailInput.validity.valid) emailInput.setCustomValidity("Укажите контакт · email");
-      if (!projectInput.value.trim() || projectInput.value.trim().length < 8) {
-        projectInput.setCustomValidity("Напишите своими словами, что хотите сделать");
-      }
-      form.reportValidity();
-      showStatus("Заполните поля корректно — это поможет начать разговор.", "error");
-      return;
-    }
-
-    const name = nameInput.value.trim();
-    const email = emailInput.value.trim();
-    const project = projectInput.value.trim();
-    const timeline = timelineInput?.value.trim() || "";
-    const budget = budgetInput?.value.trim() || "";
-    const subject = `Сотрудничество: ${name}`;
-    const extra = [
-      timeline ? `Срок: ${timeline}` : "",
-      budget ? `Бюджет: ${budget}` : "",
-    ]
-      .filter(Boolean)
-      .join("\n");
-    const bodyText = `Имя: ${name}\nКонтакт: ${email}${extra ? `\n${extra}` : ""}\n\nЧто хотите сделать:\n${project}`;
-
-    trackEvent("form_submit", { form: "contact" });
-    trackEvent("route_submit", { form: "contact" });
+    const snapshot = window.PortfoFormContext.snapshot();
+    const { subject, bodyText } = letterFromValues(values);
+    lastLetterText = bodyText;
+    lastSubject = subject;
 
     if (!window.PortfoFormMail) {
-      showStatus(`Не удалось отправить. ${contactHint()}`, "error");
+      showStatus(`Не удалось подготовить письмо. ${contactHint()}`, "error");
       return;
     }
 
-    if (submitBtn) submitBtn.disabled = true;
-    showStatus("Отправляем маршрут…", "ok");
+    submitting = true;
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.setAttribute("aria-busy", "true");
+    }
+    form.setAttribute("aria-busy", "true");
 
-    const result = await window.PortfoFormMail.submit({
-      form: "contact",
-      name,
-      email,
-      project,
-      timeline,
-      budget,
-      subject,
-      bodyText,
-    });
+    showStatus("Отправляем заявку…", "ok");
 
-    if (submitBtn) submitBtn.disabled = false;
+    let result;
+    try {
+      result = await window.PortfoFormMail.submit({
+        form: "contact",
+        name: values.name,
+        email: values.email,
+        project: values.composed,
+        timeline: values.timeline,
+        budget: values.budget,
+        service: snapshot.serviceId || undefined,
+        projectRef: snapshot.projectId || undefined,
+        website: websiteInput?.value || "",
+        subject,
+        bodyText,
+      });
+    } finally {
+      submitting = false;
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.removeAttribute("aria-busy");
+        submitBtn.textContent = defaultSubmitLabel;
+      }
+      form.removeAttribute("aria-busy");
+    }
 
-    if (result.ok) {
+    if (result.ok && result.mode === "api") {
+      trackEvent("form_success", { form: "contact" });
       form.classList.add("is-success");
-      showStatus("Спасибо! Заявку отправили — отвечу на указанный email.", "ok");
+      showStatus("Письмо ушло через сервер. Ася ответит на указанный email.", "ok");
       form.reset();
+      window.PortfoFormContext.clear();
+      window.LyusyaNavigator?.replay?.();
+      formStarted = false;
+      lastLetterText = "";
+      lastSubject = "";
       await sleep(reduced ? 0 : 420);
       form.classList.remove("is-success");
       return;
     }
 
-    if (result.mode === "mailto" && result.mailto) {
-      showStatus("Маршрут готов к отправке. Открываю почтовый клиент…", "ok");
-      form.classList.add("is-success");
-      await sleep(reduced ? 0 : 420);
-      window.location.href = result.mailto;
-      await sleep(1000);
-      showStatus(`Если письмо не открылось — ${contactHint()}`, "ok");
-      form.reset();
-      form.classList.remove("is-success");
+    if (result.error === "timeout") {
+      showStatus("Сервер слишком долго не ответил. Поля сохранены — можно попробовать ещё раз или отправить через Gmail.", "error");
       return;
     }
-
+    if (result.error === "too_many_requests") {
+      showStatus("Слишком много попыток подряд. Поля сохранены — подождите немного или отправьте через Gmail.", "error");
+      return;
+    }
     if (result.error === "contact_not_configured") {
       showStatus(`Форма временно недоступна. ${contactHint()}`, "error");
       return;
     }
-
-    showStatus(`Не удалось отправить. ${contactHint()}`, "error");
+    showStatus("Не удалось принять заявку. Поля сохранены — можно попробовать ещё раз или отправить через Gmail.", "error");
   });
 }
 
@@ -297,6 +476,18 @@ function initTrack() {
       if (!el) return;
       const name = el.getAttribute("data-track");
       if (!name) return;
+      const service = el.getAttribute("data-service");
+      const project = el.getAttribute("data-project");
+      const category = el.getAttribute("data-category");
+      if (service || project || category) {
+        trackEvent(name, {
+          href: el.getAttribute("href") || undefined,
+          ...(service ? { service } : {}),
+          ...(project ? { project } : {}),
+          ...(category ? { category } : {}),
+        });
+        return;
+      }
       trackEvent(name, {
         href: el.getAttribute("href") || undefined,
         label: (el.textContent || "").trim().slice(0, 80) || undefined,
@@ -316,7 +507,6 @@ function initTrack() {
     if (detail.name === "step_complete") {
       trackEvent("lucy_step_complete", {
         step: detail.step,
-        answer: detail.answer,
       });
     }
     if (detail.name === "complete") {
@@ -324,11 +514,110 @@ function initTrack() {
       trackEvent("navigator_complete", { via: "lyusya" });
     }
     if (detail.name === "route_generated") {
-      trackEvent("route_generated", detail);
+      trackEvent("route_generated", { via: "lyusya" });
     }
     if (detail.name === "route_submit" || detail.name === "handoff") {
       trackEvent("route_submit", { via: detail.name });
     }
+  });
+}
+
+const PORTFOLIO_CATEGORIES = [
+  { id: "all", label: "Все работы" },
+  { id: "sites", label: "Сайты" },
+  { id: "quizzes", label: "Квизы и интерактивы" },
+  { id: "games", label: "Игры" },
+  { id: "products", label: "Цифровые продукты" },
+];
+
+function createFormContext() {
+  const state = {
+    serviceId: "",
+    serviceLabel: "",
+    projectId: "",
+    projectLabel: "",
+    lyusyaRoute: "",
+  };
+
+  const render = () => {
+    const box = $("#form-context");
+    const list = $("#form-context-list");
+    if (!box || !list) return;
+    list.replaceChildren();
+    const items = [
+      state.serviceLabel ? `Услуга: ${state.serviceLabel}` : "",
+      state.projectLabel ? `Проект: ${state.projectLabel}` : "",
+      state.lyusyaRoute ? "Маршрут Люси" : "",
+    ].filter(Boolean);
+
+    items.forEach((text) => {
+      const li = document.createElement("li");
+      li.textContent = text;
+      list.append(li);
+    });
+    box.hidden = items.length === 0;
+  };
+
+  const compose = (userText) => {
+    const blocks = [];
+    if (state.serviceLabel) blocks.push(`Маршрут: ${state.serviceLabel}`);
+    if (state.projectLabel) blocks.push(`Проект: ${state.projectLabel}`);
+    if (state.lyusyaRoute) blocks.push(state.lyusyaRoute.trim());
+    const user = String(userText || "").trim();
+    if (user) blocks.push(user);
+    return blocks.join("\n\n");
+  };
+
+  const api = {
+    setService(id, label) {
+      if (!label) return;
+      state.serviceId = id || "";
+      state.serviceLabel = label;
+      render();
+    },
+    setProject(id, label) {
+      if (!label) return;
+      state.projectId = id || "";
+      state.projectLabel = label;
+      render();
+    },
+    setLyusyaRoute(text) {
+      state.lyusyaRoute = String(text || "").trim();
+      render();
+    },
+    compose,
+    snapshot() {
+      return { ...state };
+    },
+    clear() {
+      state.serviceId = "";
+      state.serviceLabel = "";
+      state.projectId = "";
+      state.projectLabel = "";
+      state.lyusyaRoute = "";
+      render();
+    },
+  };
+
+  window.PortfoFormContext = api;
+  render();
+  return api;
+}
+
+window.PortfoFormContext = createFormContext();
+
+function initFormContext() {
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    const el = target.closest("[data-service], [data-project], [data-service-label], [data-project-label]");
+    if (!el) return;
+    const serviceId = el.getAttribute("data-service") || "";
+    const serviceLabel = el.getAttribute("data-service-label") || "";
+    const projectId = el.getAttribute("data-project") || "";
+    const projectLabel = el.getAttribute("data-project-label") || "";
+    if (serviceLabel) window.PortfoFormContext.setService(serviceId, serviceLabel);
+    if (projectLabel) window.PortfoFormContext.setProject(projectId, projectLabel);
   });
 }
 
@@ -374,10 +663,22 @@ function scrollToHash(hash, reduced) {
  * @param {HTMLElement | null} veil
  * @param {boolean} reduced
  */
+function urlWithHash(hash) {
+  const url = new URL(window.location.href);
+  url.hash = hash.startsWith("#") ? hash.slice(1) : hash;
+  return `${url.pathname}${url.search}${url.hash}`;
+}
+
+function sameDocumentUrl(url) {
+  const current = new URL(window.location.href);
+  const normalize = (path) => path.replace(/\/index\.html$/i, "/").replace(/\/$/, "") || "/";
+  return url.origin === current.origin && normalize(url.pathname) === normalize(current.pathname);
+}
+
 async function navigateToHash(hash, veil, reduced) {
   const go = () => {
     scrollToHash(hash, reduced);
-    history.pushState(null, "", hash);
+    history.pushState(null, "", urlWithHash(hash));
   };
 
   if (reduced) {
@@ -406,15 +707,164 @@ function initAnchorNav(reduced) {
   const veil = /** @type {HTMLElement | null} */ ($("#page-veil"));
 
   document.addEventListener("click", (event) => {
-    const link = event.target instanceof Element ? event.target.closest('a[href^="#"]') : null;
-    if (!(link instanceof HTMLAnchorElement)) return;
+    const link = event.target instanceof Element ? event.target.closest("a[href]") : null;
+    if (!(link instanceof HTMLAnchorElement) || link.target === "_blank") return;
 
-    const href = link.getAttribute("href");
-    if (!href || href === "#" || !$(href)) return;
+    const raw = link.getAttribute("href");
+    if (!raw || raw.startsWith("mailto:")) return;
+
+    let nextUrl;
+    try {
+      nextUrl = new URL(raw, window.location.href);
+    } catch {
+      return;
+    }
+    if (!sameDocumentUrl(nextUrl)) return;
+
+    const hash = nextUrl.hash;
+    const requestedCategory = nextUrl.searchParams.get("category");
+    const changesCategory = nextUrl.searchParams.has("category") || /(?:\?|&)category=/i.test(raw);
+
+    if (!hash && !changesCategory) return;
+    if (hash === "#" ) return;
 
     event.preventDefault();
-    navigateToHash(href, veil, reduced);
+    if (changesCategory) {
+      setPortfolioCategory(normalizeCategory(requestedCategory), {
+        push: true,
+        hash: hash || "#expeditions",
+      });
+    }
+    if (hash && hash.length > 1) {
+      revealHashTarget(hash);
+      navigateToHash(hash, veil, reduced);
+    } else if (changesCategory) {
+      scrollToHash("#expeditions", reduced);
+    }
   });
+}
+
+function normalizeCategory(value) {
+  if (!value || value === "all") return "all";
+  return PORTFOLIO_CATEGORIES.some((item) => item.id === value) ? value : "all";
+}
+
+function categoryFromLocation() {
+  return normalizeCategory(new URL(window.location.href).searchParams.get("category"));
+}
+
+function ruWorksCount(n) {
+  const n10 = n % 10;
+  const n100 = n % 100;
+  if (n10 === 1 && n100 !== 11) return `${n} работа`;
+  if (n10 >= 2 && n10 <= 4 && (n100 < 12 || n100 > 14)) return `${n} работы`;
+  return `${n} работ`;
+}
+
+function setFilterHidden(el, hidden) {
+  el.classList.toggle("is-filter-hidden", hidden);
+  el.toggleAttribute("inert", hidden);
+  if (hidden) el.setAttribute("aria-hidden", "true");
+  else el.removeAttribute("aria-hidden");
+}
+
+function forcedIdsFromHash(hash) {
+  const ids = new Set();
+  if (!hash || hash.length < 2) return ids;
+  const el = document.getElementById(hash.slice(1));
+  if (!el) return ids;
+  const card = el.closest("article.expedition[id]");
+  if (card?.id) ids.add(card.id);
+  if (el.id) ids.add(el.id);
+  if (el.id === "case-portal-proof" || el.closest("#case-portal-proof")) {
+    ids.add("case-portal");
+    ids.add("case-portal-proof");
+  }
+  const related = el.getAttribute("data-related-case");
+  if (related) ids.add(related);
+  return ids;
+}
+
+function revealHashTarget(hash) {
+  const force = forcedIdsFromHash(hash);
+  if (!force.size) return;
+  applyPortfolioFilter(categoryFromLocation(), force);
+}
+
+function applyPortfolioFilter(category, force = forcedIdsFromHash(window.location.hash)) {
+  const cards = $$("#expeditions article.expedition[data-categories]");
+  let visible = 0;
+  cards.forEach((card) => {
+    const cats = (card.dataset.categories || "").split(/\s+/).filter(Boolean);
+    const match = category === "all" || cats.includes(category) || force.has(card.id);
+    setFilterHidden(card, !match);
+    if (match) visible += 1;
+  });
+
+  $$("#expeditions .case-proof, #expeditions .expedition-carousel").forEach((el) => {
+    const cats = (el.dataset.categories || "").split(/\s+/).filter(Boolean);
+    const related = el.getAttribute("data-related-case") || "";
+    const match =
+      category === "all" ||
+      cats.includes(category) ||
+      force.has(el.id) ||
+      (related && force.has(related));
+    setFilterHidden(el, !match);
+  });
+
+  $$("[data-portfolio-filter]").forEach((btn) => {
+    const active = btn.getAttribute("data-portfolio-filter") === category;
+    btn.setAttribute("aria-pressed", String(active));
+  });
+
+  const status = $("[data-portfolio-status]");
+  if (status) {
+    const label = PORTFOLIO_CATEGORIES.find((item) => item.id === category)?.label || "Все работы";
+    status.textContent =
+      category === "all"
+        ? `Показаны все ${ruWorksCount(visible)}.`
+        : `Найдено: ${ruWorksCount(visible)}. Фильтр: ${label}.`;
+  }
+}
+
+function setPortfolioCategory(category, { push = true, hash } = {}) {
+  const url = new URL(window.location.href);
+  if (category === "all") url.searchParams.delete("category");
+  else url.searchParams.set("category", category);
+  if (hash) url.hash = hash.startsWith("#") ? hash.slice(1) : hash;
+  const next = `${url.pathname}${url.search}${url.hash}`;
+  if (push) history.pushState({ category }, "", next);
+  else history.replaceState({ category }, "", next);
+  applyPortfolioFilter(category);
+}
+
+function initPortfolioFilters() {
+  const root = $("[data-portfolio-filters]");
+  if (!root) return;
+
+  PORTFOLIO_CATEGORIES.forEach((item) => {
+    if (item.id === "all") return;
+    const hasWorks = $$(`#expeditions article.expedition[data-categories~="${item.id}"]`).length > 0;
+    const btn = root.querySelector(`[data-portfolio-filter="${item.id}"]`);
+    if (btn && !hasWorks) btn.hidden = true;
+  });
+
+  root.addEventListener("click", (event) => {
+    const btn = event.target instanceof Element ? event.target.closest("[data-portfolio-filter]") : null;
+    if (!(btn instanceof HTMLButtonElement) || btn.hidden) return;
+    const category = normalizeCategory(btn.getAttribute("data-portfolio-filter"));
+    setPortfolioCategory(category, { push: true, hash: "#expeditions" });
+  });
+
+  window.addEventListener("popstate", () => {
+    applyPortfolioFilter(categoryFromLocation());
+    revealHashTarget(window.location.hash);
+  });
+  window.addEventListener("hashchange", () => {
+    revealHashTarget(window.location.hash);
+  });
+
+  applyPortfolioFilter(categoryFromLocation());
 }
 
 function initYear() {
@@ -540,9 +990,9 @@ function initMobileCta() {
 
 function initHashLanding(reduced) {
   const hash = window.location.hash;
-  if (!hash || hash.length < 2) return;
-
   window.requestAnimationFrame(() => {
+    revealHashTarget(hash);
+    if (!hash || hash.length < 2) return;
     scrollToHash(hash, reduced);
     if (hash === "#lyusya-quest") {
       const api = window.LyusyaNavigator;
@@ -560,6 +1010,8 @@ function boot() {
   initHallIndicator(reduced);
   initForm(reduced);
   initTrack();
+  initFormContext();
+  initPortfolioFilters();
   initLyusyaTriggers(reduced);
   initMobileCta();
   initAnchorNav(reduced);

@@ -4,17 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#e4e8e2" />
-  <meta name="description" content="Разрабатываю сайты, MVP, интерактивы и цифровые продукты: от идеи и структуры до дизайна, адаптива и запуска. Портфолио Аси Мельниковой." />
+  <meta name="description" content="Ася Мельникова: сайты и интерактивы для бизнеса. Помогаю разобраться в задаче, продумать путь пользователя и запустить сайт, квиз или интерактивный проект." />
   <meta property="og:title" content="Portfo · Ася Мельникова" />
-  <meta property="og:description" content="Есть идея, проблема или процесс? Покажу, как из задачи получается цифровое решение — и помогу разобрать вашу." />
+  <meta property="og:description" content="Сайты и интерактивы для бизнеса. Можно прийти с идеей, готовым макетом или сайтом, который нужно доработать." />
   <meta property="og:type" content="website" />
-  <title>Разработка сайтов и цифровых продуктов — Ася Мельникова | Portfo</title>
+  <title>Сайты и интерактивы для бизнеса — Ася Мельникова | Portfo</title>
   <link rel="canonical" href="https://portfo.ru/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="preload" href="images/asya-portrait.jpg" as="image" type="image/jpeg" />
-  <link rel="stylesheet" href="styles.css?v=20260924b" />
+  <link rel="stylesheet" href="styles.css?v=20261108c" />
   <link rel="stylesheet" href="lyusya/lyusya.css?v=20260821a" />
   <link rel="stylesheet" href="lyusya/lyusya-companion.css?v=20260814c" />
 </head>
@@ -36,11 +36,11 @@
     </button>
     <nav class="site-nav" id="site-nav" aria-label="Основная навигация">
       <a href="#needs">Проблемы</a>
-      <a href="#expeditions">Из задачи в продукт</a>
+      <a href="#expeditions">Работы</a>
       <a href="#about">Обо мне</a>
       <a href="agencies.html">Для агентств</a>
       <a href="#lyusya-quest" data-lyusya-start data-track="lucy_start">Люся</a>
-      <a class="nav-cta" href="#lyusya-quest" data-lyusya-start data-track="hero_cta_click">Начать маршрут</a>
+      <a class="nav-cta" href="#collab-form" data-track="contact_click">Обсудить проект</a>
     </nav>
   </header>
 
@@ -53,14 +53,13 @@
       <div class="hero-stage">
         <div class="hero-copy">
           <p class="brand">Portfo · Ася Мельникова</p>
-          <p class="hero-motto">Истории, в которые хочется войти</p>
-          <h1>Сайты и интерактивные веб-проекты</h1>
-          <p class="room-lead">Разрабатываю лендинги, небольшие сайты и интерактивные интерфейсы — от структуры и адаптивной вёрстки до запуска.</p>
-          <p class="collaborate-note">Работаю напрямую с заказчиками и подключаюсь к проектам агентств как внешний разработчик.</p>
+          <h1>Сайты и интерактивы для бизнеса</h1>
+          <p class="room-lead">Помогаю разобраться в задаче, продумать путь пользователя и запустить сайт, квиз или интерактивный проект. Можно прийти с идеей, готовым макетом или сайтом, который нужно доработать.</p>
           <div class="hero-cta">
-            <a class="btn btn-primary" href="#expeditions" data-track="hero_cta_click">Смотреть проекты</a>
-            <a class="btn btn-ghost" href="#collaborate" data-track="contact_click">Обсудить задачу</a>
+            <a class="btn btn-primary" href="#collab-form" data-track="contact_click">Обсудить проект</a>
+            <a class="btn btn-ghost" href="#expeditions" data-track="projects_open">Посмотреть работы</a>
           </div>
+          <a class="hero-agency" href="agencies.html">Для агентств</a>
         </div>
         <figure class="hero-portrait">
           <div class="hero-portrait-frame">
@@ -85,55 +84,82 @@
     <section id="needs" class="room room-needs" data-hall="01" data-hall-name="Проблемы">
       <div class="room-label"><span class="coord">01</span> Проблемы</div>
       <div class="section-head reveal">
-        <h2>С какой проблемой вы приходите</h2>
-        <p class="room-lead">Не меню услуг. Узнайте свою ситуацию — ниже покажу, как похожие задачи превращаются в продукты.</p>
+        <h2>С каким запросом можно обратиться</h2>
+        <p class="room-lead">Три основных маршрута. Можно прийти с идеей, макетом или уже работающим сайтом — ниже видно, что входит в результат и какие работы к этому ближе.</p>
       </div>
       <ol class="need-rail">
-        <li class="need-item reveal" id="need-idea">
-          <span class="need-num">01</span>
-          <h3>Есть идея, но непонятно, с чего начать</h3>
-          <p>Покажу, как идея превращается в первый рабочий MVP, который можно проверить на практике.</p>
-          <a class="need-link" href="#case-portal" data-track="projects_open">Смотреть похожий кейс</a>
-        </li>
         <li class="need-item reveal" id="need-site">
-          <span class="need-num">02</span>
-          <h3>Сайт есть, но не объясняет ценность</h3>
-          <p>Разберу пользовательский путь и соберу решение, которое ведёт к действию, а не только «выглядит нормально».</p>
           <span id="service-landing" class="anchor-pin" aria-hidden="true"></span>
-          <a class="need-link" href="#case-realty" data-track="projects_open">Смотреть похожий кейс</a>
+          <span class="need-num">01</span>
+          <h3>Нужен сайт</h3>
+          <p>Для бизнеса и специалистов: когда нужна понятная структура, аккуратный интерфейс и сайт, который можно открыть на телефоне и на большом экране.</p>
+          <p class="need-result-label">Что входит</p>
+          <ul class="need-result">
+            <li>Структура и путь пользователя</li>
+            <li>Интерфейс и адаптивная реализация</li>
+            <li>Публикация готовой версии</li>
+          </ul>
+          <p class="need-result-label">Примеры работ</p>
+          <div class="need-works">
+            <a class="need-link" href="?category=sites#expeditions" data-track="portfolio_filter" data-category="sites">Все сайты</a>
+            <a class="need-link" href="#case-realty" data-track="projects_open">Высотки-Юг · сайт по брифу</a>
+            <a class="need-link" href="#case-salon" data-track="projects_open">Бережное преображение · опубликованный сайт</a>
+            <a class="need-link" href="#case-forma" data-track="projects_open">FORMA · авторская концепция визитки</a>
+          </div>
+          <a class="btn btn-ghost need-discuss" href="#collab-form" data-service="site" data-service-label="Нужен сайт" data-track="contact_click">Обсудить задачу</a>
+        </li>
+        <li class="need-item reveal" id="service-redesign">
+          <span id="service-iterate" class="anchor-pin" aria-hidden="true"></span>
+          <span class="need-num">02</span>
+          <h3>Нужно доработать сайт</h3>
+          <p>Когда сайт уже есть: добавить блоки и страницы, поправить адаптив, уточнить интерфейс или встроить интерактив, не собирая всё заново.</p>
+          <p class="need-result-label">Что входит</p>
+          <ul class="need-result">
+            <li>Новые блоки и страницы</li>
+            <li>Исправление адаптива и интерфейса</li>
+            <li>Добавление интерактива</li>
+          </ul>
+          <p class="need-result-label">Примеры близких решений</p>
+          <div class="need-works">
+            <a class="need-link" href="?category=sites#expeditions" data-track="portfolio_filter" data-category="sites">Все сайты</a>
+            <a class="need-link" href="#case-salon" data-track="projects_open">Бережное преображение · сайт с квизом и записью</a>
+            <a class="need-link" href="#case-realty" data-track="projects_open">Высотки-Юг · маршрут и структура</a>
+            <a class="need-link" href="#case-forma" data-track="projects_open">FORMA · спокойный интерфейс визитки</a>
+          </div>
+          <a class="btn btn-ghost need-discuss" href="#collab-form" data-service="rework" data-service-label="Нужно доработать сайт" data-track="contact_click">Обсудить задачу</a>
         </li>
         <li class="need-item reveal" id="need-product">
-          <span class="need-num">03</span>
-          <h3>Пользователь теряется в сложном выборе</h3>
-          <p>Превращу перегрузку в последовательный сценарий — квиз, маршрут или интерактивный путь.</p>
-          <span id="service-redesign" class="anchor-pin" aria-hidden="true"></span>
+          <span id="need-special" class="anchor-pin" aria-hidden="true"></span>
           <span id="service-product" class="anchor-pin" aria-hidden="true"></span>
-          <span id="service-iterate" class="anchor-pin" aria-hidden="true"></span>
-          <a class="need-link" href="#case-silk" data-track="projects_open">Смотреть похожий кейс</a>
-        </li>
-        <li class="need-item reveal" id="need-special">
-          <span class="need-num">04</span>
-          <h3>Нужен нестандартный digital-опыт</h3>
-          <p>Квиз, игра, спецпроект или необычный сценарий — спроектирую механику и соберу целиком.</p>
-          <a class="need-link" href="#case-ostrov" data-track="projects_open">Смотреть похожий кейс</a>
-        </li>
-        <li class="need-item reveal" id="need-process">
-          <span class="need-num">05</span>
-          <h3>Нужно проверить гипотезу до дорогой разработки</h3>
-          <p>Соберу прототип или первую рабочую версию, чтобы решение опиралось на опыт, а не на догадки.</p>
-          <a class="need-link" href="#case-alchemist" data-track="projects_open">Смотреть похожий кейс</a>
-        </li>
-        <li class="need-item reveal" id="need-manual">
-          <span class="need-num">06</span>
-          <h3>Команда делает много ручной работы</h3>
-          <p>Помогу превратить повторяющийся процесс в удобный цифровой инструмент.</p>
-          <a class="need-link" href="#lyusya-quest" data-lyusya-start data-track="lucy_start">Разобрать мою задачу</a>
+          <span class="need-num">03</span>
+          <h3>Нужен квиз или интерактив</h3>
+          <p>Когда обычному тексту мало: нужен сценарий выбора, игра, образовательный или промомаршрут, который можно пройти целиком.</p>
+          <p class="need-result-label">Что входит</p>
+          <ul class="need-result">
+            <li>Сценарий и механика</li>
+            <li>Интерфейс прохождения</li>
+            <li>Сборка и публикация</li>
+          </ul>
+          <p class="need-result-label">Примеры работ</p>
+          <div class="need-works">
+            <a class="need-link" href="?category=quizzes#expeditions" data-track="portfolio_filter" data-category="quizzes">Все квизы и интерактивы</a>
+            <a class="need-link" href="?category=games#expeditions" data-track="portfolio_filter" data-category="games">Игры</a>
+            <a class="need-link" href="#case-silk" data-track="projects_open">Шёлковый путь</a>
+            <a class="need-link" href="#case-atlantis" data-track="projects_open">Подводная Атлантида Китая</a>
+            <a class="need-link" href="#case-alchemist" data-track="projects_open">Какой вы алхимик?</a>
+            <a class="need-link" href="#case-ostrov" data-track="projects_open">Что изменилось на острове?</a>
+            <a class="need-link" href="#case-puzzle" data-track="projects_open">Собери картинку</a>
+            <a class="need-link" href="#case-mojo" data-track="projects_open">Кем быть для достижения успеха?</a>
+            <a class="need-link" href="#case-portal" data-track="projects_open">Внеклассное чтение</a>
+          </div>
+          <a class="btn btn-ghost need-discuss" href="#collab-form" data-service="interactive" data-service-label="Нужен квиз или интерактив" data-track="contact_click">Обсудить задачу</a>
         </li>
       </ol>
       <p class="room-aside reveal">Я не просто реализую готовое ТЗ. Помогаю превратить неопределённую задачу в понятный цифровой продукт — сайт, MVP, интерфейс или интерактив.</p>
       <div class="case-bridge reveal">
-        <p>Уже узнали свою проблему?</p>
-        <a class="btn btn-ghost" href="#lyusya-quest" data-lyusya-start data-track="lucy_start">Разобрать мою задачу</a>
+        <p>Можно сразу написать или сначала собрать формулировку с Люсей — это не обязательно.</p>
+        <a class="btn btn-ghost" href="#collab-form" data-track="contact_click">Обсудить задачу</a>
+        <a class="btn btn-ghost" href="#lyusya-quest" data-lyusya-start data-track="lucy_start">Разобрать с Люсей</a>
       </div>
       <div class="lyusya-pocket" data-lyusya-encounter="after-services"></div>
     </section>
@@ -178,29 +204,41 @@
 
     <section id="formats" class="room room-formats">
       <div class="section-head reveal">
-        <h2>От отдельной задачи до сайта под ключ</h2>
-        <p class="room-lead">Могу подключиться к готовому проекту или взять техническую реализацию целиком.</p>
+        <h2>Если задача ещё в другой форме</h2>
+        <p class="room-lead">Сайт, доработка и интерактив — основные маршруты выше. Здесь — дополнительные возможности: первая рабочая версия и простой цифровой инструмент.</p>
       </div>
-      <ol class="service-rail">
-        <li class="service-item reveal">
-          <span class="service-num">01</span>
-          <h3>Лендинги и небольшие сайты</h3>
-          <p>Собираю структуру, интерфейс и адаптивную вёрстку — до готового сайта для запуска.</p>
+      <ol class="need-rail">
+        <li class="need-item reveal" id="need-idea">
+          <span class="need-num">01</span>
+          <h3>Нужна первая рабочая версия</h3>
+          <p>Есть идея, но ещё рано собирать большой продукт. Можно начать с короткого MVP и посмотреть, как решение ведёт себя на практике.</p>
+          <div class="need-works">
+            <a class="need-link" href="?category=products#expeditions" data-track="portfolio_filter" data-category="products">Цифровые продукты</a>
+            <a class="need-link" href="#case-portal" data-track="projects_open">Внеклассное чтение</a>
+            <a class="need-link" href="#case-ostrov" data-track="projects_open">Что изменилось на острове?</a>
+          </div>
+          <a class="btn btn-ghost need-discuss" href="#collab-form" data-service="mvp" data-service-label="Нужна первая рабочая версия" data-track="contact_click">Обсудить задачу</a>
         </li>
-        <li class="service-item reveal">
-          <span class="service-num">02</span>
-          <h3>Вёрстка и адаптив</h3>
-          <p>Верстаю макет и довожу интерфейс до аккуратной работы на телефоне и на большом экране.</p>
+        <li class="need-item reveal" id="need-process">
+          <span class="need-num">02</span>
+          <h3>Нужно проверить гипотезу</h3>
+          <p>Перед большой разработкой можно собрать прототип или короткий сценарий — чтобы опереться на опыт прохождения, а не только на описание.</p>
+          <div class="need-works">
+            <a class="need-link" href="?category=quizzes#expeditions" data-track="portfolio_filter" data-category="quizzes">Квизы и интерактивы</a>
+            <a class="need-link" href="#case-alchemist" data-track="projects_open">Какой вы алхимик?</a>
+            <a class="need-link" href="#case-mojo" data-track="projects_open">Кем быть для достижения успеха?</a>
+          </div>
+          <a class="btn btn-ghost need-discuss" href="#collab-form" data-service="hypothesis" data-service-label="Нужно проверить гипотезу" data-track="contact_click">Обсудить задачу</a>
         </li>
-        <li class="service-item reveal">
-          <span class="service-num">03</span>
-          <h3>Интерактив и анимации</h3>
-          <p>Квизы, сценарии, движение в интерфейсе — когда нужен не статичный экран, а путь.</p>
-        </li>
-        <li class="service-item reveal">
-          <span class="service-num">04</span>
-          <h3>Доработка существующих сайтов</h3>
-          <p>Подключаюсь к уже работающему проекту: исправляю вёрстку и адаптив, добавляю новые блоки, страницы и интерактив.</p>
+        <li class="need-item reveal" id="need-manual">
+          <span class="need-num">03</span>
+          <h3>Нужен простой цифровой инструмент</h3>
+          <p>Если повторяющееся действие удобнее собрать в небольшой интерфейс, чем держать в таблицах и переписке. Без обещания сложной автоматизации.</p>
+          <div class="need-works">
+            <a class="need-link" href="?category=products#expeditions" data-track="portfolio_filter" data-category="products">Цифровые продукты</a>
+            <a class="need-link" href="#case-portal" data-track="projects_open">Внеклассное чтение · маршрут и прогресс</a>
+          </div>
+          <a class="btn btn-ghost need-discuss" href="#collab-form" data-service="tool" data-service-label="Нужен простой цифровой инструмент" data-track="contact_click">Обсудить задачу</a>
         </li>
       </ol>
     </section>
@@ -211,8 +249,19 @@
         <h2>Как я решаю задачи</h2>
         <p class="room-lead">Большинство проектов здесь — авторские. Я использую их, чтобы показать не только финальный экран, но и ход решения: от наблюдения и гипотезы до работающего продукта. Всё, что опубликовано, можно открыть и проверить самостоятельно.</p>
       </div>
+      <div class="portfolio-filters" data-portfolio-filters>
+        <p class="portfolio-filters__label" id="portfolio-filter-label">Показать работы</p>
+        <div class="portfolio-filters__list" role="group" aria-labelledby="portfolio-filter-label">
+          <button type="button" data-portfolio-filter="all" data-track="portfolio_filter" data-category="all" aria-pressed="true">Все работы</button>
+          <button type="button" data-portfolio-filter="sites" data-track="portfolio_filter" data-category="sites" aria-pressed="false">Сайты</button>
+          <button type="button" data-portfolio-filter="quizzes" data-track="portfolio_filter" data-category="quizzes" aria-pressed="false">Квизы и интерактивы</button>
+          <button type="button" data-portfolio-filter="games" data-track="portfolio_filter" data-category="games" aria-pressed="false">Игры</button>
+          <button type="button" data-portfolio-filter="products" data-track="portfolio_filter" data-category="products" aria-pressed="false">Цифровые продукты</button>
+        </div>
+        <p class="portfolio-filters__status" data-portfolio-status aria-live="polite" aria-atomic="true"></p>
+      </div>
       <div class="expedition-wall">
-        <article class="expedition expedition--proof reveal" data-tone="portal" id="case-portal">
+        <article class="expedition expedition--proof reveal" data-tone="portal" data-categories="quizzes products" id="case-portal">
           <a class="expedition-cover" href="https://asyamendes.ru/" target="_blank" rel="noopener noreferrer" data-track="case_try_click" aria-label="Открыть портал Внеклассное чтение">
             <div class="expedition-media expedition-media--portal"></div>
           </a>
@@ -220,104 +269,134 @@
             <p class="expedition-meta">Проблема · 01</p>
             <h3>Внеклассное чтение</h3>
             <p class="case-tagline">Каждая книга — новое путешествие!</p>
+            <p class="case-brief">Традиционная работа с литературным произведением в школе в основном строится вокруг чтения, слушания, пересказа и ответов на вопросы.</p>
+            <p class="case-role">Роль: продуктовая идея, сценарий маршрута, UX, механики, визуальная концепция, разработка и публикация.</p>
             <p class="case-status">Статус: работающий продукт в развитии · маршрут «Приключения Алисы» открыт</p>
-            <dl class="case-layers">
-              <div><dt>Проблема</dt><dd>Традиционная работа с литературным произведением в школе в основном строится вокруг чтения, слушания, пересказа и ответов на вопросы.</dd></div>
-              <div><dt>Наблюдение</dt><dd>Литературный текст можно не только прочитать или услышать — с его элементами можно взаимодействовать. Не заменить книгу интерактивом, а расширить способы взаимодействия ребёнка с произведением.</dd></div>
-              <div><dt>Гипотеза</dt><dd>Если после чтения ребёнок не просто отвечает на вопросы, а идёт по маршруту — слушает, знакомится с героями, выполняет задания, узнаёт и собирает карточки — взаимодействие с текстом становится более активным.</dd></div>
-            </dl>
-            <div class="case-try">
-              <h4>Лучше один раз попробовать</h4>
-              <p>Я могла бы дальше рассказывать, как устроено «Внеклассное чтение». Но этот проект проще понять через опыт.</p>
-              <ol class="case-route">
-                <li>Послушать эпизод</li>
-                <li>Познакомиться с героями</li>
-                <li>Выполнить задания</li>
-                <li>Узнать героя по описанию</li>
-                <li>Собрать карточку</li>
-                <li>Получить достижение</li>
-              </ol>
-              <a class="btn btn-primary" href="https://asyamendes.ru/" target="_blank" rel="noopener noreferrer" data-track="case_try_click">Отправиться в «Приключения Алисы» →</a>
-            </div>
+            <p class="case-fit">Опубликованный маршрут можно пройти самостоятельно. Это показывает, как литературный текст становится последовательным опытом — без количественных данных об эффекте.</p>
+            <details class="case-more">
+              <summary>Подробнее</summary>
+              <dl class="case-layers">
+                <div><dt>Проблема</dt><dd>Традиционная работа с литературным произведением в школе в основном строится вокруг чтения, слушания, пересказа и ответов на вопросы.</dd></div>
+                <div><dt>Наблюдение</dt><dd>Литературный текст можно не только прочитать или услышать — с его элементами можно взаимодействовать. Не заменить книгу интерактивом, а расширить способы взаимодействия ребёнка с произведением.</dd></div>
+                <div><dt>Гипотеза</dt><dd>Если после чтения ребёнок не просто отвечает на вопросы, а идёт по маршруту — слушает, знакомится с героями, выполняет задания, узнаёт и собирает карточки — взаимодействие с текстом становится более активным.</dd></div>
+              </dl>
+              <div class="case-try">
+                <h4>Лучше один раз попробовать</h4>
+                <p>Я могла бы дальше рассказывать, как устроено «Внеклассное чтение». Но этот проект проще понять через опыт.</p>
+                <ol class="case-route">
+                  <li>Послушать эпизод</li>
+                  <li>Познакомиться с героями</li>
+                  <li>Выполнить задания</li>
+                  <li>Узнать героя по описанию</li>
+                  <li>Собрать карточку</li>
+                  <li>Получить достижение</li>
+                </ol>
+                <a class="btn btn-primary" href="https://asyamendes.ru/" target="_blank" rel="noopener noreferrer" data-track="case_try_click">Отправиться в «Приключения Алисы» →</a>
+              </div>
+            </details>
             <div class="expedition-actions">
-              <a class="expedition-link" href="https://asyamendes.ru/" target="_blank" rel="noopener noreferrer" data-track="case_try_click">Открыть портал</a>
+              <a class="expedition-link" href="https://asyamendes.ru/" target="_blank" rel="noopener noreferrer" data-track="case_try_click">Открыть проект</a>
               <a class="expedition-link" href="#case-portal-proof" data-track="case_proof_click">Разобрать решение</a>
+              <a class="expedition-link" href="#collab-form" data-project="portal" data-project-label="Внеклассное чтение" data-track="contact_click">Обсудить похожий</a>
             </div>
           </div>
         </article>
 
-        <article class="expedition expedition--proof reveal" data-tone="silk" id="case-silk">
+        <article class="expedition expedition--proof reveal" data-tone="silk" data-categories="quizzes" id="case-silk">
           <a class="expedition-cover" href="https://asyamendesz-jpg.github.io/The-Silk-Road/" target="_blank" rel="noopener noreferrer" data-track="case_try_click" aria-label="Открыть квиз Шёлковый путь">
-            <img class="expedition-media expedition-media--silk" src="images/silk-road-cover.jpg?v=20260829c" alt="" width="1400" height="850" decoding="async" />
+            <img class="expedition-media expedition-media--silk" src="images/silk-road-cover.jpg?v=20260829c" alt="Обложка квиза Шёлковый путь" width="1400" height="850" decoding="async" />
           </a>
           <div class="expedition-body">
             <p class="expedition-meta">Проблема · 02</p>
             <h3>Шёлковый путь</h3>
-            <dl class="case-layers">
-              <div><dt>Проблема</dt><dd>Стиль мышления сложно передать текстом — его проще прожить, чем прочитать о нём.</dd></div>
-              <div><dt>Как разобрала</dt><dd>Человек узнаёт себя не через описание, а через собственные решения.</dd></div>
-              <div><dt>Гипотеза</dt><dd>Если дать пять выборов купца XI века, может получиться не просто история, а живой портрет логиста.</dd></div>
-              <div><dt>Решение</dt><dd>Сделала интерактивный квиз-сценарий вместо обычной статьи.</dd></div>
-              <div><dt>Результат</dt><dd>Получился работающий квиз, где выборы складываются в портрет мышления.</dd></div>
-              <div><dt>Роль</dt><dd>Концепция, сценарий, UX, дизайн, разработка.</dd></div>
-              <div><dt>Почему так</dt><dd>Лендинг бы просто рассказал. Сценарий позволяет это прожить.</dd></div>
-            </dl>
+            <p class="case-brief">Стиль мышления сложно передать текстом — его проще прожить, чем прочитать о нём.</p>
+            <p class="case-role">Роль: концепция, сценарий, UX, дизайн, разработка.</p>
+            <p class="case-status">Статус: работающий квиз, где выборы складываются в портрет мышления.</p>
+            <p class="case-fit">Формат подходит, когда нужен сценарий выбора вместо обычной статьи. Измеренного эффекта нет.</p>
+            <details class="case-more">
+              <summary>Подробнее</summary>
+              <dl class="case-layers">
+                <div><dt>Проблема</dt><dd>Стиль мышления сложно передать текстом — его проще прожить, чем прочитать о нём.</dd></div>
+                <div><dt>Как разобрала</dt><dd>Человек узнаёт себя не через описание, а через собственные решения.</dd></div>
+                <div><dt>Гипотеза</dt><dd>Если дать пять выборов купца XI века, может получиться не просто история, а живой портрет логиста.</dd></div>
+                <div><dt>Решение</dt><dd>Сделала интерактивный квиз-сценарий вместо обычной статьи.</dd></div>
+                <div><dt>Результат</dt><dd>Получился работающий квиз, где выборы складываются в портрет мышления.</dd></div>
+                <div><dt>Роль</dt><dd>Концепция, сценарий, UX, дизайн, разработка.</dd></div>
+                <div><dt>Почему так</dt><dd>Лендинг бы просто рассказал. Сценарий позволяет это прожить.</dd></div>
+              </dl>
+            </details>
             <div class="expedition-actions">
-              <a class="expedition-link" href="https://asyamendesz-jpg.github.io/The-Silk-Road/" target="_blank" rel="noopener noreferrer" data-track="case_try_click">Пройти сценарий</a>
-              <a class="expedition-link expedition-link--lucy" href="#lyusya-quest" data-lyusya-start data-track="case_to_lucy_click">Похожая задача?</a>
+              <a class="expedition-link" href="https://asyamendesz-jpg.github.io/The-Silk-Road/" target="_blank" rel="noopener noreferrer" data-track="case_try_click">Открыть проект</a>
+              <a class="expedition-link" href="#collab-form" data-project="silk" data-project-label="Шёлковый путь" data-track="contact_click">Обсудить похожий</a>
             </div>
           </div>
         </article>
 
-        <article class="expedition expedition--proof reveal" data-tone="atlantis" id="case-atlantis">
+        <article class="expedition expedition--proof reveal" data-tone="atlantis" data-categories="quizzes" id="case-atlantis">
           <a class="expedition-cover" href="https://asyamendesz-jpg.github.io/Atlantis-China/" target="_blank" rel="noopener noreferrer" data-track="case_try_click" aria-label="Открыть Подводная Атлантида Китая">
-            <img class="expedition-media expedition-media--atlantis" src="images/atlantis-china.jpg?v=20260829d" alt="" width="1400" height="932" decoding="async" />
+            <img class="expedition-media expedition-media--atlantis" src="images/atlantis-china.jpg?v=20260829d" alt="Обложка проекта Подводная Атлантида Китая" width="1400" height="932" decoding="async" />
           </a>
           <div class="expedition-body">
             <p class="expedition-meta">Проблема · 03</p>
             <h3>Подводная Атлантида Китая</h3>
             <p class="case-tagline">Авторский продукт</p>
-            <dl class="case-layers">
-              <div><dt>Замысел</dt><dd>Как превратить историю затопленного китайского города Ши Чэн из интересного факта в историю, в которую хочется погрузиться?</dd></div>
-              <div><dt>Наблюдение</dt><dd>Вовлечение возникает сильнее через роль и действие, чем через длинный рассказ.</dd></div>
-              <div><dt>Гипотеза</dt><dd>Если дать человеку личную точку входа в историю, он останется в ней дольше и пройдёт маршрут до конца.</dd></div>
-              <div><dt>Решение</dt><dd>Сделала вход через вопросы и экспедиционный журнал кадров, который постепенно погружает в историю и подводит к квизу.</dd></div>
-              <div><dt>Что получилось</dt><dd>Опубликованный квиз и карусель-журнал, которые работают как единый маршрут погружения.</dd></div>
-              <div><dt>Моя роль</dt><dd>Исследование, концепция, сценарий, дизайн, разработка.</dd></div>
-              <div><dt>Почему так</dt><dd>Мне было важно не добавить ещё больше текста об истории Ши Чэна, а найти способ войти в неё.</dd></div>
-            </dl>
+            <p class="case-brief">Как превратить историю затопленного китайского города Ши Чэн из интересного факта в историю, в которую хочется погрузиться?</p>
+            <p class="case-role">Роль: исследование, концепция, сценарий, дизайн, разработка.</p>
+            <p class="case-status">Статус: опубликованный квиз и карусель-журнал.</p>
+            <p class="case-fit">Два демо входят в один маршрут погружения: журнал кадров и квиз. Это авторский продукт.</p>
+            <details class="case-more">
+              <summary>Подробнее</summary>
+              <dl class="case-layers">
+                <div><dt>Замысел</dt><dd>Как превратить историю затопленного китайского города Ши Чэн из интересного факта в историю, в которую хочется погрузиться?</dd></div>
+                <div><dt>Наблюдение</dt><dd>Вовлечение возникает сильнее через роль и действие, чем через длинный рассказ.</dd></div>
+                <div><dt>Гипотеза</dt><dd>Если дать человеку личную точку входа в историю, он останется в ней дольше и пройдёт маршрут до конца.</dd></div>
+                <div><dt>Решение</dt><dd>Сделала вход через вопросы и экспедиционный журнал кадров, который постепенно погружает в историю и подводит к квизу.</dd></div>
+                <div><dt>Что получилось</dt><dd>Опубликованный квиз и карусель-журнал, которые работают как единый маршрут погружения.</dd></div>
+                <div><dt>Моя роль</dt><dd>Исследование, концепция, сценарий, дизайн, разработка.</dd></div>
+                <div><dt>Почему так</dt><dd>Мне было важно не добавить ещё больше текста об истории Ши Чэна, а найти способ войти в неё.</dd></div>
+              </dl>
+            </details>
             <div class="expedition-actions">
-              <a class="expedition-link" href="https://asyamendesz-jpg.github.io/Atlantis-China/" target="_blank" rel="noopener noreferrer" data-track="case_try_click">Начать погружение</a>
-              <a class="expedition-link expedition-link--lucy" href="#lyusya-quest" data-lyusya-start data-track="case_to_lucy_click">Похожая задача?</a>
+              <a class="expedition-link" href="https://asyamendesz-jpg.github.io/Atlantis-China/" target="_blank" rel="noopener noreferrer" data-track="case_try_click">Открыть проект</a>
+              <a class="expedition-link" href="https://asyamendesz-jpg.github.io/carousel-Atlantis-/" target="_blank" rel="noopener noreferrer" data-track="case_try_click">Открыть карусель</a>
+              <a class="expedition-link" href="#collab-form" data-project="atlantis" data-project-label="Подводная Атлантида Китая" data-track="contact_click">Обсудить похожий</a>
             </div>
           </div>
         </article>
 
-        <article class="expedition expedition--proof reveal" data-tone="alchemist" id="case-alchemist">
+        <article class="expedition expedition--proof reveal" data-tone="alchemist" data-categories="quizzes" id="case-alchemist">
           <a class="expedition-cover" href="https://asyamendesz-jpg.github.io/The-Alchemist-Quiz/" target="_blank" rel="noopener noreferrer" data-track="case_try_click" aria-label="Открыть квиз Какой вы алхимик">
-            <img class="expedition-media expedition-media--alchemist" src="images/alchemist-cover.jpg?v=20260829f" alt="" width="1400" height="932" decoding="async" />
+            <img class="expedition-media expedition-media--alchemist" src="images/alchemist-cover.jpg?v=20260829f" alt="Обложка квиза Какой вы алхимик" width="1400" height="932" decoding="async" />
           </a>
           <div class="expedition-body">
             <p class="expedition-meta">Проблема · 04</p>
             <h3>Какой вы алхимик?</h3>
             <p class="case-tagline">Авторский продукт</p>
-            <dl class="case-layers">
-              <div><dt>Замысел</dt><dd>Можно ли показать человеку его способ принимать решения не через описание характера, а через собственные выборы?</dd></div>
-              <div><dt>Наблюдение</dt><dd>Люди скорее узнают себя через ситуации и выборы, чем через ярлыки и готовые формулировки.</dd></div>
-              <div><dt>Гипотеза</dt><dd>Восемь вопросов могут проявить четыре разных способа действовать: рывок, рост, проверку или видение.</dd></div>
-              <div><dt>Решение</dt><dd>Сделала квиз, в котором результат складывается из решений самого пользователя, и отдельную карусель-приглашение, которая подводит к старту.</dd></div>
-              <div><dt>Что получилось</dt><dd>Работающий опубликованный квиз и отдельная визуальная карусель.</dd></div>
-              <div><dt>Моя роль</dt><dd>Концепция, сценарий, дизайн, разработка.</dd></div>
-              <div><dt>Почему так</dt><dd>Мне хотелось сделать не «ещё один тест с типами личности», а небольшой опыт, в котором человек узнаёт себя через то, как он действует.</dd></div>
-            </dl>
+            <p class="case-brief">Можно ли показать человеку его способ принимать решения не через описание характера, а через собственные выборы?</p>
+            <p class="case-role">Роль: концепция, сценарий, дизайн, разработка.</p>
+            <p class="case-status">Статус: работающий опубликованный квиз и отдельная визуальная карусель.</p>
+            <p class="case-fit">Авторский квиз и карусель-приглашение можно открыть отдельно. Это не тест с готовыми ярлыками личности.</p>
+            <details class="case-more">
+              <summary>Подробнее</summary>
+              <dl class="case-layers">
+                <div><dt>Замысел</dt><dd>Можно ли показать человеку его способ принимать решения не через описание характера, а через собственные выборы?</dd></div>
+                <div><dt>Наблюдение</dt><dd>Люди скорее узнают себя через ситуации и выборы, чем через ярлыки и готовые формулировки.</dd></div>
+                <div><dt>Гипотеза</dt><dd>Восемь вопросов могут проявить четыре разных способа действовать: рывок, рост, проверку или видение.</dd></div>
+                <div><dt>Решение</dt><dd>Сделала квиз, в котором результат складывается из решений самого пользователя, и отдельную карусель-приглашение, которая подводит к старту.</dd></div>
+                <div><dt>Что получилось</dt><dd>Работающий опубликованный квиз и отдельная визуальная карусель.</dd></div>
+                <div><dt>Моя роль</dt><dd>Концепция, сценарий, дизайн, разработка.</dd></div>
+                <div><dt>Почему так</dt><dd>Мне хотелось сделать не «ещё один тест с типами личности», а небольшой опыт, в котором человек узнаёт себя через то, как он действует.</dd></div>
+              </dl>
+            </details>
             <div class="expedition-actions">
-              <a class="expedition-link" href="https://asyamendesz-jpg.github.io/The-Alchemist-Quiz/" target="_blank" rel="noopener noreferrer" data-track="case_try_click">Открыть квиз</a>
-              <a class="expedition-link expedition-link--lucy" href="#lyusya-quest" data-lyusya-start data-track="case_to_lucy_click">Похожая задача?</a>
+              <a class="expedition-link" href="https://asyamendesz-jpg.github.io/The-Alchemist-Quiz/" target="_blank" rel="noopener noreferrer" data-track="case_try_click">Открыть проект</a>
+              <a class="expedition-link" href="https://asyamendesz-jpg.github.io/The-Alchemist-Carousel/" target="_blank" rel="noopener noreferrer" data-track="case_try_click">Открыть карусель</a>
+              <a class="expedition-link" href="#collab-form" data-project="alchemist" data-project-label="Какой вы алхимик?" data-track="contact_click">Обсудить похожий</a>
             </div>
           </div>
         </article>
 
-        <article class="expedition expedition--proof reveal" data-tone="realty" id="case-realty">
+        <article class="expedition expedition--proof reveal" data-tone="realty" data-categories="sites" id="case-realty">
           <a class="expedition-cover" href="https://friendly-encounter-sun.lovable.app" target="_blank" rel="noopener noreferrer" data-track="case_try_click" aria-label="Открыть сайт Высотки-Юг">
             <div class="expedition-media expedition-media--realty"></div>
           </a>
@@ -325,143 +404,185 @@
             <p class="expedition-meta">Проблема · 05</p>
             <h3>Высотки-Юг</h3>
             <p class="case-tagline">Проект по реальному брифу</p>
-            <dl class="case-layers">
-              <div><dt>Задача</dt><dd>Спроектировать сайт агентства недвижимости в Ростове-на-Дону, которое сопровождает клиента от первой консультации до передачи ключей.</dd></div>
-              <div><dt>Контекст</dt><dd>В недвижимости доверие легко потерять: человеку недостаточно увидеть красивые объекты — ему важно понимать, кто и как проведёт его через сложный выбор.</dd></div>
-              <div><dt>Разбор</dt><dd>Стало ясно, что нужен не каталог ради каталога, а понятный маршрут доверия.</dd></div>
-              <div><dt>Гипотеза</dt><dd>Если сайт последовательно проведёт человека от первого вопроса к пониманию процесса сделки, ценность услуги станет более ясной и ощутимой.</dd></div>
-              <div><dt>Решение</dt><dd>Спроектировала сайт с понятным пользовательским путём и акцентом на сопровождении, безопасности и доверии.</dd></div>
-              <div><dt>Что получилось</dt><dd>Рабочая версия сайта по реальному брифу: структура, интерфейс и адаптивная сборка. Проект был опубликован как работа в портфолио, но заказчиком в работу не внедрён.</dd></div>
-              <div><dt>Моя роль</dt><dd>Структура, интерфейс, дизайн, сборка, публикация.</dd></div>
-              <div><dt>Почему так</dt><dd>Красивые фотографии недвижимости сами по себе не снимают главный страх — ошибиться при выборе жилья и остаться один на один со сложным процессом.</dd></div>
-            </dl>
+            <p class="case-brief">Спроектировать сайт агентства недвижимости в Ростове-на-Дону, которое сопровождает клиента от первой консультации до передачи ключей.</p>
+            <p class="case-role">Роль: структура, интерфейс, дизайн, сборка, публикация.</p>
+            <p class="case-status">Статус: рабочая версия по реальному брифу опубликована в портфолио; заказчиком в работу не внедрена.</p>
+            <p class="case-fit">Показывает устройство сайта сопровождения сделки. Это не внедрённый клиентский сайт.</p>
+            <details class="case-more">
+              <summary>Подробнее</summary>
+              <dl class="case-layers">
+                <div><dt>Задача</dt><dd>Спроектировать сайт агентства недвижимости в Ростове-на-Дону, которое сопровождает клиента от первой консультации до передачи ключей.</dd></div>
+                <div><dt>Контекст</dt><dd>В недвижимости доверие легко потерять: человеку недостаточно увидеть красивые объекты — ему важно понимать, кто и как проведёт его через сложный выбор.</dd></div>
+                <div><dt>Разбор</dt><dd>Стало ясно, что нужен не каталог ради каталога, а понятный маршрут доверия.</dd></div>
+                <div><dt>Гипотеза</dt><dd>Если сайт последовательно проведёт человека от первого вопроса к пониманию процесса сделки, ценность услуги станет более ясной и ощутимой.</dd></div>
+                <div><dt>Решение</dt><dd>Спроектировала сайт с понятным пользовательским путём и акцентом на сопровождении, безопасности и доверии.</dd></div>
+                <div><dt>Что получилось</dt><dd>Рабочая версия сайта по реальному брифу: структура, интерфейс и адаптивная сборка. Проект был опубликован как работа в портфолио, но заказчиком в работу не внедрён.</dd></div>
+                <div><dt>Моя роль</dt><dd>Структура, интерфейс, дизайн, сборка, публикация.</dd></div>
+                <div><dt>Почему так</dt><dd>Красивые фотографии недвижимости сами по себе не снимают главный страх — ошибиться при выборе жилья и остаться один на один со сложным процессом.</dd></div>
+              </dl>
+            </details>
             <div class="expedition-actions">
-              <a class="expedition-link" href="https://friendly-encounter-sun.lovable.app" target="_blank" rel="noopener noreferrer" data-track="case_try_click">Открыть сайт</a>
-              <a class="expedition-link expedition-link--lucy" href="#lyusya-quest" data-lyusya-start data-track="case_to_lucy_click">Похожая задача?</a>
+              <a class="expedition-link" href="https://friendly-encounter-sun.lovable.app" target="_blank" rel="noopener noreferrer" data-track="case_try_click">Открыть проект</a>
+              <a class="expedition-link" href="#collab-form" data-project="realty" data-project-label="Высотки-Юг" data-track="contact_click">Обсудить похожий</a>
             </div>
           </div>
         </article>
 
-        <article class="expedition expedition--proof reveal" data-tone="forma" id="case-forma">
+        <article class="expedition expedition--proof reveal" data-tone="forma" data-categories="sites" id="case-forma">
           <a class="expedition-cover" href="https://asyamendesz-jpg.github.io/shoe-store-s-business-card-website/" target="_blank" rel="noopener noreferrer" data-track="case_try_click" aria-label="Открыть визитку FORMA">
-            <img class="expedition-media expedition-media--forma" src="images/forma-cover.jpg?v=20260829g" alt="" width="1400" height="933" decoding="async" />
+            <img class="expedition-media expedition-media--forma" src="images/forma-cover.jpg?v=20260829g" alt="Обложка сайт-визитки FORMA" width="1400" height="933" decoding="async" />
           </a>
           <div class="expedition-body">
             <p class="expedition-meta">Проблема · 06</p>
             <h3>FORMA</h3>
             <p class="case-tagline">Авторская концепция</p>
-            <dl class="case-layers">
-              <div><dt>Замысел</dt><dd>Как может выглядеть первая цифровая точка знакомства с небольшим обувным брендом — без перегруженного каталога и визуального шума?</dd></div>
-              <div><dt>Наблюдение</dt><dd>При первом знакомстве необязательно показывать человеку весь ассортимент. Сначала важно дать почувствовать характер бренда и понять, что он предлагает.</dd></div>
-              <div><dt>Гипотеза</dt><dd>Короткая сайт-визитка с ясным визуальным ритмом может представить бренд лучше, чем попытка уместить весь магазин на одном экране.</dd></div>
-              <div><dt>Решение</dt><dd>Собрала спокойную минималистичную визитку, где обувь остаётся главным объектом, а интерфейс не конкурирует с продуктом за внимание.</dd></div>
-              <div><dt>Что получилось</dt><dd>Опубликованная концепция сайта обувного бренда.</dd></div>
-              <div><dt>Моя роль</dt><dd>Структура, дизайн, разработка.</dd></div>
-              <div><dt>Почему так</dt><dd>Это эксперимент не с полноценным e-commerce, а с первым впечатлением от бренда.</dd></div>
-            </dl>
+            <p class="case-brief">Как может выглядеть первая цифровая точка знакомства с небольшим обувным брендом — без перегруженного каталога и визуального шума?</p>
+            <p class="case-role">Роль: структура, дизайн, разработка.</p>
+            <p class="case-status">Статус: опубликованная концепция сайта обувного бренда.</p>
+            <p class="case-fit">Это авторская визитка и эксперимент с первым впечатлением, не полноценный магазин и не внедрённый клиентский сайт.</p>
+            <details class="case-more">
+              <summary>Подробнее</summary>
+              <dl class="case-layers">
+                <div><dt>Замысел</dt><dd>Как может выглядеть первая цифровая точка знакомства с небольшим обувным брендом — без перегруженного каталога и визуального шума?</dd></div>
+                <div><dt>Наблюдение</dt><dd>При первом знакомстве необязательно показывать человеку весь ассортимент. Сначала важно дать почувствовать характер бренда и понять, что он предлагает.</dd></div>
+                <div><dt>Гипотеза</dt><dd>Короткая сайт-визитка с ясным визуальным ритмом может представить бренд лучше, чем попытка уместить весь магазин на одном экране.</dd></div>
+                <div><dt>Решение</dt><dd>Собрала спокойную минималистичную визитку, где обувь остаётся главным объектом, а интерфейс не конкурирует с продуктом за внимание.</dd></div>
+                <div><dt>Что получилось</dt><dd>Опубликованная концепция сайта обувного бренда.</dd></div>
+                <div><dt>Моя роль</dt><dd>Структура, дизайн, разработка.</dd></div>
+                <div><dt>Почему так</dt><dd>Это эксперимент не с полноценным e-commerce, а с первым впечатлением от бренда.</dd></div>
+              </dl>
+            </details>
             <div class="expedition-actions">
-              <a class="expedition-link" href="https://asyamendesz-jpg.github.io/shoe-store-s-business-card-website/" target="_blank" rel="noopener noreferrer" data-track="case_try_click">Открыть визитку</a>
-              <a class="expedition-link expedition-link--lucy" href="#lyusya-quest" data-lyusya-start data-track="case_to_lucy_click">Похожая задача?</a>
+              <a class="expedition-link" href="https://asyamendesz-jpg.github.io/shoe-store-s-business-card-website/" target="_blank" rel="noopener noreferrer" data-track="case_try_click">Открыть проект</a>
+              <a class="expedition-link" href="#collab-form" data-project="forma" data-project-label="FORMA" data-track="contact_click">Обсудить похожий</a>
             </div>
           </div>
         </article>
 
-        <article class="expedition expedition--proof reveal" data-tone="salon" id="case-salon">
+        <article class="expedition expedition--proof reveal" data-tone="salon" data-categories="sites quizzes products" id="case-salon">
           <a class="expedition-cover" href="https://asyamendesz-jpg.github.io/-1/" target="_blank" rel="noopener noreferrer" data-track="case_try_click" aria-label="Открыть сайт Бережное преображение">
-            <img class="expedition-media expedition-media--salon" src="images/berezhnoe-preobrazhenie-cover.jpg" alt="" width="1024" height="640" decoding="async" />
+            <img class="expedition-media expedition-media--salon" src="images/berezhnoe-preobrazhenie-cover.jpg" alt="Обложка сайта Бережное преображение" width="1024" height="640" decoding="async" />
           </a>
           <div class="expedition-body">
             <p class="expedition-meta">Проблема · 10</p>
             <h3>Бережное преображение</h3>
             <p class="case-tagline">Сайт салона красоты</p>
-            <dl class="case-layers">
-              <div><dt>Замысел</dt><dd>Сделать сайт не каталогом процедур, а помощником в выборе изменений во внешности.</dd></div>
-              <div><dt>Наблюдение</dt><dd>Человеку часто хочется перемен, но важно не потерять себя: понять, что подойдёт именно ему, и увидеть возможный результат до записи.</dd></div>
-              <div><dt>Гипотеза</dt><dd>Если объединить услуги для волос, бровей и ресниц с понятным выбором, примерами «до / после» и персональным сценарием, решение записаться станет комфортнее и проще.</dd></div>
-              <div><dt>Решение</dt><dd>Собрала сайт салона с услугами, визуальными преображениями, квизом для подбора, записью и тремя языками — RU / EN / ΕΛ.</dd></div>
-              <div><dt>Что получилось</dt><dd>Работающий опубликованный сайт, в котором человек может познакомиться с подходом мастера, выбрать направление преображения и перейти к записи.</dd></div>
-              <div><dt>Моя роль</dt><dd>Концепция продукта, структура, UX, тексты, визуальная логика, мультиязычность, разработка и публикация сайта.</dd></div>
-              <div><dt>Почему так</dt><dd>В бьюти-сфере важно не только показать услугу. Сайт должен помочь человеку представить результат и почувствовать, что изменения будут бережными и останутся «про него».</dd></div>
-            </dl>
+            <p class="case-brief">Сделать сайт не каталогом процедур, а помощником в выборе изменений во внешности.</p>
+            <p class="case-role">Роль: концепция продукта, структура, UX, тексты, визуальная логика, мультиязычность, разработка и публикация сайта.</p>
+            <p class="case-status">Статус: работающий опубликованный сайт с услугами, квизом и записью.</p>
+            <p class="case-fit">Опубликованный сайт салона с квизом подбора, записью и тремя языками. Это показывает связку сайта и интерактива, без данных об эффекте.</p>
+            <details class="case-more">
+              <summary>Подробнее</summary>
+              <dl class="case-layers">
+                <div><dt>Замысел</dt><dd>Сделать сайт не каталогом процедур, а помощником в выборе изменений во внешности.</dd></div>
+                <div><dt>Наблюдение</dt><dd>Человеку часто хочется перемен, но важно не потерять себя: понять, что подойдёт именно ему, и увидеть возможный результат до записи.</dd></div>
+                <div><dt>Гипотеза</dt><dd>Если объединить услуги для волос, бровей и ресниц с понятным выбором, примерами «до / после» и персональным сценарием, решение записаться станет комфортнее и проще.</dd></div>
+                <div><dt>Решение</dt><dd>Собрала сайт салона с услугами, визуальными преображениями, квизом для подбора, записью и тремя языками — RU / EN / ΕΛ.</dd></div>
+                <div><dt>Что получилось</dt><dd>Работающий опубликованный сайт, в котором человек может познакомиться с подходом мастера, выбрать направление преображения и перейти к записи.</dd></div>
+                <div><dt>Моя роль</dt><dd>Концепция продукта, структура, UX, тексты, визуальная логика, мультиязычность, разработка и публикация сайта.</dd></div>
+                <div><dt>Почему так</dt><dd>В бьюти-сфере важно не только показать услугу. Сайт должен помочь человеку представить результат и почувствовать, что изменения будут бережными и останутся «про него».</dd></div>
+              </dl>
+            </details>
             <div class="expedition-actions">
-              <a class="expedition-link" href="https://asyamendesz-jpg.github.io/-1/" target="_blank" rel="noopener noreferrer" data-track="case_try_click">Открыть сайт</a>
-              <a class="expedition-link expedition-link--lucy" href="#lyusya-quest" data-lyusya-start data-track="case_to_lucy_click">Похожая задача?</a>
+              <a class="expedition-link" href="https://asyamendesz-jpg.github.io/-1/" target="_blank" rel="noopener noreferrer" data-track="case_try_click">Открыть проект</a>
+              <a class="expedition-link" href="#collab-form" data-project="salon" data-project-label="Бережное преображение" data-track="contact_click">Обсудить похожий</a>
             </div>
           </div>
         </article>
 
-        <article class="expedition expedition--proof reveal" data-tone="mojo" id="case-mojo">
+        <article class="expedition expedition--proof reveal" data-tone="mojo" data-categories="quizzes games" id="case-mojo">
           <a class="expedition-cover" href="https://mojo-career.lovable.app" target="_blank" rel="noopener noreferrer" data-track="case_try_click" aria-label="Открыть игру Кем быть">
             <div class="expedition-media expedition-media--mojo"></div>
           </a>
           <div class="expedition-body">
             <p class="expedition-meta">Проблема · 08</p>
             <h3>Кем быть для достижения успеха?</h3>
-            <dl class="case-layers">
-              <div><dt>Проблема</dt><dd>Профориентация часто пытается «угадать профессию», но не показывает, как человек ведёт себя в ситуации выбора.</dd></div>
-              <div><dt>Как разобрала</dt><dd>Мне было важно не навесить ярлык, а помочь человеку увидеть свои сильные стороны через действия.</dd></div>
-              <div><dt>Гипотеза</dt><dd>Серия выборов и небольшое задание дадут более честный и живой портрет.</dd></div>
-              <div><dt>Решение</dt><dd>Сделала интерактивный сценарий: 15 решений, сильные стороны и финальное мини-задание.</dd></div>
-              <div><dt>Результат</dt><dd>Получился работающий продуктовый сценарий.</dd></div>
-              <div><dt>Роль</dt><dd>Концепция, сценарий, UX, сборка.</dd></div>
-              <div><dt>Почему так</dt><dd>Список профессий не отвечает на главный вопрос — как именно я действую.</dd></div>
-            </dl>
+            <p class="case-brief">Профориентация часто пытается «угадать профессию», но не показывает, как человек ведёт себя в ситуации выбора.</p>
+            <p class="case-role">Роль: концепция, сценарий, UX, сборка.</p>
+            <p class="case-status">Статус: работающий продуктовый сценарий.</p>
+            <p class="case-fit">Интерактив из 15 решений и мини-задания. Это опубликованный сценарий, а не измеренный карьерный результат.</p>
+            <details class="case-more">
+              <summary>Подробнее</summary>
+              <dl class="case-layers">
+                <div><dt>Проблема</dt><dd>Профориентация часто пытается «угадать профессию», но не показывает, как человек ведёт себя в ситуации выбора.</dd></div>
+                <div><dt>Как разобрала</dt><dd>Мне было важно не навесить ярлык, а помочь человеку увидеть свои сильные стороны через действия.</dd></div>
+                <div><dt>Гипотеза</dt><dd>Серия выборов и небольшое задание дадут более честный и живой портрет.</dd></div>
+                <div><dt>Решение</dt><dd>Сделала интерактивный сценарий: 15 решений, сильные стороны и финальное мини-задание.</dd></div>
+                <div><dt>Результат</dt><dd>Получился работающий продуктовый сценарий.</dd></div>
+                <div><dt>Роль</dt><dd>Концепция, сценарий, UX, сборка.</dd></div>
+                <div><dt>Почему так</dt><dd>Список профессий не отвечает на главный вопрос — как именно я действую.</dd></div>
+              </dl>
+            </details>
             <div class="expedition-actions">
-              <a class="expedition-link" href="https://mojo-career.lovable.app" target="_blank" rel="noopener noreferrer" data-track="case_try_click">Начать игру</a>
-              <a class="expedition-link expedition-link--lucy" href="#lyusya-quest" data-lyusya-start data-track="case_to_lucy_click">Похожая задача?</a>
+              <a class="expedition-link" href="https://mojo-career.lovable.app" target="_blank" rel="noopener noreferrer" data-track="case_try_click">Открыть проект</a>
+              <a class="expedition-link" href="#collab-form" data-project="mojo" data-project-label="Кем быть для достижения успеха?" data-track="contact_click">Обсудить похожий</a>
             </div>
           </div>
         </article>
 
-        <article class="expedition expedition--proof reveal" data-tone="puzzle" id="case-puzzle">
+        <article class="expedition expedition--proof reveal" data-tone="puzzle" data-categories="games quizzes" id="case-puzzle">
           <a class="expedition-cover" href="https://asyamendesz-jpg.github.io/---/docs/" target="_blank" rel="noopener noreferrer" data-track="case_try_click" aria-label="Открыть игру Собери картинку">
-            <img class="expedition-media expedition-media--puzzle" src="images/soberi-kartinku-cover.jpg?v=20260829j" alt="" width="1400" height="932" decoding="async" />
+            <img class="expedition-media expedition-media--puzzle" src="images/soberi-kartinku-cover.jpg?v=20260829j" alt="Обложка игры Собери картинку" width="1400" height="932" decoding="async" />
           </a>
           <div class="expedition-body">
             <p class="expedition-meta">Проблема · 09</p>
             <h3>Собери картинку</h3>
             <p class="case-tagline">Авторская игра</p>
-            <dl class="case-layers">
-              <div><dt>Замысел</dt><dd>Можно ли сделать игру, в которой ребёнок и взрослый собирают одну картинку, но видят её совершенно по-разному?</dd></div>
-              <div><dt>Наблюдение</dt><dd>Ребёнку проще мыслить знакомыми частями образа: голова, уши, лапы, хвост. Взрослому интереснее восстановить целое из фрагментов, в которых предмет заранее не считывается.</dd></div>
-              <div><dt>Гипотеза</dt><dd>Если дать два разных способа сборки, простая игра сможет работать и как понятный детский конструктор, и как более сложная задача на пространственное мышление.</dd></div>
-              <div><dt>Решение</dt><dd>Сделала браузерную игру с выбором персонажа и двумя режимами: «Глазами ребёнка» — герой собирается из узнаваемых частей; «Глазами взрослого» — изображение восстанавливается из абстрактных фрагментов.</dd></div>
-              <div><dt>Что получилось</dt><dd>Короткая опубликованная игра без обучения и длинных правил: выбираешь героя, выбираешь способ смотреть на него — и сразу начинаешь играть.</dd></div>
-              <div><dt>Моя роль</dt><dd>Концепция, игровая механика, UX, визуальная система, разработка и публикация.</dd></div>
-              <div><dt>Почему так</dt><dd>Мне было интересно не просто разрезать картинку на части, а показать, что ребёнок и взрослый могут по-разному видеть одно и то же целое.</dd></div>
-            </dl>
+            <p class="case-brief">Можно ли сделать игру, в которой ребёнок и взрослый собирают одну картинку, но видят её совершенно по-разному?</p>
+            <p class="case-role">Роль: концепция, игровая механика, UX, визуальная система, разработка и публикация.</p>
+            <p class="case-status">Статус: короткая опубликованная игра без обучения и длинных правил.</p>
+            <p class="case-fit">Два режима сборки — «глазами ребёнка» и «глазами взрослого». Это авторская игра, не исследование эффективности.</p>
+            <details class="case-more">
+              <summary>Подробнее</summary>
+              <dl class="case-layers">
+                <div><dt>Замысел</dt><dd>Можно ли сделать игру, в которой ребёнок и взрослый собирают одну картинку, но видят её совершенно по-разному?</dd></div>
+                <div><dt>Наблюдение</dt><dd>Ребёнку проще мыслить знакомыми частями образа: голова, уши, лапы, хвост. Взрослому интереснее восстановить целое из фрагментов, в которых предмет заранее не считывается.</dd></div>
+                <div><dt>Гипотеза</dt><dd>Если дать два разных способа сборки, простая игра сможет работать и как понятный детский конструктор, и как более сложная задача на пространственное мышление.</dd></div>
+                <div><dt>Решение</dt><dd>Сделала браузерную игру с выбором персонажа и двумя режимами: «Глазами ребёнка» — герой собирается из узнаваемых частей; «Глазами взрослого» — изображение восстанавливается из абстрактных фрагментов.</dd></div>
+                <div><dt>Что получилось</dt><dd>Короткая опубликованная игра без обучения и длинных правил: выбираешь героя, выбираешь способ смотреть на него — и сразу начинаешь играть.</dd></div>
+                <div><dt>Моя роль</dt><dd>Концепция, игровая механика, UX, визуальная система, разработка и публикация.</dd></div>
+                <div><dt>Почему так</dt><dd>Мне было интересно не просто разрезать картинку на части, а показать, что ребёнок и взрослый могут по-разному видеть одно и то же целое.</dd></div>
+              </dl>
+            </details>
             <div class="expedition-actions">
-              <a class="expedition-link" href="https://asyamendesz-jpg.github.io/---/docs/" target="_blank" rel="noopener noreferrer" data-track="case_try_click">Собрать картинку</a>
-              <a class="expedition-link expedition-link--lucy" href="#lyusya-quest" data-lyusya-start data-track="case_to_lucy_click">Похожая задача?</a>
+              <a class="expedition-link" href="https://asyamendesz-jpg.github.io/---/docs/" target="_blank" rel="noopener noreferrer" data-track="case_try_click">Открыть проект</a>
+              <a class="expedition-link" href="#collab-form" data-project="puzzle" data-project-label="Собери картинку" data-track="contact_click">Обсудить похожий</a>
             </div>
           </div>
         </article>
 
-        <article class="expedition expedition--proof reveal" data-tone="ostrov" id="case-ostrov">
+        <article class="expedition expedition--proof reveal" data-tone="ostrov" data-categories="games quizzes products" id="case-ostrov">
           <a class="expedition-cover" href="https://ostrov.ai.studio" target="_blank" rel="noopener noreferrer" data-track="case_try_click" aria-label="Открыть игру Что изменилось на острове">
-            <img class="expedition-media expedition-media--ostrov" src="images/volshebnyi-ostrov-cover.jpg?v=20260924b" alt="" width="1024" height="682" decoding="async" />
+            <img class="expedition-media expedition-media--ostrov" src="images/volshebnyi-ostrov-cover.jpg?v=20260924b" alt="Обложка игры Что изменилось на острове" width="1024" height="682" decoding="async" />
           </a>
           <div class="expedition-body">
             <p class="expedition-meta">Проблема · 07</p>
             <h3>Что изменилось на острове?</h3>
-            <dl class="case-layers">
-              <div><dt>Проблема</dt><dd>Как превратить тренировку внимания в игру, которая увлечёт ребёнка и поможет развивать наблюдательность?</dd></div>
-              <div><dt>Как разобрала</dt><dd>Интерес держится на маленьком открытии — на моменте, когда хочется найти отличие самому.</dd></div>
-              <div><dt>Гипотеза</dt><dd>Остров и уровни вовлекают сильнее, чем обычный список заданий.</dd></div>
-              <div><dt>Решение</dt><dd>Сделала интерактивную игру с тремя уровнями поиска.</dd></div>
-              <div><dt>Результат</dt><dd>Получился опубликованный игровой продукт.</dd></div>
-              <div><dt>Роль</dt><dd>Концепция, механика, дизайн, разработка.</dd></div>
-              <div><dt>Почему так</dt><dd>Обычная страница с картинками не даёт того самого чувства: «нашёл!»</dd></div>
-            </dl>
+            <p class="case-brief">Как превратить тренировку внимания в игру, которая увлечёт ребёнка и поможет развивать наблюдательность?</p>
+            <p class="case-role">Роль: концепция, механика, дизайн, разработка.</p>
+            <p class="case-status">Статус: опубликованный игровой продукт.</p>
+            <p class="case-fit">Три уровня поиска отличий. Игру можно пройти; данных о влиянии на внимание нет.</p>
+            <details class="case-more">
+              <summary>Подробнее</summary>
+              <dl class="case-layers">
+                <div><dt>Проблема</dt><dd>Как превратить тренировку внимания в игру, которая увлечёт ребёнка и поможет развивать наблюдательность?</dd></div>
+                <div><dt>Как разобрала</dt><dd>Интерес держится на маленьком открытии — на моменте, когда хочется найти отличие самому.</dd></div>
+                <div><dt>Гипотеза</dt><dd>Остров и уровни вовлекают сильнее, чем обычный список заданий.</dd></div>
+                <div><dt>Решение</dt><dd>Сделала интерактивную игру с тремя уровнями поиска.</dd></div>
+                <div><dt>Результат</dt><dd>Получился опубликованный игровой продукт.</dd></div>
+                <div><dt>Роль</dt><dd>Концепция, механика, дизайн, разработка.</dd></div>
+                <div><dt>Почему так</dt><dd>Обычная страница с картинками не даёт того самого чувства: «нашёл!»</dd></div>
+              </dl>
+            </details>
             <div class="expedition-actions">
-              <a class="expedition-link" href="https://ostrov.ai.studio" target="_blank" rel="noopener noreferrer" data-track="case_try_click">Исследовать остров</a>
-              <a class="expedition-link expedition-link--lucy" href="#lyusya-quest" data-lyusya-start data-track="case_to_lucy_click">Похожая задача?</a>
+              <a class="expedition-link" href="https://ostrov.ai.studio" target="_blank" rel="noopener noreferrer" data-track="case_try_click">Открыть проект</a>
+              <a class="expedition-link" href="#collab-form" data-project="ostrov" data-project-label="Что изменилось на острове?" data-track="contact_click">Обсудить похожий</a>
             </div>
           </div>
         </article>
       </div>
 
-      <section class="case-proof reveal" id="case-portal-proof" aria-labelledby="case-portal-proof-title">
+      <section class="case-proof reveal" id="case-portal-proof" data-categories="quizzes products" data-related-case="case-portal" aria-labelledby="case-portal-proof-title">
         <p class="case-proof__eyebrow">После опыта · Внеклассное чтение</p>
         <h3 id="case-portal-proof-title">От идеи до работающего продукта</h3>
         <ol class="case-proof__steps">
@@ -533,18 +654,20 @@
 
         <div class="case-proof__lucy">
           <h4>Есть задача, для которой пока нет очевидного решения?</h4>
-          <p>Необязательно заранее знать, нужен вам сайт, сервис, интерактив или что-то ещё. Начните с проблемы — Люся поможет её сформулировать.</p>
+          <p>Необязательно заранее знать, нужен вам сайт, сервис, интерактив или что-то ещё. Можно начать с проблемы вместе с Люсей или сразу написать Асе.</p>
           <a class="btn btn-primary" href="#lyusya-quest" data-lyusya-start data-track="case_to_lucy_click">Разобрать задачу с Люсей →</a>
+          <a class="btn btn-ghost" href="#collab-form" data-track="contact_click">Сразу написать Асе</a>
         </div>
       </section>
 
       <div class="case-bridge case-bridge--after reveal">
-        <p>Похожая задача? Давайте разберём вашу.</p>
+        <p>Похожая задача? Можно разобрать её с Люсей или сразу написать.</p>
         <a class="btn btn-primary" href="#lyusya-quest" data-lyusya-start data-track="case_to_lucy_click">Разобрать мою задачу</a>
+        <a class="btn btn-ghost" href="#collab-form" data-track="contact_click">Сразу написать Асе</a>
       </div>
 
       <div class="carousel-gallery">
-        <div class="expedition-carousel reveal">
+        <div class="expedition-carousel reveal" data-categories="quizzes" data-related-case="case-atlantis">
           <div class="carousel-head">
             <p class="carousel-kicker">Кадры маршрута</p>
             <h3>Ши Чэн · журнал</h3>
@@ -565,7 +688,7 @@
           </div>
         </div>
 
-        <div class="expedition-carousel reveal" data-carousel data-carousel-interval="4800">
+        <div class="expedition-carousel reveal" data-carousel data-carousel-interval="4800" data-categories="quizzes" data-related-case="case-alchemist">
           <div class="carousel-head">
             <p class="carousel-kicker">Кадры лаборатории</p>
             <h3>Какой вы алхимик?</h3>
@@ -610,43 +733,58 @@
       <div class="room-label"><span class="coord">05</span> Процесс</div>
       <div class="section-head reveal">
         <h2>Маршрут работы</h2>
-        <p class="room-lead">От первого разговора до запуска — четыре точки. Без лишних ритуалов.</p>
+        <p class="room-lead">Можно прийти с идеей, готовым макетом или сайтом, который нужно доработать. Готовое ТЗ не обязательно. Дальше — разбор задачи, обсуждение структуры и сборка первой рабочей версии.</p>
       </div>
       <div class="process-track">
         <div class="process-step reveal">
           <span class="step-mark">01</span>
-          <h3>Точка старта</h3>
-          <p>Разбираемся в задаче и формулируем, что должен получить пользователь.</p>
+          <h3>Обращение</h3>
+          <p>Пишете, с чем пришли. Разбираем задачу и формулируем, что должен получить пользователь.</p>
         </div>
         <div class="process-step reveal">
           <span class="step-mark">02</span>
-          <h3>Каркас</h3>
-          <p>Определяем структуру, сценарий и ключевые экраны.</p>
+          <h3>Структура</h3>
+          <p>Обсуждаем каркас: сценарий, ключевые экраны и то, без чего нельзя собрать первую версию.</p>
         </div>
         <div class="process-step reveal">
           <span class="step-mark">03</span>
-          <h3>Сборка</h3>
-          <p>Получаем работающую первую версию — сайт, MVP или интерактив.</p>
+          <h3>Первая версия</h3>
+          <p>Собираю работающую версию — сайт, квиз или интерактив — чтобы её можно было открыть и проверить.</p>
         </div>
         <div class="process-step reveal">
           <span class="step-mark">04</span>
           <h3>Запуск</h3>
-          <p>Публикуем продукт и собираем обратную связь для следующих шагов.</p>
+          <p>Публикуем согласованную версию. Обратная связь после запуска помогает понять, нужен ли следующий шаг.</p>
         </div>
       </div>
 
       <div class="speed-note reveal">
-        <h3>Почему я могу двигаться быстро</h3>
-        <p>Использую AI как часть процесса исследования, прототипирования и разработки. Это позволяет быстрее проверять идеи, собирать рабочие версии и не тратить месяцы на то, что ещё не проверено. Акцент — быстрые итерации, самостоятельность и качество решения.</p>
+        <h3>Как устроена сборка</h3>
+        <p>Использую AI как часть исследования, прототипирования и разработки. Это помогает проверять идеи на рабочих версиях.</p>
       </div>
       <div class="lyusya-pocket" data-lyusya-encounter="after-process"></div>
+    </section>
+
+    <section id="for-agencies" class="room room-agency-note">
+      <div class="section-head reveal">
+        <h2>Для агентств</h2>
+        <p class="room-lead">Могу подключиться к отдельной задаче или к проекту целиком. Готовое ТЗ не обязательно. Рамку работы согласовываем; на выходе — собранный продукт.</p>
+      </div>
+      <div class="case-bridge reveal">
+        <p>Подробности формата — на отдельной странице.</p>
+        <a class="btn btn-ghost" href="agencies.html">Страница для агентств</a>
+        <a class="btn btn-ghost" href="#collab-form" data-track="contact_click">Написать о задаче</a>
+      </div>
     </section>
 
     <section id="lyusya" class="room room-lyusya" data-hall="06" data-hall-name="Навигатор">
       <div class="room-label"><span class="coord">06</span> Навигатор</div>
       <div class="section-head reveal">
         <h2>Теперь разберём вашу задачу</h2>
-        <p class="room-lead">Люся поможет сформулировать проблему и собрать предварительный маршрут — затем можно передать его Асе. Имя и контакт — только в конце.</p>
+        <p class="room-lead">Люся поможет сформулировать проблему и собрать предварительный маршрут — затем можно передать его Асе. Имя и контакт — только в конце. Можно сразу написать, без маршрута Люси.</p>
+        <div class="collaborate-cta">
+          <a class="btn btn-ghost" href="#collab-form" data-track="contact_click">Сразу написать Асе</a>
+        </div>
       </div>
       <div class="lyusya-quest reveal is-visible" id="lyusya-quest" aria-label="Навигатор Люся">
         <div class="lyusya-quest__play">
@@ -681,15 +819,43 @@
       <div class="room-label"><span class="coord">07</span> Связь</div>
       <div class="lyusya-pocket" data-lyusya-encounter="before-collab"></div>
 
+      <div class="scope-block reveal" id="work-scope">
+        <div class="section-head">
+          <h2>Как понять, какой объём работы вам нужен</h2>
+          <p class="room-lead">Это не пакеты услуг. Короткие ориентиры, чтобы сформулировать задачу до письма.</p>
+        </div>
+        <ol class="scope-grid">
+          <li id="scope-minimum">
+            <h3>Минимальная версия</h3>
+            <p>Стоит определить основную задачу посетителя и какие страницы и функции для неё нужны. Набор у каждого проекта свой — универсального числа страниц нет.</p>
+          </li>
+          <li id="scope-later">
+            <h3>Расширение</h3>
+            <p>Дополнительные функции полезно отделить от того, без чего нельзя запустить первую версию. Как продолжать после запуска, обсуждается отдельно.</p>
+          </li>
+          <li id="scope-extras">
+            <h3>Сопутствующие расходы</h3>
+            <p>В зависимости от решения могут понадобиться домен, хостинг или платные сервисы. Они нужны не всегда. Кто их оплачивает и входят ли они в работу, зависит от проекта.</p>
+          </li>
+          <li id="scope-limits">
+            <h3>Границы решения</h3>
+            <p>Сайт помогает представить предложение, выбрать услугу и обратиться. Привлечь подходящих посетителей, подготовить контент и выстроить работу бизнеса — отдельные действия. Запуск сайта сам по себе не создаёт поток заказов.</p>
+          </li>
+        </ol>
+        <div class="case-bridge">
+          <p>Если хотите разобрать объём — напишите, с чем пришли.</p>
+          <a class="btn btn-ghost" href="#collab-form" data-track="contact_click">Написать Асе</a>
+        </div>
+      </div>
+
       <div class="collaborate-layout">
         <div class="collaborate-intro reveal">
           <h2>У вас уже есть задача. Построим маршрут</h2>
           <p class="room-lead">Необязательно иметь готовое ТЗ. Расскажите, что сейчас не работает или что хочется создать — или начните с Люси: она поможет сформулировать задачу.</p>
-          <p class="collaborate-note">Для агентств: могу подключаться как внешний разработчик к отдельным задачам или проекту целиком.</p>
-          <p class="collaborate-note">Ответ лично. Обычно в течение 1–2 дней.</p>
+          <p class="collaborate-note">Ответ приходит лично.</p>
           <div class="collaborate-cta">
             <a class="btn btn-primary" href="#lyusya-quest" data-lyusya-start data-track="lucy_start">Начать маршрут</a>
-            <a class="btn btn-ghost" href="#collab-form" data-track="contact_click">Сразу к форме</a>
+            <a class="btn btn-ghost" href="#collab-form" data-track="contact_click">Сразу написать Асе</a>
           </div>
           <nav class="presence-rail presence-rail--compact" aria-label="Связаться в сети">
             <a href="https://aniuka.ru/" target="_blank" rel="noopener noreferrer">Блог</a>
@@ -700,18 +866,25 @@
         </div>
         <form class="collab-form reveal" id="collab-form" novalidate data-track-form="contact">
           <div class="field field-float">
-            <input id="name" name="name" type="text" autocomplete="name" required minlength="2" placeholder=" " />
+            <input id="name" name="name" type="text" autocomplete="name" required minlength="2" placeholder=" " aria-describedby="name-error" />
             <label for="name">Имя</label>
+            <p class="field-error" id="name-error" hidden></p>
           </div>
           <div class="field field-float">
-            <input id="email" name="email" type="email" autocomplete="email" required placeholder=" " />
+            <input id="email" name="email" type="email" autocomplete="email" required placeholder=" " aria-describedby="email-error" />
             <label for="email">Контакт · email</label>
+            <p class="field-error" id="email-error" hidden></p>
+          </div>
+          <div class="form-context" id="form-context" hidden>
+            <p class="form-context__title" id="form-context-title">К письму будет добавлено</p>
+            <ul class="form-context__list" id="form-context-list" aria-labelledby="form-context-title"></ul>
           </div>
           <div class="field field-float field-textarea">
-            <textarea id="project" name="project" rows="8" required minlength="8" placeholder=" "></textarea>
-            <label for="project">Маршрут / что хотите сделать</label>
+            <textarea id="project" name="project" rows="8" placeholder=" " aria-describedby="project-hint project-error"></textarea>
+            <label for="project">Что хотите сделать</label>
+            <p class="field-error" id="project-error" hidden></p>
           </div>
-          <p class="field-hint">Если прошли Люсю — маршрут подставится сам. Можно писать своими словами. Готовое ТЗ не нужно.</p>
+          <p class="field-hint" id="project-hint">Свободный текст. Услуга, проект и маршрут Люси хранятся отдельно и уйдут вместе с письмом. Готовое ТЗ не нужно.</p>
           <div class="field-row">
             <div class="field field-float">
               <input id="timeline" name="timeline" type="text" autocomplete="off" placeholder=" " />
@@ -722,7 +895,18 @@
               <label for="budget">Бюджет · по желанию</label>
             </div>
           </div>
-          <button class="btn btn-primary" type="submit" data-track="route_submit">Передать маршрут Асе</button>
+          <div class="field-honeypot" aria-hidden="true">
+            <label for="website">Сайт</label>
+            <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+          <p class="form-mail-note" id="form-mail-note" hidden>В Gmail откроется черновик. Нажмите “Отправить”, чтобы отправить заявку.</p>
+          <p class="form-mail-address" id="form-mail-address" hidden></p>
+          <button class="btn btn-primary" type="submit" id="collab-submit">Отправить заявку</button>
+          <div class="form-mail-actions" id="form-mail-actions" hidden>
+            <a class="btn btn-primary" id="form-gmail-open" target="_blank" rel="noopener noreferrer">Открыть письмо в Gmail</a>
+            <button class="btn btn-ghost" type="button" id="form-copy-letter">Скопировать бриф</button>
+            <a class="btn btn-ghost" id="form-mailto-open">Открыть в почтовой программе</a>
+          </div>
           <p class="form-legal">Отправляя форму, вы соглашаетесь с <a href="privacy.html">политикой конфиденциальности</a>.</p>
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </form>
@@ -751,13 +935,13 @@
     </nav>
   </footer>
 
-  <a class="mobile-cta" href="#lyusya-quest" data-lyusya-start data-track="lucy_start">Разобрать задачу</a>
+  <a class="mobile-cta" href="#collab-form" data-track="contact_click">Обсудить проект</a>
 
-  <script defer src="form-config.js?v=20260828a"></script>
-  <script defer src="form-mail.js?v=20260828a"></script>
-  <script defer src="script.js?v=20260828a"></script>
+  <script defer src="form-config.js?v=20261108c"></script>
+  <script defer src="form-mail.js?v=20261108c"></script>
+  <script defer src="script.js?v=20261108c"></script>
   <script defer src="lyusya/lyusya-data.js?v=20260830b"></script>
-  <script defer src="lyusya/lyusya-game.js?v=20260830b"></script>
+  <script defer src="lyusya/lyusya-game.js?v=20261108c"></script>
   <script defer src="lyusya/lyusya-companion.js?v=20260821a"></script>
 </body>
 </html>

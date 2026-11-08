@@ -333,13 +333,19 @@
 
     const form = document.querySelector(DATA.handoff.formSelector);
     const field = form?.elements?.namedItem(DATA.handoff.fieldName);
-    if (field instanceof HTMLTextAreaElement || field instanceof HTMLInputElement) {
-      field.value = text;
+    if (window.PortfoFormContext?.setLyusyaRoute) {
+      window.PortfoFormContext.setLyusyaRoute(text);
+    } else if (field instanceof HTMLTextAreaElement || field instanceof HTMLInputElement) {
+      if (!field.value.trim()) field.value = text;
       field.dispatchEvent(new Event("input", { bubbles: true }));
     }
 
     const timeline = form?.elements?.namedItem("timeline");
-    if (timeline instanceof HTMLInputElement && state.answers.urgency?.map) {
+    if (
+      timeline instanceof HTMLInputElement &&
+      state.answers.urgency?.map &&
+      !timeline.value.trim()
+    ) {
       timeline.value = state.answers.urgency.map;
       timeline.dispatchEvent(new Event("input", { bubbles: true }));
     }
@@ -352,7 +358,7 @@
     doneTitle.textContent = "Маршрут построен";
     const doneLead = document.createElement("p");
     doneLead.className = "lyusya-map__summary";
-    doneLead.textContent = "Я передала маршрут Асе. Осталось указать имя и контакт в форме ниже.";
+    doneLead.textContent = "Маршрут добавлен к форме ниже. Осталось указать имя и контакт.";
     const doneList = document.createElement("ul");
     doneList.className = "lyusya-map__checklist";
     [
@@ -367,7 +373,7 @@
     done.append(doneTitle, doneLead, doneList);
     clearBoard();
     boardEl?.append(done);
-    setSpeech("Маршрут готов. Добавьте имя и контакт — и Ася его получит.");
+    setSpeech("Маршрут готов. Добавьте имя и контакт в форме — письмо ещё нужно отправить.");
 
     const target = document.querySelector(DATA.handoff.scrollTo);
     target?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
