@@ -163,7 +163,7 @@ function initForm(reduced) {
   const mailAddress = $("#form-mail-address");
   const mailActions = $("#form-mail-actions");
   const copyBtn = /** @type {HTMLButtonElement | null} */ ($("#form-copy-letter"));
-  const gmailOpen = /** @type {HTMLAnchorElement | null} */ ($("#form-gmail-open"));
+  const gmailOpen = /** @type {HTMLButtonElement | null} */ ($("#form-gmail-open"));
   const mailtoOpen = /** @type {HTMLAnchorElement | null} */ ($("#form-mailto-open"));
   const nameInput = /** @type {HTMLInputElement} */ (form.elements.namedItem("name"));
   const emailInput = /** @type {HTMLInputElement} */ (form.elements.namedItem("email"));
@@ -291,7 +291,6 @@ function initForm(reduced) {
       values.email &&
       values.composed.trim().length >= 8;
     if (!ready) {
-      gmailOpen?.removeAttribute("href");
       mailtoOpen?.removeAttribute("href");
       return null;
     }
@@ -306,10 +305,38 @@ function initForm(reduced) {
       subject: letter.subject,
       body: letter.bodyText,
     });
-    if (gmailOpen && gmail) gmailOpen.href = gmail;
     if (mailtoOpen && mailto) mailtoOpen.href = mailto;
+    persistDraft(values);
     return { ...letter, gmail, mailto };
   };
+
+  const persistDraft = (values) => {
+    window.PortfoFormMail.saveDraft("contact", {
+      name: values.name,
+      email: values.email,
+      project: values.userText != null ? values.userText : projectInput.value.trim(),
+      timeline: values.timeline || "",
+      budget: values.budget || "",
+      context: window.PortfoFormContext.snapshot(),
+    });
+  };
+
+  const restoreDraft = () => {
+    const draft = window.PortfoFormMail.readDraft("contact");
+    if (!draft) return;
+    if (typeof draft.name === "string" && !nameInput.value) nameInput.value = draft.name;
+    if (typeof draft.email === "string" && !emailInput.value) emailInput.value = draft.email;
+    if (typeof draft.project === "string" && !projectInput.value) projectInput.value = draft.project;
+    if (timelineInput && typeof draft.timeline === "string" && !timelineInput.value) {
+      timelineInput.value = draft.timeline;
+    }
+    if (budgetInput && typeof draft.budget === "string" && !budgetInput.value) {
+      budgetInput.value = draft.budget;
+    }
+    if (draft.context) window.PortfoFormContext.restore(draft.context);
+  };
+
+  restoreDraft();
 
   let formStarted = false;
   const markFormStart = () => {
@@ -350,14 +377,23 @@ function initForm(reduced) {
   });
 
   gmailOpen?.addEventListener("click", (event) => {
-    const letter = syncFallbackLinks();
-    if (!letter?.gmail) {
-      event.preventDefault();
-      validate();
+    event.preventDefault();
+    const values = validate();
+    if (!values) return;
+    const letter = letterFromValues(values);
+    lastSubject = letter.subject;
+    lastLetterText = letter.bodyText;
+    persistDraft(values);
+    const url = window.PortfoFormMail.buildGmailCompose({
+      subject: letter.subject,
+      body: letter.bodyText,
+    });
+    if (!url || !url.startsWith("https://mail.google.com/mail/?view=cm")) {
+      showStatus(`Не удалось собрать письмо. ${contactHint()}`, "error");
       return;
     }
     trackEvent("form_gmail_open", { form: "contact" });
-    showStatus(gmailHint, "ok");
+    window.location.assign(url);
   });
 
   mailtoOpen?.addEventListener("click", (event) => {
@@ -588,6 +624,12 @@ function createFormContext() {
     compose,
     snapshot() {
       return { ...state };
+    },
+    restore(snapshot) {
+      if (!snapshot || typeof snapshot !== "object") return;
+      if (snapshot.serviceLabel) api.setService(snapshot.serviceId || "", snapshot.serviceLabel);
+      if (snapshot.projectLabel) api.setProject(snapshot.projectId || "", snapshot.projectLabel);
+      if (snapshot.lyusyaRoute) api.setLyusyaRoute(snapshot.lyusyaRoute);
     },
     clear() {
       state.serviceId = "";

@@ -113,11 +113,36 @@
     }
   }
 
+  const draftKey = (formId) => "portfo.form.draft." + formId;
+
+  const saveDraft = (formId, payload) => {
+    if (!formId || !payload) return;
+    try {
+      sessionStorage.setItem(draftKey(formId), JSON.stringify(payload));
+    } catch {
+      /* quota / private mode */
+    }
+  };
+
+  const readDraft = (formId) => {
+    if (!formId) return null;
+    try {
+      const raw = sessionStorage.getItem(draftKey(formId));
+      if (!raw) return null;
+      const data = JSON.parse(raw);
+      return data && typeof data === "object" ? data : null;
+    } catch {
+      return null;
+    }
+  };
+
   window.PortfoFormMail = {
     getContactEmail,
     getApiUrl,
     submit,
     buildMailto,
     buildGmailCompose,
+    saveDraft,
+    readDraft,
   };
 })();

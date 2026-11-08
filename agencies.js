@@ -92,7 +92,7 @@ function initForm(reduced) {
   const mailAddress = $("#form-mail-address");
   const mailActions = $("#form-mail-actions");
   const copyBtn = /** @type {HTMLButtonElement | null} */ ($("#form-copy-letter"));
-  const gmailOpen = /** @type {HTMLAnchorElement | null} */ ($("#form-gmail-open"));
+  const gmailOpen = /** @type {HTMLButtonElement | null} */ ($("#form-gmail-open"));
   const mailtoOpen = /** @type {HTMLAnchorElement | null} */ ($("#form-mailto-open"));
   const websiteInput = /** @type {HTMLInputElement | null} */ (form.elements.namedItem("website"));
   const usesGmailFallback = Boolean(window.PortfoFormMail && !window.PortfoFormMail.getApiUrl());
@@ -201,7 +201,6 @@ function initForm(reduced) {
       values.email &&
       values.project.length >= 8;
     if (!ready) {
-      gmailOpen?.removeAttribute("href");
       mailtoOpen?.removeAttribute("href");
       return null;
     }
@@ -216,10 +215,28 @@ function initForm(reduced) {
       subject: letter.subject,
       body: letter.bodyText,
     });
-    if (gmailOpen && gmail) gmailOpen.href = gmail;
     if (mailtoOpen && mailto) mailtoOpen.href = mailto;
+    persistDraft(values);
     return { ...letter, gmail, mailto, values };
   };
+
+  const persistDraft = (values) => {
+    window.PortfoFormMail.saveDraft("agency", values);
+  };
+
+  const restoreDraft = () => {
+    const draft = window.PortfoFormMail.readDraft("agency");
+    if (!draft) return;
+    if (typeof draft.agency === "string" && !agencyInput.value) agencyInput.value = draft.agency;
+    if (typeof draft.name === "string" && !nameInput.value) nameInput.value = draft.name;
+    if (typeof draft.email === "string" && !emailInput.value) emailInput.value = draft.email;
+    if (typeof draft.project === "string" && !projectInput.value) projectInput.value = draft.project;
+    if (timelineInput && typeof draft.timeline === "string" && !timelineInput.value) {
+      timelineInput.value = draft.timeline;
+    }
+  };
+
+  restoreDraft();
 
   form.addEventListener("focusin", () => {
     if (formStarted) return;
@@ -249,14 +266,23 @@ function initForm(reduced) {
   });
 
   gmailOpen?.addEventListener("click", (event) => {
-    const letter = syncFallbackLinks();
-    if (!letter?.gmail) {
-      event.preventDefault();
-      validate();
+    event.preventDefault();
+    const values = validate();
+    if (!values) return;
+    const letter = letterFromValues(values);
+    lastSubject = letter.subject;
+    lastLetterText = letter.bodyText;
+    persistDraft(values);
+    const url = window.PortfoFormMail.buildGmailCompose({
+      subject: letter.subject,
+      body: letter.bodyText,
+    });
+    if (!url || !url.startsWith("https://mail.google.com/mail/?view=cm")) {
+      showStatus(`Не удалось собрать письмо. ${contactHint()}`, "error");
       return;
     }
     trackEvent("form_gmail_open", { form: "agency" });
-    showStatus(gmailHint, "ok");
+    window.location.assign(url);
   });
 
   mailtoOpen?.addEventListener("click", (event) => {
