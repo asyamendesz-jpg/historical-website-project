@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#e4e8e2" />
+  <meta name="description" content="Квиз подбирает песни для занятий вокалом по возрасту и музыкальным предпочтениям. В подборке можно открыть доступные ноты и скачать список в Word." />
+  <meta property="og:title" content="Подборщик песен · Portfo" />
+  <meta property="og:description" content="Квиз подбирает песни для занятий вокалом по возрасту и музыкальным предпочтениям." />
+  <meta property="og:type" content="website" />
+  <title>Подборщик песен · Portfo · Ася Мельникова</title>
+  <link rel="canonical" href="https://portfo.ru/podborschik-pesen.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=20261109a" />
+</head>
+<body class="page-quiz-embed">
+  <a class="skip-link" href="#quiz">К квизу</a>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="logo" href="index.html">Portfo<span class="logo-mark" aria-hidden="true"></span></a>
+    <button class="nav-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav">
+      <span></span><span></span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Основная навигация">
+      <a href="index.html">Портфолио</a>
+      <a href="index.html#case-songs">Карточка проекта</a>
+      <a href="agencies.html">Для агентств</a>
+      <a class="nav-cta" href="index.html#collab-form" data-track="contact_click">Обсудить проект</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="quiz-embed-hero">
+      <h1>Подборщик песен</h1>
+      <p>Квиз подбирает песни для занятий вокалом по возрасту и музыкальным предпочтениям. В подборке можно открыть доступные ноты и скачать список в Word.</p>
+      <p class="quiz-embed-links">
+        <a href="https://asyamendesz-jpg.github.io/-song-selection-project/" target="_blank" rel="noopener noreferrer">Открыть квиз отдельно</a>
+        <a href="index.html#case-songs">К карточке в портфолио</a>
+      </p>
+    </section>
+    <div class="quiz-embed-frame" id="quiz">
+      <iframe
+        title="Подборщик песен"
+        src="https://asyamendesz-jpg.github.io/-song-selection-project/"
+        allow="downloads"
+        referrerpolicy="no-referrer-when-downgrade"
+        loading="eager"
+      ></iframe>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-copy">
+      <p>© <span id="year"></span> Portfo · Ася Мельникова</p>
+    </div>
+    <div class="footer-actions">
+      <a href="index.html">Портфолио</a>
+      <a href="index.html#case-songs">Наверх к карточке</a>
+    </div>
+  </footer>
+
+  <script defer src="script.js?v=20261108d"></script>
+</body>
+</html>
