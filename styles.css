@@ -1684,6 +1684,23 @@ a.expedition:focus-visible {
   transform: none;
 }
 
+.expedition-cover img.expedition-media--city,
+.expedition-media--city {
+  background-color: #8fbf62;
+  background-image: url("images/gorod-idey-cover.jpg?v=20261109b");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  object-position: center;
+}
+
+.expedition--proof .expedition-media--city,
+.expedition--proof:hover .expedition-media--city,
+.expedition--proof:focus-within .expedition-media--city {
+  transform: none;
+}
+
 .expedition-media--salon {
   background-color: #f3efe8;
   background-image: url("images/berezhnoe-preobrazhenie-cover.jpg");
@@ -1694,8 +1711,8 @@ a.expedition:focus-visible {
 
 .expedition-cover img.expedition-media--songs,
 .expedition-media--songs {
-  background-color: #efe6f2;
-  background-image: url("images/podborschik-pesen-cover.jpg?v=20261109a");
+  background-color: #3a1578;
+  background-image: url("images/podborschik-pesen-cover.jpg?v=20261109c");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
